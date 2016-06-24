@@ -7,7 +7,7 @@ class GiftBox : public Box
     public:
         GiftBox();
         virtual ~GiftBox();
-        void show();
+        sf::Sprite show();
     protected:
 
     private:

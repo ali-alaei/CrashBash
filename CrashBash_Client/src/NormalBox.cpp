@@ -2,6 +2,7 @@
 
 NormalBox::NormalBox()
 {
+    texture.loadFromFile("NormalBox.jpg");
     //ctor
 }
 
@@ -9,9 +10,11 @@ NormalBox::~NormalBox()
 {
     //dtor
 }
-void NormalBox::show()
+sf::Sprite NormalBox::show()
 {
-
-
+    sprite.setTexture(texture);
+    sprite.setTextureRect(sf::IntRect(0, 0, textureSize, textureSize));
+    sprite.setPosition(xPos,yPos);
+    return sprite;
     ///Sadegh will complete this part.
 }

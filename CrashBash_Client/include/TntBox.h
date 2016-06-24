@@ -8,7 +8,7 @@ class TntBox : public Box
         TntBox();
 
         virtual ~TntBox();
-        void show();
+        sf::Sprite show();
 
     protected:
 

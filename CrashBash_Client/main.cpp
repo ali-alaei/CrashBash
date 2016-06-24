@@ -1,8 +1,8 @@
-#include <SFML/Graphics.hpp>
+#include <SFML-2.3.2/Graphics.hpp>
 
 int main()
 {
-    sf::RenderWindow window(sf::VideoMode(1000, 1200), "SFML works!");
+    sf::RenderWindow window(sf::VideoMode(1000, 748), "SFML works!");
     sf::CircleShape shape(200.f);
     shape.setFillColor(sf::Color::Red);
 

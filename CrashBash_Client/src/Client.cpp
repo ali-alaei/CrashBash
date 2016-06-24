@@ -15,6 +15,15 @@ void Client::run()
     {
         ///connection.Receive();
         ///parser.decode();
+
+
+        ///window->draw(graphic.showTntBoxes())
+        ///surface.window->draw(graphic.showTntBoxes())
+
+
+///az sadegh baraye ali : bbin in khat paiinia bayad mese khat balaii beshe
+///albate nemidoonam koodoom yeki az dotaye balai doroste
+
         ///graphic.showSurface();
         ///graphic.showNormalBoxes();
         ///graphic.showTntBoxes();

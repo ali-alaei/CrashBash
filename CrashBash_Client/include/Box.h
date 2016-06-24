@@ -1,5 +1,6 @@
 #ifndef BOX_H
 #define BOX_H
+#define textureSize 60
 #include<string>
 using namespace std;
 
@@ -8,12 +9,14 @@ class Box
     public:
         Box();
         ~Box();
-        virtual void show() const=0;
+        virtual sf::Sprite show() const=0;
 
     protected:
         int xPos;
         int yPos;
-        string texture;   ///textures of the boxes.
+        sf::Texture texture;
+        sf::Sprite sprite;
+        ///string texture;   ///textures of the boxes.
 
     private:
 

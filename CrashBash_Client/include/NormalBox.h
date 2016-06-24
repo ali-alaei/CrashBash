@@ -7,10 +7,12 @@ class NormalBox: public Box
     public:
         NormalBox();
         virtual ~NormalBox();
-        void show();
+        sf::Sprite show();
     protected:
 
     private:
+
+
 };
 
 #endif // NORMALBOX_H
