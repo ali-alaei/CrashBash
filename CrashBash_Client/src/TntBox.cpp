@@ -9,3 +9,9 @@ TntBox::~TntBox()
 {
     //dtor
 }
+void TntBox::show()
+{
+
+
+    ///Sadegh will complete this part.
+}

@@ -1,13 +1,13 @@
 #ifndef NORMALBOX_H
 #define NORMALBOX_H
+#include"Box.h"
 
-
-class NormalBox
+class NormalBox: public Box
 {
     public:
         NormalBox();
         virtual ~NormalBox();
-
+        void show();
     protected:
 
     private:

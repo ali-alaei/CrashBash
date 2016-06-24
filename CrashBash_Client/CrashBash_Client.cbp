@@ -44,8 +44,8 @@
 			<Add option="-fexceptions" />
 		</Compiler>
 		<Unit filename="include/Box.h" />
+		<Unit filename="include/Client.h" />
 		<Unit filename="include/Connection.h" />
-		<Unit filename="include/Game.h" />
 		<Unit filename="include/GiftBox.h" />
 		<Unit filename="include/Graphic.h" />
 		<Unit filename="include/Input.h" />
@@ -56,11 +56,10 @@
 		<Unit filename="include/TntBox.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/Box.cpp" />
+		<Unit filename="src/Client.cpp" />
 		<Unit filename="src/Connection.cpp" />
-		<Unit filename="src/Game.cpp" />
 		<Unit filename="src/GiftBox.cpp" />
 		<Unit filename="src/Graphic.cpp" />
-		<Unit filename="src/Input.cpp" />
 		<Unit filename="src/NormalBox.cpp" />
 		<Unit filename="src/Parser.cpp" />
 		<Unit filename="src/Player.cpp" />

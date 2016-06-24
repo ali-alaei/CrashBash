@@ -2,15 +2,18 @@
 #define INPUT_H
 
 
-class Input
+struct Input
 {
-    public:
-        Input();
-        virtual ~Input();
+ bool up;
+ bool down;
+ bool right;
+ bool left;
+ bool space;
 
-    protected:
 
-    private:
+
+
+
 };
 
 #endif // INPUT_H
