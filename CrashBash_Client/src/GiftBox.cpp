@@ -19,3 +19,13 @@ sf::Sprite GiftBox::show()
     ///Sadegh will complete this part.
 
 }
+void GiftBox::setXPos(int x)
+{
+
+    this->xPos = x;
+}
+void GiftBox::setYPos(int y)
+{
+
+    this->yPos = y;
+}

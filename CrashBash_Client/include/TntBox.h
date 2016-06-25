@@ -9,7 +9,8 @@ class TntBox : public Box
 
         virtual ~TntBox();
         sf::Sprite show();
-
+        void setXPos(int x);
+        void setYPos(int y);
     protected:
 
     private:

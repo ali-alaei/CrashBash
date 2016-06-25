@@ -1,6 +1,11 @@
 #ifndef GRAPHIC_H
 #define GRAPHIC_H
-
+#include <SFML/Graphics.hpp>
+#include <Surface.h>
+#include <GiftBox.h>
+#include <TntBox.h>
+#include <NormalBox.h>
+#include <Player.h>
 
 class Graphic
 {
@@ -17,7 +22,10 @@ class Graphic
     protected:
 
     private:
-        Surface *surface;
+        int width;
+        int height;
+        sf::RenderWindow window;
+        Surface surface;
         GiftBox *giftbox;
         TntBox *tntbox;
         NormalBox *normalbox;

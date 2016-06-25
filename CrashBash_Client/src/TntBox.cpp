@@ -18,3 +18,13 @@ sf::Sprite TntBox::show()
     return sprite;
     ///Sadegh will complete this part.
 }
+void TntBox::setXPos(int x)
+{
+
+    this->xPos = x;
+}
+void TntBox::setYPos(int y)
+{
+
+    this->yPos = y;
+}

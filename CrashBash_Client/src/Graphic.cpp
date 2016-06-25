@@ -1,8 +1,9 @@
 #include "Graphic.h"
 
-Graphic::Graphic()
+Graphic::Graphic():width(1300),height(973),window(sf::VideoMode(width, height), "CrashBash"), surface(width,height)
 {
     ///meghdar dehie pointer ha
+
     //ctor
 }
 
@@ -13,27 +14,27 @@ Graphic::~Graphic()
 
 sf::Sprite Graphic::showSurface()
 {
-    return surface->show();
+    window.draw(surface.show());
 }
 
 sf::Sprite Graphic::showNormalBoxes()
 {
-    return normalbox->show();
+    window.draw(normalbox->show());
 }
 
 sf::Sprite Graphic::showTntBoxes()
 {
-    return tntbox->show();
+    window.draw(tntbox->show());
 }
 
 sf::Sprite Graphic::showGiftBoxe()
 {
-    return giftbox->show();
+    window.draw(giftbox->show());
 }
 
 sf::Sprite Graphic::showPlayers()
 {
-   /// return player->
+    window.draw(player->show());
 }
 
 sf::Sprite Graphic::showPlayersHealth()

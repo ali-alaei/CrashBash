@@ -21,8 +21,8 @@ void Client::run()
         ///surface.window->draw(graphic.showTntBoxes())
 
 
-///az sadegh baraye ali : bbin in khat paiinia bayad mese khat balaii beshe
-///albate nemidoonam koodoom yeki az dotaye balai doroste
+        ///az sadegh baraye ali : bbin in khat paiinia bayad mese khat balaii beshe
+        ///albate nemidoonam koodoom yeki az dotaye balai doroste
 
         ///graphic.showSurface();
         ///graphic.showNormalBoxes();

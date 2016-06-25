@@ -2,7 +2,9 @@
 #include "string"
 #include "Input.h"
 #include "vector"
-#include "Box.h"
+#include "GiftBox.h"
+#include "NormalBox.h"
+#include "TntBox.h"
 #include "Player.h"
 
 using namespace std;
@@ -16,7 +18,9 @@ class Parser
 
         string Code();
         void deCode();
-        vector <Box*> boxVector;
+        vector <NormalBox*> normalBoxVector;
+        vector <TntBox*> tntBoxVector;
+        vector <GiftBox*> giftBoxVector;
         vector <Player*> playerVector;
         Input Input;
         int giftBoxNum;

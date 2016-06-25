@@ -8,6 +8,8 @@ class GiftBox : public Box
         GiftBox();
         virtual ~GiftBox();
         sf::Sprite show();
+        void setXPos(int x);
+        void setYPos(int y);
     protected:
 
     private:

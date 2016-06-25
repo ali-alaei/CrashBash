@@ -2,10 +2,7 @@
 #include "Parser.h"
 #include "string"
 #include "sstream"
-//#include "Input.h"
 #include "vector"
-//#include "Box.h"
-//#include "Player.h"
 
 
 using namespace std;
@@ -21,10 +18,10 @@ string Parser::Code()
     wModel="";
     stringstream Up,Down,Right,Left;
 
-    Up << Input.Up;
-    Down << Input.Down;
-    Right << Input.Right;
-    Left << Input.Left;
+    Up << Input.up;
+    Down << Input.down;
+    Right << Input.right;
+    Left << Input.left;
 
     wModel = wModel + "U" + Up.str();
     wModel = wModel + "D" + Down.str();
@@ -312,22 +309,71 @@ void Parser::deCode()
     tb>>tntBoxNum;
 
 
-    for(int i=0; i<boxNum; i++)
+    for(int i=0; i<giftBoxNum; i++)
     {
         int a;
-        Box* B;
-        B=new Box;
-        boxVector.push_back(B);
+        GiftBox* G;
+
+        ///must use if and else for "new"
+        G=new GiftBox();
+
+        giftBoxVector.push_back(G);
 
         stringstream x(BoxX[i]);
         x>>a;
-        boxVector[i]->xPos=a;
+
+        giftBoxVector[i]->setXPos(a);
 
         stringstream y(BoxY[i]);
         y>>a;
-        boxVector[i]->yPos=a;
+        giftBoxVector[i]->setYPos(a);
 
     }
+
+
+    for(int i=giftBoxNum+1; i<giftBoxNum+normalBoxNum; i++)
+    {
+        int a;
+        NormalBox* N;
+
+        ///must use if and else for "new"
+        N=new NormalBox();
+
+        normalBoxVector.push_back(N);
+
+        stringstream x(BoxX[i]);
+        x>>a;
+
+        normalBoxVector[i]->setXPos(a);
+
+        stringstream y(BoxY[i]);
+        y>>a;
+        normalBoxVector[i]->setYPos(a);
+
+    }
+
+
+    for(int i=giftBoxNum+normalBoxNum+1; i<giftBoxNum+normalBoxNum+tntBoxNum; i++)
+    {
+        int a;
+        TntBox* T;
+
+        ///must use if and else for "new"
+        T=new TntBox();
+
+        tntBoxVector.push_back(T);
+
+        stringstream x(BoxX[i]);
+        x>>a;
+
+        tntBoxVector[i]->setXPos(a);
+
+        stringstream y(BoxY[i]);
+        y>>a;
+        tntBoxVector[i]->setYPos(a);
+
+    }
+
     for(int i=0; i<playerNum; i++)
     {
         int a;
@@ -337,34 +383,34 @@ void Parser::deCode()
 
         stringstream x(PlayerX[i]);
         x>>a;
-        playerVector[i]->xPos=a;
+        playerVector[i]->setXPos(a);
 
         stringstream y(PlayerY[i]);
         y>>a;
-        playerVector[i]->yPos=a;
+        playerVector[i]->setYPos(a);
 
         stringstream d(PlayerD[i]);
         d>>a;
-        playerVector[i]->Direction=a;
+        playerVector[i]->setDirection(a);
 
         stringstream t(PlayerT[i]);
         t>>a;
-        playerVector[i]->ThrowRate=a;
+        playerVector[i]->setThrowRate(a);
 
         stringstream h(PlayerH[i]);
         h>>a;
-        playerVector[i]->Health=a;
+        playerVector[i]->setHealth(a);
 
         stringstream s(PlayerS[i]);
         s>>a;
-        playerVector[i]->Speed=a;;
+        playerVector[i]->setSpeed(a);
     }
 
-    cout<<boxNum<<endl;
-    for(int i=0; i<boxNum; i++)
-    {
-        cout<<boxVector[i]->xPos<<boxVector[i]->yPos<<endl;
-    }
+    //cout<<boxNum<<endl;
+    //for(int i=0; i<boxNum; i++)
+    //{
+    //    cout<<boxVector[i]->xPos<<boxVector[i]->yPos<<endl;
+    //}
 
 }
 

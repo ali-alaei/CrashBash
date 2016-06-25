@@ -1,13 +1,12 @@
 #ifndef SURFACE_H
 #define SURFACE_H
-
+#include <SFML/Graphics.hpp>
 
 class Surface
 {
     public:
-        Surface();
+        Surface(int,int);
         virtual ~Surface();
-        sf::RenderWindow renderWindowAccess();
         sf::Sprite show();
     protected:
 

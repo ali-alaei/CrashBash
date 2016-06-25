@@ -8,6 +8,8 @@ class NormalBox: public Box
         NormalBox();
         virtual ~NormalBox();
         sf::Sprite show();
+        void setXPos(int x);
+        void setYPos(int y);
     protected:
 
     private:

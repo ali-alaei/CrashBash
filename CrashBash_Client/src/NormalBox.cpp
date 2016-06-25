@@ -18,3 +18,14 @@ sf::Sprite NormalBox::show()
     return sprite;
     ///Sadegh will complete this part.
 }
+void NormalBox::setXPos(int x)
+{
+
+    this->xPos = x;
+}
+void NormalBox::setYPos(int y)
+{
+
+
+    this->yPos = y;
+}
