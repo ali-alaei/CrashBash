@@ -16,7 +16,7 @@ class Parser
         Parser();
         virtual ~Parser();
 
-        string Code();
+        string code();
         void deCode();
         vector <NormalBox*> normalBoxVector;
         vector <TntBox*> tntBoxVector;

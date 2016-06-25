@@ -2,42 +2,42 @@
 
 Graphic::Graphic():width(1300),height(973),window(sf::VideoMode(width, height), "CrashBash"), surface(width,height)
 {
-    ///meghdar dehie pointer ha
-
-    //ctor
 }
 
 Graphic::~Graphic()
 {
-    //dtor
 }
 
-sf::Sprite Graphic::showSurface()
+void Graphic::showSurface()
 {
     window.draw(surface.show());
 }
 
-sf::Sprite Graphic::showNormalBoxes()
+void Graphic::showNormalBoxes(NormalBox& normalBoxObj)
 {
+    this->normalbox=normalBoxObj;
     window.draw(normalbox->show());
 }
 
-sf::Sprite Graphic::showTntBoxes()
+void Graphic::showTntBoxes(TntBox& tntBoxObj)
 {
+    this->tntbox=tntBoxObj;
     window.draw(tntbox->show());
 }
 
-sf::Sprite Graphic::showGiftBoxe()
+void Graphic::showGiftBoxes(GiftBox& giftBoxObj)
 {
+    this->giftbox=giftBoxObj;
     window.draw(giftbox->show());
 }
 
-sf::Sprite Graphic::showPlayers()
+void Graphic::showPlayers(Player& playerObj)
 {
+    this->player=playerObj;
     window.draw(player->show());
 }
 
-sf::Sprite Graphic::showPlayersHealth()
+void Graphic::showPlayersHealth()
 {
    /// return player->
 }

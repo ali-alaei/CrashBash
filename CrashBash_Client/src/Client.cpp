@@ -13,16 +13,7 @@ void Client::run()
 {
     while(true)
     {
-        ///connection.Receive();
-        ///parser.decode();
 
-
-        ///window->draw(graphic.showTntBoxes())
-        ///surface.window->draw(graphic.showTntBoxes())
-
-
-       ///az sadegh baraye ali : bbin in khat paiinia bayad mese khat balaii beshe
-       ///albate nemidoonam koodoom yeki az dotaye balai doroste
         connection.recieve();     ///ino nemidunam k vaghti server b client vasl mishe client ham bayad vasl beshe ya na.
         parser.deCode();          ///
         graphic.showSurface();
@@ -33,7 +24,7 @@ void Client::run()
         graphic.showPlayersHealth();
         player.getKeys();
         parser.code();
-        connection.Send();
+        connection.send();
 
     }
 
