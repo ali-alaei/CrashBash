@@ -9,3 +9,23 @@ Connection::~Connection()
 {
     //dtor
 }
+void Connection::connnect()
+{
+
+
+
+}
+void Connection::send()
+{
+
+
+
+
+}
+void Connection::recieve()
+{
+
+
+
+
+}

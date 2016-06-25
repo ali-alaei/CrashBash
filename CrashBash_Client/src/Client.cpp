@@ -21,31 +21,20 @@ void Client::run()
         ///surface.window->draw(graphic.showTntBoxes())
 
 
-        ///az sadegh baraye ali : bbin in khat paiinia bayad mese khat balaii beshe
-        ///albate nemidoonam koodoom yeki az dotaye balai doroste
-
-        ///graphic.showSurface();
-        ///graphic.showNormalBoxes();
-        ///graphic.showTntBoxes();
-        ///graphic.showGiftBoxes();
-        ///graphic.showPlayers();
-        ///graphic.showPlayersHealth();
-        ///player.getKeys();
-        ///parser.code();
-        ///connection.Send();
-
-
-
-
-
-
-
-
-
+       ///az sadegh baraye ali : bbin in khat paiinia bayad mese khat balaii beshe
+       ///albate nemidoonam koodoom yeki az dotaye balai doroste
+        connection.recieve();     ///ino nemidunam k vaghti server b client vasl mishe client ham bayad vasl beshe ya na.
+        parser.deCode();          ///
+        graphic.showSurface();
+        graphic.showNormalBoxes();
+        graphic.showTntBoxes();
+        graphic.showGiftBoxes();
+        graphic.showPlayers();
+        graphic.showPlayersHealth();
+        player.getKeys();
+        parser.code();
+        connection.Send();
 
     }
-
-
-
 
 }

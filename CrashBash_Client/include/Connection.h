@@ -7,6 +7,9 @@ class Connection
     public:
         Connection();
         virtual ~Connection();
+        void send();
+        void recieve();
+        void connnect();
 
     protected:
 
