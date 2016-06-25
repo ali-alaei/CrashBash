@@ -1,5 +1,11 @@
-#ifndef PARSER_H
-#define PARSER_H
+#include "iostream"
+#include "string"
+#include "Input.h"
+#include "vector"
+#include "Box.h"
+#include "Player.h"
+
+using namespace std;
 
 
 class Parser
@@ -8,9 +14,17 @@ class Parser
         Parser();
         virtual ~Parser();
 
-    protected:
+        string Code();
+        void deCode();
+        vector <Box*> boxVector;
+        vector <Player*> playerVector;
+        Input Input;
+        int giftBoxNum;
+        int tntBoxNum;
+        int normalBoxNum;
 
     private:
+        string wModel;
 };
 
-#endif // PARSER_H
+
