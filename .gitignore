@@ -1,0 +1,5 @@
+﻿CrashBash_Client/SFML-2.3.2
+CrashBash_Client/bin
+CrashBash_Client/obj
+CrashBash_Client/*.layout
+CrashBash_Client/*.depend
