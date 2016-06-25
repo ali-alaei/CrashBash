@@ -12,7 +12,38 @@ Parser::Parser()
 
 
 }
+int Parser::getGiftBoxNum()
+{
 
+    return this->giftBoxNum;
+}
+int Parser::getTntBoxNum()
+{
+
+    return this->tntBoxNum;
+}
+int Parser::getNormalBoxNum()
+{
+
+    return this->normalBoxNum;
+}
+/*TntBox* Parser::getTntBoxNum()
+{
+    return this->tntBoxVector;
+}
+NormalBox* Parser::getNormalBoxVector()
+{
+    return this->normalBoxVector;
+}
+GiftBox* Parser::getGiftBoxVector()
+{
+    return this->giftBoxVector;
+
+}
+Player* Parser::getPlayerVector()
+{
+    return this->playerVector;
+}*/
 string Parser::Code()
 {
     wModel="";

@@ -3,7 +3,7 @@
 #include"Graphic.h"
 #include"Parser.h"
 #include"Connection.h"
-
+#include"Player.h"
 class Client
 {
     public:
@@ -16,7 +16,9 @@ class Client
         Graphic graphic;
         Connection connection;
         Parser parser;
+        Player player;
 
 };
 
 #endif // CLIENT_H
+

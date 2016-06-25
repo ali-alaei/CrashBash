@@ -1,6 +1,7 @@
 # depslib dependency file v1.0
-1466632995 source:c:\users\ali\desktop\crashbash\crashbash_client\main.cpp
+1466888392 source:c:\users\ali\desktop\crashbash\crashbash_client\main.cpp
 	<SFML/Graphics.hpp>
+	<Client.h>
 
 1466632996 c:\users\ali\desktop\crashbash\crashbash_client\sfml-2.3.2\include\sfml\graphics.hpp
 	<SFML/Window.hpp>
@@ -383,62 +384,79 @@
 1466632996 source:c:\users\ali\desktop\crashbash\crashbash_client\src\box.cpp
 	"Box.h"
 
-1466738569 c:\users\ali\desktop\crashbash\crashbash_client\include\box.h
+1466866841 c:\users\ali\desktop\crashbash\crashbash_client\include\box.h
 	<string>
+	<SFML/Graphics.hpp>
 
 1466738216 source:c:\users\ali\desktop\crashbash\crashbash_client\src\client.cpp
 	"Client.h"
 
-1466738611 c:\users\ali\desktop\crashbash\crashbash_client\include\client.h
+1466897683 c:\users\ali\desktop\crashbash\crashbash_client\include\client.h
 	"Graphic.h"
 	"Parser.h"
 	"Connection.h"
+	"Player.h"
 
-1466632995 c:\users\ali\desktop\crashbash\crashbash_client\include\graphic.h
+1466897430 c:\users\ali\desktop\crashbash\crashbash_client\include\graphic.h
+	<SFML/Graphics.hpp>
+	<Surface.h>
+	<GiftBox.h>
+	<TntBox.h>
+	<NormalBox.h>
+	<Player.h>
 
-1466632995 c:\users\ali\desktop\crashbash\crashbash_client\include\parser.h
+1466896689 c:\users\ali\desktop\crashbash\crashbash_client\include\parser.h
+	"iostream"
+	"string"
+	"Input.h"
+	"vector"
+	"GiftBox.h"
+	"NormalBox.h"
+	"TntBox.h"
+	"Player.h"
 
-1466632995 c:\users\ali\desktop\crashbash\crashbash_client\include\connection.h
+1466866841 c:\users\ali\desktop\crashbash\crashbash_client\include\connection.h
 
 1466632996 source:c:\users\ali\desktop\crashbash\crashbash_client\src\connection.cpp
 	"Connection.h"
 
-1466738789 source:c:\users\ali\desktop\crashbash\crashbash_client\src\giftbox.cpp
+1466866841 source:c:\users\ali\desktop\crashbash\crashbash_client\src\giftbox.cpp
 	"GiftBox.h"
 
-1466738789 c:\users\ali\desktop\crashbash\crashbash_client\include\giftbox.h
+1466866841 c:\users\ali\desktop\crashbash\crashbash_client\include\giftbox.h
 	"Box.h"
 
 1466632996 source:c:\users\ali\desktop\crashbash\crashbash_client\src\graphic.cpp
 	"Graphic.h"
 
-1466738789 source:c:\users\ali\desktop\crashbash\crashbash_client\src\normalbox.cpp
+1466866841 source:c:\users\ali\desktop\crashbash\crashbash_client\src\normalbox.cpp
 	"NormalBox.h"
 
-1466738851 c:\users\ali\desktop\crashbash\crashbash_client\include\normalbox.h
+1466866841 c:\users\ali\desktop\crashbash\crashbash_client\include\normalbox.h
 	"Box.h"
 
 1466632996 source:c:\users\ali\desktop\crashbash\crashbash_client\src\parser.cpp
 	"Parser.h"
 
-1466738919 source:c:\users\ali\desktop\crashbash\crashbash_client\src\player.cpp
+1466867002 source:c:\users\ali\desktop\crashbash\crashbash_client\src\player.cpp
 	"Player.h"
 
-1466738906 c:\users\ali\desktop\crashbash\crashbash_client\include\player.h
+1466866914 c:\users\ali\desktop\crashbash\crashbash_client\include\player.h
 	"Input.h"
 	<SFML/Graphics.hpp>
 
 1466702470 c:\users\ali\desktop\crashbash\crashbash_client\include\input.h
 
-1466632996 source:c:\users\ali\desktop\crashbash\crashbash_client\src\surface.cpp
+1466866841 source:c:\users\ali\desktop\crashbash\crashbash_client\src\surface.cpp
 	"Surface.h"
 
-1466632995 c:\users\ali\desktop\crashbash\crashbash_client\include\surface.h
+1466866841 c:\users\ali\desktop\crashbash\crashbash_client\include\surface.h
+	<SFML/Graphics.hpp>
 
-1466738789 source:c:\users\ali\desktop\crashbash\crashbash_client\src\tntbox.cpp
+1466866841 source:c:\users\ali\desktop\crashbash\crashbash_client\src\tntbox.cpp
 	"TntBox.h"
 
-1466738949 c:\users\ali\desktop\crashbash\crashbash_client\include\tntbox.h
+1466866841 c:\users\ali\desktop\crashbash\crashbash_client\include\tntbox.h
 	"Box.h"
 
 1466860030 source:c:\users\sadegh\crashbash\crashbash_client\main.cpp

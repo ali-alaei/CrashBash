@@ -18,17 +18,25 @@ class Parser
 
         string code();
         void deCode();
+        int getGiftBoxNum();
+        int getTntBoxNum();
+        int getNormalBoxNum();
+        /*TntBox* getTntBoxVector();
+        GiftBox* getGiftBoxVector();
+        NormalBox* getNormalBoxVector();
+        Player* getPlayerVector();*/
         vector <NormalBox*> normalBoxVector;
         vector <TntBox*> tntBoxVector;
         vector <GiftBox*> giftBoxVector;
         vector <Player*> playerVector;
+
+    private:
+        string wModel;
         Input Input;
         int giftBoxNum;
         int tntBoxNum;
         int normalBoxNum;
 
-    private:
-        string wModel;
 };
 
 
