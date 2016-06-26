@@ -13,10 +13,10 @@ class Graphic
         Graphic();
         virtual ~Graphic();
         void showSurface();
-        void showNormalBoxes(NormalBox& normalBoxObj);
-        void showTntBoxes(TntBox& tntBoxObj);
-        void showGiftBoxes(GiftBox& giftBoxObj);
-        void showPlayers(Player& playerObj);
+        void showNormalBoxes(NormalBox* normalBoxObj);
+        void showTntBoxes(TntBox* tntBoxObj);
+        void showGiftBoxes(GiftBox* giftBoxObj);
+        void showPlayers(Player* playerObj);
         void showPlayersHealth();
 
     protected:

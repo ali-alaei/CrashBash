@@ -44,7 +44,7 @@ Player* Parser::getPlayerVector()
 {
     return this->playerVector;
 }*/
-string Parser::Code()
+string Parser::code()
 {
     wModel="";
     stringstream Up,Down,Right,Left;
@@ -65,7 +65,7 @@ string Parser::Code()
 void Parser::deCode()
 {
 
-    wModel="B|N1,1,1|X1,2,3|Y3,4,5|*P|X1,2|Y3,4|T5,6|D7,8|H9,1|S2,3|-";
+    wModel="B|N1,1,1|X1000,800,600|Y900,700,500|*P|X100,200|Y100,200|T5,6|D4,1|H9,1|S2,3|-";
     vector <string> BoxX;
     vector <string> BoxY;
     vector <string> BoxN;

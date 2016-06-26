@@ -459,8 +459,9 @@
 1466866841 c:\users\ali\desktop\crashbash\crashbash_client\include\tntbox.h
 	"Box.h"
 
-1466860030 source:c:\users\sadegh\crashbash\crashbash_client\main.cpp
+1466885790 source:c:\users\sadegh\crashbash\crashbash_client\main.cpp
 	<SFML/Graphics.hpp>
+	<Client.h>
 
 1429784053 c:\users\sadegh\crashbash\crashbash_client\sfml-2.3.2\include\sfml\graphics.hpp
 	<SFML/Window.hpp>
@@ -847,15 +848,16 @@
 	<string>
 	<SFML/Graphics.hpp>
 
-1466853627 source:c:\users\sadegh\crashbash\crashbash_client\src\client.cpp
+1466903254 source:c:\users\sadegh\crashbash\crashbash_client\src\client.cpp
 	"Client.h"
 
-1466761636 c:\users\sadegh\crashbash\crashbash_client\include\client.h
+1466898622 c:\users\sadegh\crashbash\crashbash_client\include\client.h
 	"Graphic.h"
 	"Parser.h"
 	"Connection.h"
+	"Player.h"
 
-1466865829 c:\users\sadegh\crashbash\crashbash_client\include\graphic.h
+1466903339 c:\users\sadegh\crashbash\crashbash_client\include\graphic.h
 	<SFML/Graphics.hpp>
 	<Surface.h>
 	<GiftBox.h>
@@ -881,7 +883,7 @@
 
 1466761636 c:\users\sadegh\crashbash\crashbash_client\include\input.h
 
-1466885309 c:\users\sadegh\crashbash\crashbash_client\include\parser.h
+1466898622 c:\users\sadegh\crashbash\crashbash_client\include\parser.h
 	"iostream"
 	"string"
 	"Input.h"
@@ -891,9 +893,9 @@
 	"TntBox.h"
 	"Player.h"
 
-1466626836 c:\users\sadegh\crashbash\crashbash_client\include\connection.h
+1466884128 c:\users\sadegh\crashbash\crashbash_client\include\connection.h
 
-1466626836 source:c:\users\sadegh\crashbash\crashbash_client\src\connection.cpp
+1466884128 source:c:\users\sadegh\crashbash\crashbash_client\src\connection.cpp
 	"Connection.h"
 
 1466862609 source:c:\users\sadegh\crashbash\crashbash_client\src\giftbox.cpp
@@ -902,10 +904,10 @@
 1466862581 source:c:\users\sadegh\crashbash\crashbash_client\src\normalbox.cpp
 	"NormalBox.h"
 
-1466865997 source:c:\users\sadegh\crashbash\crashbash_client\src\graphic.cpp
+1466903254 source:c:\users\sadegh\crashbash\crashbash_client\src\graphic.cpp
 	"Graphic.h"
 
-1466865068 source:c:\users\sadegh\crashbash\crashbash_client\src\parser.cpp
+1466903498 source:c:\users\sadegh\crashbash\crashbash_client\src\parser.cpp
 	"iostream"
 	"Parser.h"
 	"string"

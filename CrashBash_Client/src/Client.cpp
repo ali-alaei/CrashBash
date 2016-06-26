@@ -19,20 +19,20 @@ void Client::run()
         graphic.showSurface();
         for(int i=0;i<parser.getNormalBoxNum();i++)
         {
-            graphic.showNormalBoxes(*parser.normalBoxVector[i]);
+            graphic.showNormalBoxes(parser.normalBoxVector[i]);
         }
         for(int i=0;i<parser.getTntBoxNum();i++)
         {
-            graphic.showTntBoxes(*parser.tntBoxVector[i]);
+            graphic.showTntBoxes(parser.tntBoxVector[i]);
 
         }
         for(int i=0;i<parser.getGiftBoxNum();i++)
         {
-            graphic.showGiftBoxes(*parser.giftBoxVector[i]);
+            graphic.showGiftBoxes(parser.giftBoxVector[i]);
         }
         for(int i=0;i<2;i++)
         {
-            graphic.showPlayers(*parser.playerVector[i]);
+            graphic.showPlayers(parser.playerVector[i]);
         }
 
         graphic.showPlayersHealth();
