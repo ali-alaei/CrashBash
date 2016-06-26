@@ -18,14 +18,14 @@ class Graphic
         void showGiftBoxes(GiftBox* giftBoxObj);
         void showPlayers(Player* playerObj);
         void showPlayersHealth();
+        sf::RenderWindow* window;
 
     protected:
 
     private:
         int width;
         int height;
-        sf::RenderWindow window;
-        Surface surface;
+         Surface surface;
         GiftBox *giftbox;
         TntBox *tntbox;
         NormalBox *normalbox;

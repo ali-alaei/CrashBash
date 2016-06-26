@@ -21,6 +21,7 @@ class Parser
         int getGiftBoxNum();
         int getTntBoxNum();
         int getNormalBoxNum();
+        int getPlayerNum();
         /*TntBox* getTntBoxVector();
         GiftBox* getGiftBoxVector();
         NormalBox* getNormalBoxVector();
@@ -36,6 +37,7 @@ class Parser
         int giftBoxNum;
         int tntBoxNum;
         int normalBoxNum;
+        int playerNum;
 
 };
 

@@ -27,6 +27,12 @@ int Parser::getNormalBoxNum()
 
     return this->normalBoxNum;
 }
+
+int Parser::getPlayerNum()
+{
+
+    return this->playerNum;
+}
 /*TntBox* Parser::getTntBoxNum()
 {
     return this->tntBoxVector;
@@ -362,7 +368,7 @@ void Parser::deCode()
     }
 
 
-    for(int i=giftBoxNum+1; i<giftBoxNum+normalBoxNum; i++)
+    for(int i=giftBoxNum,j=0; i<giftBoxNum+normalBoxNum; i++,j++)
     {
         int a;
         NormalBox* N;
@@ -372,19 +378,19 @@ void Parser::deCode()
 
         normalBoxVector.push_back(N);
 
-        stringstream x(BoxX[i]);
+        stringstream x(BoxX[j+i]);
         x>>a;
+        cout<<"SSSS\n"<<a<<"\n";
+        normalBoxVector[j]->setXPos(a);
 
-        normalBoxVector[i]->setXPos(a);
-
-        stringstream y(BoxY[i]);
+        stringstream y(BoxY[j+i]);
         y>>a;
-        normalBoxVector[i]->setYPos(a);
+        normalBoxVector[j]->setYPos(a);
 
     }
 
 
-    for(int i=giftBoxNum+normalBoxNum+1; i<giftBoxNum+normalBoxNum+tntBoxNum; i++)
+    for(int i=giftBoxNum+normalBoxNum,j=0; i<giftBoxNum+normalBoxNum+tntBoxNum; j++,i++)
     {
         int a;
         TntBox* T;
@@ -394,14 +400,14 @@ void Parser::deCode()
 
         tntBoxVector.push_back(T);
 
-        stringstream x(BoxX[i]);
+        stringstream x(BoxX[j+i]);
         x>>a;
 
-        tntBoxVector[i]->setXPos(a);
+        tntBoxVector[j]->setXPos(a);
 
-        stringstream y(BoxY[i]);
+        stringstream y(BoxY[j+i]);
         y>>a;
-        tntBoxVector[i]->setYPos(a);
+        tntBoxVector[j]->setYPos(a);
 
     }
 
@@ -437,6 +443,7 @@ void Parser::deCode()
         playerVector[i]->setSpeed(a);
     }
 
+    cout<<"\nBBBBB"<<BoxY[2];
     //cout<<boxNum<<endl;
     //for(int i=0; i<boxNum; i++)
     //{
