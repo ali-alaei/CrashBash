@@ -11,6 +11,12 @@ class Player
     protected:
 
     private:
+        bool up;
+        bool down;
+        bool right;
+        bool left;
+        int space;
+        bool haveBoxBool;
 };
 
 #endif // PLAYER_H

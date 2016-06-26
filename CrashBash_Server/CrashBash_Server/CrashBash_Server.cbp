@@ -37,16 +37,22 @@
 		<Unit filename="include/Box.h" />
 		<Unit filename="include/Connection.h" />
 		<Unit filename="include/Controller.h" />
+		<Unit filename="include/GiftBox.h" />
 		<Unit filename="include/Input.h" />
+		<Unit filename="include/NoramlBox.h" />
 		<Unit filename="include/Parser.h" />
 		<Unit filename="include/Player.h" />
+		<Unit filename="include/TntBox.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/Box.cpp" />
 		<Unit filename="src/Connection.cpp" />
 		<Unit filename="src/Controller.cpp" />
+		<Unit filename="src/GiftBox.cpp" />
 		<Unit filename="src/Input.cpp" />
+		<Unit filename="src/NoramlBox.cpp" />
 		<Unit filename="src/Parser.cpp" />
 		<Unit filename="src/Player.cpp" />
+		<Unit filename="src/TntBox.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />
