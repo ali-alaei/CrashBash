@@ -12,6 +12,7 @@ class TntBox:public Box
 
     private:
         float rate;
+        bool deadOrAlive;
 };
 
 #endif // TNTBOX_H

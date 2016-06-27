@@ -32,10 +32,10 @@ void Client::run()
         {
             graphic.showGiftBoxes(parser.giftBoxVector[i]);
         }
-        //for(int i=0;i<parser.getPlayerNum();i++)
-       // {
-        //    graphic.showPlayers(parser.playerVector[i]);
-       // }
+        for(int i=0;i<parser.getPlayerNum();i++)
+        {
+            graphic.showPlayers(parser.playerVector[i]);
+        }
 //        cout<<pla
       //  graphic.showPlayersHealth();
       //  player.getKeys();

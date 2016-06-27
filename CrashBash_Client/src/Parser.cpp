@@ -321,7 +321,7 @@ void Parser::deCode()
     }
 
     int boxNum=BoxX.size();
-    int playerNum=PlayerX.size();
+    this->playerNum=PlayerX.size();
     stringstream gb(BoxN[0]);
     gb>>giftBoxNum;
     stringstream nb(BoxN[1]);
