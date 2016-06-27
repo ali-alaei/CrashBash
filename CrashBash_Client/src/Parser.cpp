@@ -53,17 +53,19 @@ Player* Parser::getPlayerVector()
 string Parser::code()
 {
     wModel="";
-    stringstream Up,Down,Right,Left;
+    stringstream Up,Down,Right,Left,Space;
 
     Up << Input.up;
     Down << Input.down;
     Right << Input.right;
     Left << Input.left;
+    Space << Input.space;
 
     wModel = wModel + "U" + Up.str();
     wModel = wModel + "D" + Down.str();
     wModel = wModel + "R" + Right.str();
     wModel = wModel + "L" + Left.str();
+    wModel = wModel + "S" + Space.str();
 
     return wModel;
 }
@@ -71,7 +73,7 @@ string Parser::code()
 void Parser::deCode()
 {
 
-    wModel="B|N1,1,1|X1000,800,600|Y900,700,500|*P|X100,200|Y100,200|T5,6|D4,1|H9,1|S2,3|-";
+    wModel="B|N1,1,1|X1000,800,600|Y900,700,500|*P|X500,800|Y500,800|T5,6|D4,1|H9,1|S2,3|*-";
     vector <string> BoxX;
     vector <string> BoxY;
     vector <string> BoxN;
@@ -100,13 +102,11 @@ void Parser::deCode()
                                 {
                                     if(wModel[q]==',')
                                     {
-                                        cout<<wModel<<endl;
                                         BoxX.push_back(s);
                                         s="";
                                         q++;
                                     }
                                     s = s+wModel[q];
-                                    cout<<s<<endl;
                                 }
                                 else if(wModel[q]=='|')
                                 {
@@ -125,13 +125,11 @@ void Parser::deCode()
                                 {
                                     if(wModel[q]==',')
                                     {
-                                        cout<<wModel<<endl;
                                         BoxY.push_back(s);
                                         s="";
                                         q++;
                                     }
                                     s = s+wModel[q];
-                                    cout<<s<<endl;
                                 }
                                 else if(wModel[q]=='|')
                                 {
@@ -155,7 +153,6 @@ void Parser::deCode()
                                         q++;
                                     }
                                     s = s+wModel[q];
-                                    cout<<s<<endl;
                                 }
                                 else if(wModel[q]=='|')
                                 {
@@ -184,13 +181,11 @@ void Parser::deCode()
                                 {
                                     if(wModel[q]==',')
                                     {
-                                        cout<<wModel<<endl;
                                         PlayerX.push_back(s);
                                         s="";
                                         q++;
                                     }
                                     s = s+wModel[q];
-                                    cout<<s<<endl;
                                 }
                                 else if(wModel[q]=='|')
                                 {
@@ -209,13 +204,11 @@ void Parser::deCode()
                                 {
                                     if(wModel[q]==',')
                                     {
-                                        cout<<wModel<<endl;
                                         PlayerY.push_back(s);
                                         s="";
                                         q++;
                                     }
                                     s = s+wModel[q];
-                                    cout<<s<<endl;
                                 }
                                 else if(wModel[q]=='|')
                                 {
@@ -234,13 +227,11 @@ void Parser::deCode()
                                 {
                                     if(wModel[q]==',')
                                     {
-                                        cout<<wModel<<endl;
                                         PlayerD.push_back(s);
                                         s="";
                                         q++;
                                     }
                                     s = s+wModel[q];
-                                    cout<<s<<endl;
                                 }
                                 else if(wModel[q]=='|')
                                 {
@@ -260,13 +251,11 @@ void Parser::deCode()
                                 {
                                     if(wModel[q]==',')
                                     {
-                                        cout<<wModel<<endl;
                                         PlayerT.push_back(s);
                                         s="";
                                         q++;
                                     }
                                     s = s+wModel[q];
-                                    cout<<s<<endl;
                                 }
                                 else if(wModel[q]=='|')
                                 {
@@ -285,13 +274,11 @@ void Parser::deCode()
                                 {
                                     if(wModel[q]==',')
                                     {
-                                        cout<<wModel<<endl;
                                         PlayerH.push_back(s);
                                         s="";
                                         q++;
                                     }
                                     s = s+wModel[q];
-                                    cout<<s<<endl;
                                 }
                                 else if(wModel[q]=='|')
                                 {
@@ -310,13 +297,11 @@ void Parser::deCode()
                                 {
                                     if(wModel[q]==',')
                                     {
-                                        cout<<wModel<<endl;
                                         PlayerS.push_back(s);
                                         s="";
                                         q++;
                                     }
                                     s = s+wModel[q];
-                                    cout<<s<<endl;
                                 }
                                 else if(wModel[q]=='|')
                                 {
@@ -326,7 +311,6 @@ void Parser::deCode()
                                 }
                             }
                         }
-                        break;
                     }
                     else
                         break;
@@ -373,14 +357,12 @@ void Parser::deCode()
         int a;
         NormalBox* N;
 
-        ///must use if and else for "new"
         N=new NormalBox();
 
         normalBoxVector.push_back(N);
 
         stringstream x(BoxX[j+i]);
         x>>a;
-        cout<<"SSSS\n"<<a<<"\n";
         normalBoxVector[j]->setXPos(a);
 
         stringstream y(BoxY[j+i]);
@@ -395,7 +377,6 @@ void Parser::deCode()
         int a;
         TntBox* T;
 
-        ///must use if and else for "new"
         T=new TntBox();
 
         tntBoxVector.push_back(T);
@@ -443,13 +424,13 @@ void Parser::deCode()
         playerVector[i]->setSpeed(a);
     }
 
-    cout<<"\nBBBBB"<<BoxY[2];
-    //cout<<boxNum<<endl;
-    //for(int i=0; i<boxNum; i++)
-    //{
-    //    cout<<boxVector[i]->xPos<<boxVector[i]->yPos<<endl;
-    //}
-
+    //cout<<"playerNum: "<<playerNum<<endl;
+    //cout<<"PlayerX[0]: "<<PlayerX[0]<<endl;
+    //cout<<"PlayerX[1]: "<<PlayerX[1]<<endl;
+    //cout<<"PlayerX[2]: "<<PlayerX[2]<<endl;
+    //cout<<"PlayerY[0]: "<<PlayerY[0]<<endl;
+    //cout<<"PlayerY[1]: "<<PlayerY[1]<<endl;
+    //cout<<"PlayerD[1]: "<<PlayerD[1]<<endl;
 }
 
 
