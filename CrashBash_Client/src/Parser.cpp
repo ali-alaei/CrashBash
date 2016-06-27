@@ -9,6 +9,26 @@ using namespace std;
 
 Parser::Parser()
 {
+    for(int i=0; i<10; i++)
+    {
+        NormalBox* N;
+        N=new NormalBox();
+        normalBoxVector.push_back(N);
+
+        TntBox* T;
+        T=new TntBox();
+        tntBoxVector.push_back(T);
+
+        GiftBox* G;
+        G=new GiftBox();
+        giftBoxVector.push_back(G);
+    }
+    for(int i=0; i<2; i++)
+    {
+        Player* P;
+        P=new Player;
+        playerVector.push_back(P);
+    }
 
 
 }
@@ -33,23 +53,7 @@ int Parser::getPlayerNum()
 
     return this->playerNum;
 }
-/*TntBox* Parser::getTntBoxNum()
-{
-    return this->tntBoxVector;
-}
-NormalBox* Parser::getNormalBoxVector()
-{
-    return this->normalBoxVector;
-}
-GiftBox* Parser::getGiftBoxVector()
-{
-    return this->giftBoxVector;
 
-}
-Player* Parser::getPlayerVector()
-{
-    return this->playerVector;
-}*/
 string Parser::code()
 {
     wModel="";
@@ -73,16 +77,14 @@ string Parser::code()
 void Parser::deCode()
 {
 
-    wModel="B|N1,1,1|X1000,800,600|Y900,700,500|*P|X500,800|Y500,800|T5,6|D4,1|H9,1|S2,3|*-";
+    wModel="B|N3,2,2|X900,800,700,600,500,400,300|Y300,400,500,600,700,800,900|*P|X550,750|Y550,740|D2,3|H1,7|*-2322";
     vector <string> BoxX;
     vector <string> BoxY;
     vector <string> BoxN;
     vector <string> PlayerX;
     vector <string> PlayerY;
     vector <string> PlayerD;
-    vector <string> PlayerT;
     vector <string> PlayerH;
-    vector <string> PlayerS;
 
     for(int i=0; ; i++)
     {
@@ -242,29 +244,6 @@ void Parser::deCode()
                             }
 
                         }
-                        if(wModel[j]=='T')
-                        {
-                            string s;
-                            for(int q=j+1; ; q++)
-                            {
-                                if(wModel[q]!='|')
-                                {
-                                    if(wModel[q]==',')
-                                    {
-                                        PlayerT.push_back(s);
-                                        s="";
-                                        q++;
-                                    }
-                                    s = s+wModel[q];
-                                }
-                                else if(wModel[q]=='|')
-                                {
-                                    PlayerT.push_back(s);
-                                    j=q;
-                                    break;
-                                }
-                            }
-                        }
                         if(wModel[j]=='H')
                         {
                             string s;
@@ -288,29 +267,6 @@ void Parser::deCode()
                                 }
                             }
                         }
-                        if(wModel[j]=='S')
-                        {
-                            string s;
-                            for(int q=j+1; ; q++)
-                            {
-                                if(wModel[q]!='|')
-                                {
-                                    if(wModel[q]==',')
-                                    {
-                                        PlayerS.push_back(s);
-                                        s="";
-                                        q++;
-                                    }
-                                    s = s+wModel[q];
-                                }
-                                else if(wModel[q]=='|')
-                                {
-                                    PlayerS.push_back(s);
-                                    j=q;
-                                    break;
-                                }
-                            }
-                        }
                     }
                     else
                         break;
@@ -320,26 +276,24 @@ void Parser::deCode()
             break;
     }
 
-    int boxNum=BoxX.size();
-    this->playerNum=PlayerX.size();
-    stringstream gb(BoxN[0]);
-    gb>>giftBoxNum;
-    stringstream nb(BoxN[1]);
-    nb>>normalBoxNum;
-    stringstream tb(BoxN[2]);
-    tb>>tntBoxNum;
+    string g,n,t,pl;
+    g=wModel[wModel.length()-3];
+    n=wModel[wModel.length()-2];
+    t=wModel[wModel.length()-1];
+    pl=wModel[wModel.length()-4];
 
+    stringstream gb(g);
+    gb>>this->giftBoxNum;
+    stringstream nb(n);
+    nb>>this->normalBoxNum;
+    stringstream tb(t);
+    tb>>this->tntBoxNum;
+    stringstream p(pl);
+    p>>this->playerNum;
 
+    int a;
     for(int i=0; i<giftBoxNum; i++)
     {
-        int a;
-        GiftBox* G;
-
-        ///must use if and else for "new"
-        G=new GiftBox();
-
-        giftBoxVector.push_back(G);
-
         stringstream x(BoxX[i]);
         x>>a;
 
@@ -348,57 +302,32 @@ void Parser::deCode()
         stringstream y(BoxY[i]);
         y>>a;
         giftBoxVector[i]->setYPos(a);
-
     }
 
-
-    for(int i=giftBoxNum,j=0; i<giftBoxNum+normalBoxNum; i++,j++)
+    for(int i=giftBoxNum, j=0; i<giftBoxNum+normalBoxNum; i++, j++)
     {
-        int a;
-        NormalBox* N;
-
-        N=new NormalBox();
-
-        normalBoxVector.push_back(N);
-
-        stringstream x(BoxX[j+i]);
-        x>>a;
+        stringstream x1(BoxX[i]);
+        x1>>a;
         normalBoxVector[j]->setXPos(a);
 
-        stringstream y(BoxY[j+i]);
+        stringstream y(BoxY[i]);
         y>>a;
         normalBoxVector[j]->setYPos(a);
-
     }
 
-
-    for(int i=giftBoxNum+normalBoxNum,j=0; i<giftBoxNum+normalBoxNum+tntBoxNum; j++,i++)
+    for(int i=giftBoxNum+normalBoxNum,j=0; i<giftBoxNum+normalBoxNum+tntBoxNum; i++,j++)
     {
-        int a;
-        TntBox* T;
-
-        T=new TntBox();
-
-        tntBoxVector.push_back(T);
-
-        stringstream x(BoxX[j+i]);
+        stringstream x(BoxX[i]);
         x>>a;
-
         tntBoxVector[j]->setXPos(a);
 
-        stringstream y(BoxY[j+i]);
+        stringstream y(BoxY[i]);
         y>>a;
         tntBoxVector[j]->setYPos(a);
-
     }
 
     for(int i=0; i<playerNum; i++)
     {
-        int a;
-        Player* P;
-        P=new Player;
-        playerVector.push_back(P);
-
         stringstream x(PlayerX[i]);
         x>>a;
         playerVector[i]->setXPos(a);
@@ -411,26 +340,10 @@ void Parser::deCode()
         d>>a;
         playerVector[i]->setDirection(a);
 
-        stringstream t(PlayerT[i]);
-        t>>a;
-        playerVector[i]->setThrowRate(a);
-
         stringstream h(PlayerH[i]);
         h>>a;
         playerVector[i]->setHealth(a);
-
-        stringstream s(PlayerS[i]);
-        s>>a;
-        playerVector[i]->setSpeed(a);
     }
-
-    //cout<<"playerNum: "<<playerNum<<endl;
-    //cout<<"PlayerX[0]: "<<PlayerX[0]<<endl;
-    //cout<<"PlayerX[1]: "<<PlayerX[1]<<endl;
-    //cout<<"PlayerX[2]: "<<PlayerX[2]<<endl;
-    //cout<<"PlayerY[0]: "<<PlayerY[0]<<endl;
-    //cout<<"PlayerY[1]: "<<PlayerY[1]<<endl;
-    //cout<<"PlayerD[1]: "<<PlayerD[1]<<endl;
 }
 
 
