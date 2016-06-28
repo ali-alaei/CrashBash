@@ -34,23 +34,21 @@ Parser::Parser()
 }
 int Parser::getGiftBoxNum()
 {
-
     return this->giftBoxNum;
 }
+
 int Parser::getTntBoxNum()
 {
-
     return this->tntBoxNum;
 }
+
 int Parser::getNormalBoxNum()
 {
-
     return this->normalBoxNum;
 }
 
 int Parser::getPlayerNum()
 {
-
     return this->playerNum;
 }
 
@@ -77,7 +75,7 @@ string Parser::code()
 void Parser::deCode()
 {
 
-    wModel="B|N3,2,2|X900,800,700,600,500,400,300|Y300,400,500,600,700,800,900|*P|X550,750|Y550,740|D2,3|H1,7|*-2322";
+    wModel="B|X900,800,700,600,500,400,300|Y300,400,500,600,700,800,900|*P|X550,750|Y550,740|D2,3|H1,7|*-2322";
     vector <string> BoxX;
     vector <string> BoxY;
     vector <string> BoxN;
@@ -136,29 +134,6 @@ void Parser::deCode()
                                 else if(wModel[q]=='|')
                                 {
                                     BoxY.push_back(s);
-                                    j=q;
-                                    break;
-                                }
-                            }
-                        }
-                        if(wModel[j]=='N')
-                        {
-                            string s;
-                            for(int q=j+1; ; q++)
-                            {
-                                if(wModel[q]!='|')
-                                {
-                                    if(wModel[q]==',')
-                                    {
-                                        BoxN.push_back(s);
-                                        s="";
-                                        q++;
-                                    }
-                                    s = s+wModel[q];
-                                }
-                                else if(wModel[q]=='|')
-                                {
-                                    BoxN.push_back(s);
                                     j=q;
                                     break;
                                 }

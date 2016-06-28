@@ -1,0 +1,19 @@
+# depslib dependency file v1.0
+1466996005 source:c:\users\asus\crashbash\crashbash_server\crashbash_server\main.cpp
+	<iostream>
+
+1466996005 source:c:\users\asus\crashbash\crashbash_server\crashbash_server\src\box.cpp
+	"Box.h"
+
+1466996005 c:\users\asus\crashbash\crashbash_server\crashbash_server\include\box.h
+
+1466996005 source:c:\users\asus\crashbash\crashbash_server\crashbash_server\src\connection.cpp
+	"Connection.h"
+
+1466996005 c:\users\asus\crashbash\crashbash_server\crashbash_server\include\connection.h
+
+1466996005 source:c:\users\asus\crashbash\crashbash_server\crashbash_server\src\controller.cpp
+	"Controller.h"
+
+1466996005 c:\users\asus\crashbash\crashbash_server\crashbash_server\include\controller.h
+
