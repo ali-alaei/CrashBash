@@ -5,10 +5,13 @@
 class Box
 {
     public:
-        Box();
+        Box(int ,int );
         virtual ~Box();
+        bool checkCollisionToPlayer();///ino mikham too seta kelas box estefade konam
         virtual int updateBox() =0;
     protected:
+        bool deadOrAlive;
+        Player* player;
         int xPos;
         int yPos;
 

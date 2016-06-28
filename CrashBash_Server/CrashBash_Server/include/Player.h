@@ -1,7 +1,7 @@
 #ifndef PLAYER_H
 #define PLAYER_H
-
-
+#define boxSize 60
+#define playerSize 200
 class Player
 {
     public:
@@ -15,26 +15,35 @@ class Player
         void changePosUL();
         void changePosDR();
         void changePosDL();
-        box* playerBox();
+        void playerBox();///ghablesh box* bood vali b nazaram dge niaz nist
         void catchBox();
         void throwBox();
-
-    protected:
+        void increasePlayerHealth();
+        void decreasePlayerHealth();
+        void increaseSpeed();
+        void increaseSpeedRate();
+        void increaseThrowRate()
+        void setNormalBoxesNum(int );
+        void setSpaceKey(bool);
+        void setDirection(int );
 
     private:
-        NoramlBox* normalboxes;///pointeri be vectore noramlbox ha
-        TntBox* tntboxes;///pointeri be vectore tntbox ha
-        GiftBox* giftboxes;///pointeri be vectore giftbox ha
-        bool up;
-        bool down;
-        bool right;
-        bool left;
-        int space;
+        ///mesalesh dar file alaki
+        const NoramlBox** normalBoxes;///pointeri be vectore noramlbox ha//=vector.data()
+        const TntBox** tntBoxes;///pointeri be vectore tntbox ha
+        const GiftBox** giftBoxes;///pointeri be vectore giftbox ha
+        NoramlBox* tokenBox;
         bool ownBox;
+        bool deadOrAlive;
+        int normalBoxesNum;
+        int health;
+        bool space;
+        int direction;
         int speed;
         int throwRate;
         int throwSpeed;
-        bool deadOrAlive;
+        int xPos;
+        int yPos;
 };
 
 #endif // PLAYER_H

@@ -5,14 +5,13 @@
 class TntBox:public Box
 {
     public:
-        TntBox();
+        TntBox(int ,int );
         virtual ~TntBox();
 
     protected:
 
     private:
         float rate;
-        bool deadOrAlive;
 };
 
 #endif // TNTBOX_H

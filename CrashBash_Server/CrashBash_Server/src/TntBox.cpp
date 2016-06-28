@@ -1,6 +1,6 @@
 #include "TntBox.h"
 
-TntBox::TntBox()
+TntBox::TntBox(int x,int y):Box(x,y),rate(0)
 {
     //ctor
 }

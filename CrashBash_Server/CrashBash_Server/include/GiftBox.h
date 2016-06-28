@@ -1,19 +1,21 @@
 #ifndef GIFTBOX_H
 #define GIFTBOX_H
-
+#include "stdlib.h"
+#include "time.h"
 
 class GiftBox:public Box
 {
     public:
-        GiftBox();
+        GiftBox(int , int);
         virtual ~GiftBox();
         int giftType();
         void updateBox();
+        srand(time(0));
     protected:
 
     private:
         int giftType;
-        bool deadOrAlive;
 };
 
 #endif // GIFTBOX_H
+///anvaee gift:1-afzayeshe joon  2-afzayeshe speed bazikon 3-afzayeshe speede partab 4-afzayeshe borde partab
