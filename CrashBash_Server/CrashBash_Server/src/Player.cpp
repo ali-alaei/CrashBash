@@ -9,8 +9,6 @@ Player::Player(int x,int y):xPos(x),yPos(y)
     this->speed=7;
     this->ownBox=0;
     this->deadOrAlive=1;
-
-
 }
 
 Player::~Player()
@@ -131,8 +129,7 @@ void Player::throwBox()
             tokenBox->setIsThrow(1);
             ownBox=0;
         }
-        ///bayad is throw box ro ham true konim
-    }
+     }
 }
 
 void Player::setSpaceKey(int space)
@@ -142,14 +139,12 @@ void Player::setSpaceKey(int space)
 
 void Player::increasePlayerHealth()
 {
-
-///increase health one block
+    this->health+=1;
 }
 
 void Player::decreasePlayerHealth()
 {
-
-///decrease health one block
+    this->health-=1;
 }
 
 void Player::setNormalBoxesNum(int x)
@@ -162,6 +157,45 @@ void Player::setDirection(int x)
     this->direction=x;
 }
 
+void Player::increaseSpeed()
+{
+    this->speed+=3;
+}
+
+void Player::increaseSpeedRate()
+{
+    this->throwSpeed+=3;
+}
+
+void Player::increaseThrowRate()
+{
+    this->throwRate+=3;
+}
+
+void Player::setInputData(Input input)
+{
+    this->inputData=input;
+}
+
+void Player::setTokenBox(NoramlBox normalbox)
+{
+    this->tokenBox=normalbox;
+}
+
+void Player::setGiftBoxVector(GiftBox* giftbox)
+{
+    this->giftBoxes=giftbox;
+}
+
+void Player::setTntBoxVector(TntBox* tntbox)
+{
+    this->tntBoxes=tntbox;
+}
+
+void Player::setNormalBoxVector(NoramlBox* normalbox)
+{
+    this->normalBoxes=normalbox;
+}
 /*{
                 for(int u=0;u<=playerSize;u+=playerSize)
                     for(int j=0;j<=playerSize;j++)

@@ -26,13 +26,18 @@ class Player
         void setNormalBoxesNum(int );
         void setSpaceKey(bool);
         void setDirection(int );
-
+        void setInputData(Input );
+        void setTokenBox(NormalBox );
+        void setGiftBoxVector(GiftBox* );
+        void setTntBoxVector(TntBox* );
+        void setNormalBoxVector(NoramlBox* );
     private:
         ///mesalesh dar file alaki
-        const NoramlBox** normalBoxes;///pointeri be vectore noramlbox ha//=vector.data()
-        const TntBox** tntBoxes;///pointeri be vectore tntbox ha
-        const GiftBox** giftBoxes;///pointeri be vectore giftbox ha
+        NoramlBox** normalBoxes;///pointeri be vectore noramlbox ha//=vector.data()
+        TntBox** tntBoxes;///pointeri be vectore tntbox ha
+        GiftBox** giftBoxes;///pointeri be vectore giftbox ha
         NoramlBox* tokenBox;
+        Input* inputData;
         bool ownBox;
         bool deadOrAlive;
         int normalBoxesNum;

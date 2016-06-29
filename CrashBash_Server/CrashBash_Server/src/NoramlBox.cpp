@@ -3,12 +3,12 @@
 NoramlBox::NoramlBox(int x,int y):Box(x,y),speed(0),owner(0),
 isThrow(0),rate(0)
 {
-    //ctor
+
 }
 
 NoramlBox::~NoramlBox()
 {
-    //dtor
+
 }
 
 bool NoramlBox::checkCollisiontToPlayer()
@@ -45,12 +45,6 @@ bool NoramlBox::checkCollisionToWallOrRate()
     {
         return true;
     }
-
-}
-
-bool NoramlBox::updateBox()
-{
-
 
 }
 

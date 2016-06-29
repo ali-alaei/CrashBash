@@ -9,3 +9,5 @@ TntBox::~TntBox()
 {
     //dtor
 }
+
+bool TntBox::checkCollisionToPlayer()
