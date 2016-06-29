@@ -9,8 +9,6 @@ class GiftBox:public Box
         GiftBox(int , int);
         virtual ~GiftBox();
         int giftType();
-        void updateBox();
-        srand(time(0));
     protected:
 
     private:

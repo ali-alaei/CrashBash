@@ -15,7 +15,9 @@ class Player
         void changePosUL();
         void changePosDR();
         void changePosDL();
-        void playerBox();///ghablesh box* bood vali b nazaram dge niaz nist
+        bool playerBox();///ghablesh box* bood vali b nazaram dge niaz nist
+        bool playerCollisionGiftBox();
+        bool playerCollisionTntBox();
         void catchBox();
         void throwBox();
         void increasePlayerHealth();
@@ -24,6 +26,8 @@ class Player
         void increaseSpeedRate();
         void increaseThrowRate()
         void setNormalBoxesNum(int );
+        void setGiftBoxesNum(int );
+        void setTntBoxesNum(int );
         void setSpaceKey(bool);
         void setDirection(int );
         void setInputData(Input );
@@ -37,10 +41,14 @@ class Player
         TntBox** tntBoxes;///pointeri be vectore tntbox ha
         GiftBox** giftBoxes;///pointeri be vectore giftbox ha
         NoramlBox* tokenBox;
+        GiftBox* earnedBox;
+        TntBox* collisionBox;
         Input* inputData;
         bool ownBox;
         bool deadOrAlive;
         int normalBoxesNum;
+        int TntBoxesNum;
+        int GiftBoxesNum;
         int health;
         bool space;
         int direction;

@@ -14,6 +14,11 @@ NoramlBox::~NoramlBox()
 bool NoramlBox::checkCollisiontToPlayer()
 {
 
+
+
+
+
+
 }
 
 bool NoramlBox::checkCollisionToWallOrRate()
@@ -99,3 +104,5 @@ void NoramlBox::setIsThrow(bool a)
 {
     this->isThrow=a;
 }
+
+

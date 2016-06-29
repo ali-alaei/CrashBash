@@ -7,11 +7,10 @@ class Box
     public:
         Box(int ,int );
         virtual ~Box();
-        bool checkCollisionToPlayer();///ino mikham too seta kelas box estefade konam
-        virtual int updateBox() =0;
+        virtual bool checkCollisionToPlayer() =0;///ino mikham too seta kelas box estefade konam
+
     protected:
         bool deadOrAlive;
-        Player* player;
         int xPos;
         int yPos;
 

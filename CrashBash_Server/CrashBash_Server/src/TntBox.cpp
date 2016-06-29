@@ -11,3 +11,7 @@ TntBox::~TntBox()
 }
 
 bool TntBox::checkCollisionToPlayer()
+{
+
+}
+

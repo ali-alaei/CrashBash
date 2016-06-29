@@ -22,8 +22,6 @@ class NoramlBox:public Box
     private:
         bool  owner;
         bool isThrow;
-        Player* player;
-        Player** playervector;
         int speed;
         int direction;
         int rate;

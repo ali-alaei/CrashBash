@@ -11,7 +11,7 @@ class TntBox:public Box
     protected:
 
     private:
-        float rate;
+
 };
 
 #endif // TNTBOX_H

@@ -16,7 +16,7 @@ Player::~Player()
     //dtor
 }
 
-void Player::playerBox()
+bool Player::playerBox()
 {
     if(this->ownBox==0)
     {
@@ -196,15 +196,76 @@ void Player::setNormalBoxVector(NoramlBox* normalbox)
 {
     this->normalBoxes=normalbox;
 }
-/*{
-                for(int u=0;u<=playerSize;u+=playerSize)
-                    for(int j=0;j<=playerSize;j++)
-                        {
-                            for(int h=0;h<=boxSize;h+=boxSize)
-                                for(int y=0;y<=boxSize;y++)
-                                    if(this->xPos+j==normalboxes[i].xPos+y && this->yPos+u==normalboxes[i].yPos+h)
-                                    {
-                                        this->box=normalboxes[i];
-                                        break;
-                                    }
-              */
+
+bool Player::playerCollisionGiftBox()
+{
+    for(int i=0;i<GiftBoxesNum;i++)
+    {
+        if(this->xPos>giftBoxes[i].xPos && this->xPos<giftBoxes[i].xPos+boxSize
+            && this->yPos>giftBoxes[i].yPos && this->yPos<giftBoxes[i].yPos+boxSize)
+        {
+            this->earnedBox=giftBoxes[i];
+            return true;
+        }
+
+        if(this->xPos>giftBoxes[i].xPos && this->xPos<giftBoxes[i].xPos+boxSize
+            && this->yPos+playerSize>giftBoxes[i].yPos && this->yPos+playerSize<giftBoxes[i].yPos+boxSize)
+        {
+            this->earnedBox=giftBoxes[i];
+            return true;
+        }
+
+        if(this->xPos+playerSize>giftBoxes[i].xPos && this->xPos+playerSize<giftBoxes[i].xPos+boxSize
+            && this->yPos>giftBoxes[i].yPos && this->yPos<giftBoxes[i].yPos+boxSize)
+        {
+            this->earnedBox=giftBoxes[i];
+            return true;
+        }
+
+        if(this->xPos+playerSize>giftBoxes[i].xPos && this->xPos+playerSize<giftBoxes[i].xPos+boxSize
+            && this->yPos+playerSize>giftBoxes[i].yPos && this->yPos+playerSize<giftBoxes[i].yPos+boxSize)
+        {
+            this->earnedBox=giftBoxes[i];
+            return true;
+        }
+    }
+
+    return false;
+}
+
+
+bool Player::playerCollisionTntBox()
+{
+    for(int i=0;i<TntBoxesNum;i++)
+    {
+        if(this->xPos>tntBoxes[i].xPos && this->xPos<tntBoxes[i].xPos+boxSize
+            && this->yPos>tntBoxes[i].yPos && this->yPos<tntBoxes[i].yPos+boxSize)
+        {
+            this->collisionBox=tntBoxes[i];
+            return true;
+        }
+
+        if(this->xPos>tntBoxes[i].xPos && this->xPos<tntBoxes[i].xPos+boxSize
+            && this->yPos+playerSize>tntBoxes[i].yPos && this->yPos+playerSize<tntBoxes[i].yPos+boxSize)
+        {
+            this->collisionBox=tntBoxes[i];
+            return true;
+        }
+
+        if(this->xPos+playerSize>tntBoxes[i].xPos && this->xPos+playerSize<tntBoxes[i].xPos+boxSize
+            && this->yPos>tntBoxes[i].yPos && this->yPos<tntBoxes[i].yPos+boxSize)
+        {
+            this->collisionBox=tntBoxes[i];
+            return true;
+        }
+
+        if(this->xPos+playerSize>tntBoxes[i].xPos && this->xPos+playerSize<tntBoxes[i].xPos+boxSize
+            && this->yPos+playerSize>tntBoxes[i].yPos && this->yPos+playerSize<tntBoxes[i].yPos+boxSize)
+        {
+            this->collisionBox=tntBoxes[i];
+            return true;
+        }
+    }
+
+    return false;
+}
