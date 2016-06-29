@@ -5,6 +5,11 @@
 class Input
 {
     public:
+        bool up;
+        bool down;
+        bool right;
+        bool left;
+        bool space;
         Input();
         virtual ~Input();
 

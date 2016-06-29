@@ -8,6 +8,7 @@ class NoramlBox:public Box
     public:
         NoramlBox(int ,int);
         virtual ~NoramlBox();
+
         void setOwner(bool);
         void setRate(int );
         void setDirection(int);
@@ -15,7 +16,9 @@ class NoramlBox:public Box
         void setIsThrow(bool);
         void moveCatchBox();
         bool checkCollisionToWallOrRate()
+        bool checkCollision();
         bool checkCollisionToPlayer();
+        bool getDeadOrAlive();
 
     protected:
 
@@ -25,7 +28,7 @@ class NoramlBox:public Box
         int speed;
         int direction;
         int rate;
-        bool deadOrAlive;
+
 
 };
 

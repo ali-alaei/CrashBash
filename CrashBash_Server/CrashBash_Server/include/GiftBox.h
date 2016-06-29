@@ -13,6 +13,7 @@ class GiftBox:public Box
 
     private:
         int giftType;
+
 };
 
 #endif // GIFTBOX_H

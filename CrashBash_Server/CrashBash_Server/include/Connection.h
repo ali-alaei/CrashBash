@@ -7,6 +7,8 @@ class Connection
     public:
         Connection();
         virtual ~Connection();
+        bool areClientsConnect();
+        bool isClientDisconnected();
 
     protected:
 

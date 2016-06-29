@@ -9,6 +9,13 @@ Box::~Box()
 {
     //dtor
 }
+bool Box::getDeadOrAlive()
+{
+
+
+    return this->deadOrAlive;
+
+}
 
 bool NoramlBox::checkCollisiontToPlayer()
 {

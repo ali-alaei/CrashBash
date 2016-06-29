@@ -8,6 +8,7 @@ class TntBox:public Box
         TntBox(int ,int );
         virtual ~TntBox();
 
+
     protected:
 
     private:

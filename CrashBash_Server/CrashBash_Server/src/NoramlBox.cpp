@@ -50,6 +50,28 @@ bool NoramlBox::checkCollisionToWallOrRate()
     {
         return true;
     }
+    for(int i=0;i</*tedad playe*/;i++)
+    {
+        for(int j= -50;j<50;j++)
+            for(int h= -50;h<50;h++)
+                if(this->xPos+j ==playervector[i].xPos+h && this->yPos+j ==playervector[i].yPos+h)
+                   {
+                       player=playervector[i];
+                       return true;
+                   }
+    }
+}
+
+
+bool NoramlBox::checkCollision()
+{
+    if(rate==0)
+        return true;
+
+    for(int i=0;i</*tedad playe*/;i++)
+    {
+        for(int j= -50;j<50;j++)
+            for(int h= -50;h<50;h++)
 
 }
 
