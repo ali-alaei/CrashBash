@@ -1,19 +1,36 @@
 # depslib dependency file v1.0
-1466996005 source:c:\users\asus\crashbash\crashbash_server\crashbash_server\main.cpp
+1467294023 source:c:\users\asus\crashbash\crashbash_server\crashbash_server\main.cpp
 	<iostream>
 
-1466996005 source:c:\users\asus\crashbash\crashbash_server\crashbash_server\src\box.cpp
+1467294023 source:c:\users\asus\crashbash\crashbash_server\crashbash_server\src\box.cpp
 	"Box.h"
 
-1466996005 c:\users\asus\crashbash\crashbash_server\crashbash_server\include\box.h
+1467294023 c:\users\asus\crashbash\crashbash_server\crashbash_server\include\box.h
 
-1466996005 source:c:\users\asus\crashbash\crashbash_server\crashbash_server\src\connection.cpp
+1467294023 source:c:\users\asus\crashbash\crashbash_server\crashbash_server\src\connection.cpp
 	"Connection.h"
 
-1466996005 c:\users\asus\crashbash\crashbash_server\crashbash_server\include\connection.h
+1467294023 c:\users\asus\crashbash\crashbash_server\crashbash_server\include\connection.h
 
-1466996005 source:c:\users\asus\crashbash\crashbash_server\crashbash_server\src\controller.cpp
+1467294023 source:c:\users\asus\crashbash\crashbash_server\crashbash_server\src\controller.cpp
 	"Controller.h"
 
-1466996005 c:\users\asus\crashbash\crashbash_server\crashbash_server\include\controller.h
+1467294023 c:\users\asus\crashbash\crashbash_server\crashbash_server\include\controller.h
+	"Player.h"
+	"Input.h"
+	"GiftBox.h"
+	"NoramlBox.h"
+	"TntBox.h"
+
+1467294023 c:\users\asus\crashbash\crashbash_server\crashbash_server\include\player.h
+
+1467294023 c:\users\asus\crashbash\crashbash_server\crashbash_server\include\input.h
+
+1467294023 c:\users\asus\crashbash\crashbash_server\crashbash_server\include\giftbox.h
+	"stdlib.h"
+	"time.h"
+
+1467294023 c:\users\asus\crashbash\crashbash_server\crashbash_server\include\noramlbox.h
+
+1467294023 c:\users\asus\crashbash\crashbash_server\crashbash_server\include\tntbox.h
 

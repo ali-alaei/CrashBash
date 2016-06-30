@@ -1,11 +1,54 @@
 #include "Parser.h"
 #include "string"
 #include "iostream"
+#include "sstream"
 using namespace std;
 
-Parser::Parser()
+Parser::Parser(int P)
 {
+    this->playerNum = P;
+    for(int i=0; i<playerNum; i++)
+    {
+        Input* I;
+        I=new Input();
+        input.push_back(I);
+    }
 
+    for(int i=-0; i<playerNum; i++)
+    {
+        id.push_back(0);
+    }
+
+    for(int i=0; i<playerNum; i++)
+    {
+        Player* p;
+        p=new Player;
+        playerVector.push_back(p);
+    }
+    for(int i=0; i<giftBoxNum; i++)
+    {
+        GiftBox* g;
+        g=new GiftBox;
+        giftBoxVector.push_back(g);
+    }
+
+    for(int i=0; i<noramlBoxNum; i++)
+    {
+        NoramlBox* n;
+        n=new NoramlBox;
+        noramlBoxVector.push_back(n);
+    }
+    for(int i=0; i<tntBoxNum; i++)
+    {
+        TntBox* t;
+        t=new TntBox;
+        tntBoxVector.push_back(t);
+    }
+}
+
+Input* parser::returnInputs()
+{
+    return input;
 }
 
 void Parser::setGiftBoxNum(int num)
@@ -40,7 +83,7 @@ int Parser::getTntBoxNum()
 
 void Parser::code()
 {
-    int boxNum = giftBoxNum+normalBoxNum+tntBoxNum;
+    int boxNum = giftBoxNum+noramlBoxNum+tntBoxNum;
     int n=0;
 
     wModel="";
@@ -51,54 +94,55 @@ void Parser::code()
     for(int i=0; i<giftBoxNum; i++)
     {
         stringstream gb;
-        gb << giftBoxVector[i].xPos;
+        gb << giftBoxVector[i]->xPos;
         wModel = wModel + gb.str() + ',';
         n++;
     }
-    for(int i=0; i<normalBoxNum; i++)
+
+    for(int i=0; i<noramlBoxNum; i++)
     {
         stringstream nb;
-        nb << normalBoxVector[i].xPos;
+        nb << noramlBoxVector[i]->xPos;
         wModel = wModel + nb.str() + ',';
         n++;
     }
     for(int i=0; i<tntBoxNum; i++)
     {
         stringstream tb;
-        tb << tntBoxVector[i].xPos;
+        tb << tntBoxVector[i]->xPos;
         wModel = wModel + tb.str();
-        if(n!=boxNum)
+        if(n!=boxNum-1)
         wModel += ',';
         n++;
     }
     n=0;
 
-
     wModel = wModel + '|' + 'Y';
     for(int i=0; i<giftBoxNum; i++)
     {
         stringstream gb;
-        gb << giftBoxVector[i].yPos;
+        gb << giftBoxVector[i]->yPos;
         wModel = wModel + gb.str() + ',';
         n++;
     }
-    for(int i=0; i<normalBoxNum; i++)
+    for(int i=0; i<noramlBoxNum; i++)
     {
         stringstream nb;
-        nb << normalBoxVector[i].yPos;
+        nb << noramlBoxVector[i]->yPos;
         wModel = wModel + nb.str() + ',';
         n++;
     }
     for(int i=0; i<tntBoxNum; i++)
     {
         stringstream tb;
-        tb << tntBoxVector[i].yPos;
+        tb << tntBoxVector[i]->yPos;
         wModel = wModel + tb.str();
-        if(n!=boxNum)
+        if(n!=boxNum-1)
             wModel += ',';
         n++;
     }
     n=0;
+    wModel+='|';
     wModel += '*';
 
     wModel+='P';
@@ -106,21 +150,22 @@ void Parser::code()
     for(int i=0; i<playerNum; i++)
     {
         stringstream px;
-        px<<playerVector[i].xPos;
+        px<<playerVector[i]->xPos;
         wModel = wModel + px.str();
-        if(n!=playerNum)
+        if(n!=playerNum-1)
             wModel += ',';
         n++;
     }
     n=0;
 
+
     wModel = wModel + '|' + 'Y';
     for(int i=0; i<playerNum; i++)
     {
         stringstream py;
-        py<<playerVector[i].yPos;
+        py<<playerVector[i]->yPos;
         wModel = wModel + py.str();
-        if(n!=playerNum)
+        if(n!=playerNum-1)
             wModel+=',';
         n++;
     }
@@ -130,9 +175,9 @@ void Parser::code()
     for(int i=0; i<playerNum; i++)
     {
         stringstream pd;
-        pd<<playerVector[i].direction;
+        pd<<playerVector[i]->direction;
         wModel = wModel + pd.str();
-        if(n!=playerNum)
+        if(n!=playerNum-1)
             wModel += ',';
         n++;
     }
@@ -142,32 +187,40 @@ void Parser::code()
     for(int i=0; i<playerNum; i++)
     {
         stringstream ph;
-        ph<<playerVector[i].health;
+        ph<<playerVector[i]->health;
         wModel = wModel + ph.str();
-        if(n!=playerNum)
+        if(n!=playerNum-1)
             wModel += ',';
         n++;
     }
+    wModel+='|';
     wModel += '*';
 
     wModel+='-';
     stringstream p;
     stringstream g;
-    stringstream n;
+    stringstream no;
     stringstream t;
-    p<<playerNum;
-    g<<giftBoxNum;
-    n<<normalBoxNum;
-    t<<tntBoxNum;
-    wModel = wModel + p.str() + g.str() + n.str() + t.str();
+    stringstream id;
+    p << playerNum;
+    g << giftBoxNum;
+    no << noramlBoxNum;
+    t << tntBoxNum;
 
+    wModel = wModel + p.str() + g.str() + no.str() + t.str();
 
-    cout<<wModel<<endl;
+    for(int i=0; i<playerNum; i++)
+    {
+        id << playerVector[i]->id;
+        wModel += id;
+    }
+
 }
 
 void Parser::deCode()
 {
     int a;
+
     stringstream U(wModel[1]);
     U>>a;
     input->setUp(a);
@@ -187,9 +240,11 @@ void Parser::deCode()
     stringstream S(wModel[9]);
     S>>a;
     input->setSpace(a);
-}
-
-Parser::~Parser()
-{
 
 }
+
+
+
+
+
+
