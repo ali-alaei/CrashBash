@@ -252,17 +252,19 @@ void Parser::deCode()
             break;
     }
 
-    cout<<playerNum<<endl;
     string g,n,t,pl,pId;
     g=wModel[wModel.length()-(3+playerNum)];
     n=wModel[wModel.length()-(2+playerNum)];
     t=wModel[wModel.length()-(1+playerNum)];
     pl=wModel[wModel.length()-(4+playerNum)];
-    for(int i=0; i<playerNum; i++)
+    for(int i=playerNum-1; i>=0; i--)
     {
-        pId=wModel[wModel.length()-(i+1)];
-        playerVector[i]->id = pId;
+        static int tmp=0;
+        pId=wModel[wModel.length()-(1+tmp)];
+        id[i]=pId;
+        tmp++;
     }
+
 
     stringstream gb(g);
     gb>>this->giftBoxNum;
@@ -272,6 +274,12 @@ void Parser::deCode()
     tb>>this->tntBoxNum;
     stringstream p(pl);
     p>>this->playerNum;
+    for(int i=0; i<playerNum; i++)
+    {
+        stringstream iid(id[i]);
+        id[i]>>this->playerVector[i]->id;
+    }
+
 
     int a;
     for(int i=0; i<giftBoxNum; i++)
@@ -326,10 +334,4 @@ void Parser::deCode()
         h>>a;
         playerVector[i]->setHealth(a);
     }
-}
-
-
-Parser::~Parser()
-{
-
 }
