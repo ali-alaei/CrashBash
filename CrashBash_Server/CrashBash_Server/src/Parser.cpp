@@ -242,6 +242,26 @@ void Parser::deCode()
     input->setSpace(a);
 
 }
+void Parser::setGiftBoxVector(vector <GiftBox> &giftBoxVector)
+{
+
+
+}
+void Parser::setNormalBoxVector(vector <NoramlBox> &normalBoxVector)
+{
+
+
+}
+void Parser::setTntBoxVector(vector <TntBox> &tntBoxVector)
+{
+
+
+}
+void Parser::setPlayerVector(vector <Player> &playerVector)
+{
+
+
+}
 
 
 

@@ -74,7 +74,12 @@ bool NoramlBox::checkCollision()
             for(int h= -50;h<50;h++)
 
 }
+bool NoramlBox::hasOwner()
+{
 
+    return this->owner;
+
+}
 void NoramlBox::setOwner(bool a)
 {
     this->owner=a;

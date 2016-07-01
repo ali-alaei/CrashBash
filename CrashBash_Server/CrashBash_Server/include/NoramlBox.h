@@ -18,12 +18,12 @@ class NoramlBox:public Box
         bool checkCollisionToWallOrRate()
         bool checkCollision();
         bool checkCollisionToPlayer();
-        bool getDeadOrAlive();
+        bool hasOwner();
 
     protected:
 
     private:
-        bool  owner;
+        bool owner;
         bool isThrow;
         int speed;
         int direction;

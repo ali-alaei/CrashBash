@@ -132,10 +132,6 @@ void Player::throwBox()
      }
 }
 
-void Player::setSpaceKey(int space)
-{
-    this->space=space;
-}
 
 void Player::increasePlayerHealth()
 {
@@ -182,17 +178,17 @@ void Player::setTokenBox(NoramlBox normalbox)
     this->tokenBox=normalbox;
 }
 
-void Player::setGiftBoxVector(GiftBox* giftbox)
+void Player::setGiftBoxVector(std::vector <GiftBox> &gifts)
 {
     this->giftBoxes=giftbox;
 }
 
-void Player::setTntBoxVector(TntBox* tntbox)
+void Player::setTntBoxVector(std::vector <TntBox> &tnts)
 {
     this->tntBoxes=tntbox;
 }
 
-void Player::setNormalBoxVector(NoramlBox* normalbox)
+void Player::setNormalBoxVector(std::vector <NormalBox> &normals)
 {
     this->normalBoxes=normalbox;
 }
@@ -268,4 +264,10 @@ bool Player::playerCollisionTntBox()
     }
 
     return false;
+}
+bool Player::OwnedBox()
+{
+
+    return this->ownBox;
+
 }

@@ -23,17 +23,19 @@ class Parser
         void setGiftBoxNum(int );
         void setNoramlBoxNum(int );
         void setTntBoxNum(int );
-        vector <GiftBox*> giftBoxVector;
-        vector <NoramlBox*> noramlBoxVector;
-        vector <TntBox*> tntBoxVector;
-        vector <Player*> playerVector;
-        vector <int> id;
+        void setGiftBoxVector(vector <GiftBox> &giftBoxVector);
+        void setNormalBoxVector(vector <NoramlBox> &normalBoxVector);
+        void setTntBoxVector(vector <TntBox> &tntBoxVector);
+        void setPlayerVector(vector <Player> &playerVector);
 
     private:
         string wModel;
+        vector <int> id;
         vector <Input*> input;
         int playerNum;
         int giftBoxNum;
         int noramlBoxNum;
         int tntBoxNum;
+
 };
+

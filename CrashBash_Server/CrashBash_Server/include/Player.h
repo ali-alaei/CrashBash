@@ -5,7 +5,9 @@
 class Player
 {
     public:
-        Player();
+        GiftBox* earnedBox;
+        TntBox* collisionBox;
+        Player(int,int);
         virtual ~Player();
         void changePosUp();
         void changePosDown();
@@ -18,31 +20,33 @@ class Player
         bool playerBox();///ghablesh box* bood vali b nazaram dge niaz nist
         bool playerCollisionGiftBox();
         bool playerCollisionTntBox();
+        bool OwnedBox();
         void catchBox();
         void throwBox();
         void increasePlayerHealth();
         void decreasePlayerHealth();
         void increaseSpeed();
         void increaseSpeedRate();
-        void increaseThrowRate()
+        void increaseThrowRate();
+
+        ///this should be assigned in controller///
         void setNormalBoxesNum(int );
         void setGiftBoxesNum(int );
         void setTntBoxesNum(int );
-        void setSpaceKey(bool);
         void setDirection(int );
-        void setInputData(Input );
-        void setTokenBox(NormalBox );
-        void setGiftBoxVector(GiftBox* );
-        void setTntBoxVector(TntBox* );
-        void setNormalBoxVector(NoramlBox* );
+        void setInputData(Input ); ///remained.
+        void setTokenBox(NormalBox ); ///
+        void setGiftBoxVector(std::vector <GiftBox> &gifts);
+        void setTntBoxVector(std::vector <TntBox> &tnts);
+        void setNormalBoxVector(std::vector <NormalBox> &normals);
+        ///
     private:
         ///mesalesh dar file alaki
         NoramlBox** normalBoxes;///pointeri be vectore noramlbox ha//=vector.data()
         TntBox** tntBoxes;///pointeri be vectore tntbox ha
         GiftBox** giftBoxes;///pointeri be vectore giftbox ha
         NoramlBox* tokenBox;
-        GiftBox* earnedBox;
-        TntBox* collisionBox;
+
         Input* inputData;
         bool ownBox;
         bool deadOrAlive;
