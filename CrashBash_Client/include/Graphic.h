@@ -17,12 +17,14 @@ class Graphic
         void showTntBoxes(TntBox* tntBoxObj);
         void showGiftBoxes(GiftBox* giftBoxObj);
         void showPlayers(Player* playerObj);
-        void showPlayersHealth();
-        sf::RenderWindow* window;
-
+        void showPlayersHealthFull(Player* playerObj,int ,int);
+        void showPlayersHealthEmpty(Player* playerObj,int ,int);
+        void showPlayerIcon(Player* playerObj,int ,int);
+        sf::RenderWindow* getWindow();
     protected:
 
     private:
+        sf::RenderWindow* window;
         int width;
         int height;
          Surface surface;

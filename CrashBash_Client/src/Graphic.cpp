@@ -38,7 +38,26 @@ void Graphic::showPlayers(Player* playerObj)
     window->draw(player->show());
 }
 
-void Graphic::showPlayersHealth()
+void Graphic::showPlayersHealthFull(Player* playerObj,int x,int y)
 {
-   /// return player->
+    this->player=playerObj;
+    window->draw(player->showPlayerHealthFull(x,y));
+}
+
+void Graphic::showPlayerIcon(Player* playerObj,int x,int y)
+{
+    this->player=playerObj;
+    window->draw(player->showPlayerIcon(x,y));
+}
+
+
+void Graphic::showPlayersHealthEmpty(Player* playerObj,int x,int y)
+{
+    this->player=playerObj;
+    window->draw(player->showPlayerHealthEmpty(x,y));
+}
+
+sf::RenderWindow* Graphic::getWindow()
+{
+    return window;
 }

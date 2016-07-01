@@ -2,14 +2,22 @@
 #define PLAYER_H
 #define boxSize 60
 #define playerSize 200
+#include "TntBox.h"
+#include "vector"
+#include "GiftBox.h"
+#include "Input.h"
+#include "NoramlBox.h"
 class Player
 {
     public:
+        //friend class Box;
+        NoramlBox* tokenBox;
         GiftBox* earnedBox;
         TntBox* collisionBox;
         Player(int,int);
         virtual ~Player();
         void changePosUp();
+        int getPlayerHealth();
         void changePosDown();
         void changePosRight();
         void changePosLeft();
@@ -29,33 +37,36 @@ class Player
         void increaseSpeedRate();
         void increaseThrowRate();
 
-
         ///this should be assigned in controller///
         void setNormalBoxesNum(int );
         void setGiftBoxesNum(int );
         void setTntBoxesNum(int );
         void setDirection(int );
-        void setInputData(Input ); ///remained.
-        void setTokenBox(NormalBox ); ///
+        void setInputData(Input  ); ///remained.
+       // void setTokenBox(NoramlBox ); ///
         void setGiftBoxVector(std::vector <GiftBox> &gifts);
         void setTntBoxVector(std::vector <TntBox> &tnts);
-        void setNormalBoxVector(std::vector <NormalBox> &normals);
+        void setNoramlBoxVector(std::vector <NoramlBox> &normals);
+
+        int getXPos();
+        int getYPos();
         ///
     private:
         ///mesalesh dar file alaki
-        NoramlBox** normalBoxes;///pointeri be vectore noramlbox ha//=vector.data()
-        TntBox** tntBoxes;///pointeri be vectore tntbox ha
-        GiftBox** giftBoxes;///pointeri be vectore giftbox ha
-        NoramlBox* tokenBox;
+        std::vector <NoramlBox*> normalBoxes;///pointeri be vectore noramlbox ha//=vector.data()
+        std::vector <GiftBox*> giftBoxes;///pointeri be vectore noramlbox ha//=vector.data()
+        std::vector <TntBox*> tntBoxes;///pointeri be vectore noramlbox ha//=vector.data()
 
+       // TntBox** tntBoxes;///pointeri be vectore tntbox ha
+        //GiftBox** giftBoxes;///pointeri be vectore giftbox ha
         Input* inputData;
         bool ownBox;
         bool deadOrAlive;
         int normalBoxesNum;
-        int TntBoxesNum;
-        int GiftBoxesNum;
+        int tntBoxesNum;
+        int giftBoxesNum;
         int health;
-        bool space;
+        //bool space;
         int direction;
         int speed;
         int throwRate;
@@ -63,5 +74,5 @@ class Player
         int xPos;
         int yPos;
 };
-
+class NoramlBox;
 #endif // PLAYER_H

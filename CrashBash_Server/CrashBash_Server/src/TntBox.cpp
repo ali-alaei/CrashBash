@@ -1,6 +1,6 @@
 #include "TntBox.h"
 
-TntBox::TntBox(int x,int y):Box(x,y),rate(0)
+TntBox::TntBox(int x,int y):Box(x,y)
 {
     //ctor
 }
@@ -10,8 +10,18 @@ TntBox::~TntBox()
     //dtor
 }
 
-bool TntBox::checkCollisionToPlayer()
+bool TntBox::getDeadOrAlive()
 {
-
+    return this->deadOrAlive;
 }
 
+
+int TntBox::getXPos()
+{
+    return this->xPos;
+}
+
+int TntBox::getYPos()
+{
+    return this->yPos;
+}

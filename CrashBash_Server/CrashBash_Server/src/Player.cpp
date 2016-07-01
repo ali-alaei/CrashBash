@@ -20,33 +20,33 @@ bool Player::playerBox()
 {
     if(this->ownBox==0)
     {
-        if(space==1)
+        if(inputData->space==1)
         {
             for(int i=0;i<normalBoxesNum;i++)
             {
-                if(this->xPos>normalBoxes[i].xPos && this->xPos<normalBoxes[i].xPos+boxSize
-                    && this->yPos>normalBoxes[i].yPos && this->yPos<normalBoxes[i].yPos+boxSize)
+                if(this->xPos>normalBoxes[i]->getXPos() && this->xPos<normalBoxes[i]->getXPos()+boxSize
+                    && this->yPos>normalBoxes[i]->getYPos() && this->yPos<normalBoxes[i]->getYPos()+boxSize)
                 {
                     this->tokenBox=normalBoxes[i];
                     return true;
                 }
 
-                if(this->xPos>normalBoxes[i].xPos && this->xPos<normalBoxes[i].xPos+boxSize
-                    && this->yPos+playerSize>normalBoxes[i].yPos && this->yPos+playerSize<normalBoxes[i].yPos+boxSize)
+                if(this->xPos>normalBoxes[i]->getXPos() && this->xPos<normalBoxes[i]->getXPos()+boxSize
+                    && this->yPos+playerSize>normalBoxes[i]->getYPos() && this->yPos+playerSize<normalBoxes[i]->getYPos()+boxSize)
                 {
                     this->tokenBox=normalBoxes[i];
                     return true;
                 }
 
-                if(this->xPos+playerSize>normalBoxes[i].xPos && this->xPos+playerSize<normalBoxes[i].xPos+boxSize
-                    && this->yPos>normalBoxes[i].yPos && this->yPos<normalBoxes[i].yPos+boxSize)
+                if(this->xPos+playerSize>normalBoxes[i]->getXPos() && this->xPos+playerSize<normalBoxes[i]->getXPos()+boxSize
+                    && this->yPos>normalBoxes[i]->getYPos() && this->yPos<normalBoxes[i]->getYPos()+boxSize)
                 {
                     this->tokenBox=normalBoxes[i];
                     return true;
                 }
 
-                if(this->xPos+playerSize>normalBoxes[i].xPos && this->xPos+playerSize<normalBoxes[i].xPos+boxSize
-                    && this->yPos+playerSize>normalBoxes[i].yPos && this->yPos+playerSize<normalBoxes[i].yPos+boxSize)
+                if(this->xPos+playerSize>normalBoxes[i]->getXPos() && this->xPos+playerSize<normalBoxes[i]->getXPos()+boxSize
+                    && this->yPos+playerSize>normalBoxes[i]->getYPos() && this->yPos+playerSize<normalBoxes[i]->getYPos()+boxSize)
                 {
                     this->tokenBox=normalBoxes[i];
                     return true;
@@ -65,7 +65,7 @@ void Player::changePosUp()
 
 void Player::changePosDown()
 {
-    this->yPos+=speed
+    this->yPos+=speed;
 }
 
 
@@ -121,7 +121,7 @@ void Player::throwBox()
 {
     if(ownBox==1)
     {
-        if(space==1)
+        if(inputData->space==1)
         {
             tokenBox->setDirection(this->direction);
             tokenBox->setSpeed(this->throwSpeed);
@@ -170,56 +170,65 @@ void Player::increaseThrowRate()
 
 void Player::setInputData(Input input)
 {
-    this->inputData=input;
+    this->inputData=&input;
 }
 
-void Player::setTokenBox(NoramlBox normalbox)
-{
-    this->tokenBox=normalbox;
-}
+//void Player::setTokenBox(NoramlBox normalbox)
+//{
+ //   this->tokenBox=&normalbox;
+//}
 
 void Player::setGiftBoxVector(std::vector <GiftBox> &gifts)
 {
-    this->giftBoxes=giftbox;
+    for(int i=0;i<giftBoxesNum;i++)
+    {
+        giftBoxes.push_back(&gifts[i]);
+    }
 }
 
 void Player::setTntBoxVector(std::vector <TntBox> &tnts)
 {
-    this->tntBoxes=tntbox;
+    for(int i=0;i<tntBoxesNum;i++)
+    {
+        tntBoxes.push_back(&tnts[i]);
+    }
 }
 
-void Player::setNormalBoxVector(std::vector <NormalBox> &normals)
+void Player::setNoramlBoxVector(std::vector <NoramlBox> &normals)
 {
-    this->normalBoxes=normalbox;
+    for(int i=0;i<normalBoxesNum;i++)
+    {
+        normalBoxes.push_back(&normals[i]);
+    }
 }
 
 bool Player::playerCollisionGiftBox()
 {
-    for(int i=0;i<GiftBoxesNum;i++)
+    for(int i=0;i<giftBoxesNum;i++)
     {
-        if(this->xPos>giftBoxes[i].xPos && this->xPos<giftBoxes[i].xPos+boxSize
-            && this->yPos>giftBoxes[i].yPos && this->yPos<giftBoxes[i].yPos+boxSize)
+        if(this->xPos>giftBoxes[i]->getXPos() && this->xPos<giftBoxes[i]->getXPos()+boxSize
+            && this->yPos>giftBoxes[i]->getYPos() && this->yPos<giftBoxes[i]->getYPos()+boxSize)
         {
             this->earnedBox=giftBoxes[i];
             return true;
         }
 
-        if(this->xPos>giftBoxes[i].xPos && this->xPos<giftBoxes[i].xPos+boxSize
-            && this->yPos+playerSize>giftBoxes[i].yPos && this->yPos+playerSize<giftBoxes[i].yPos+boxSize)
+        if(this->xPos>giftBoxes[i]->getXPos() && this->xPos<giftBoxes[i]->getXPos()+boxSize
+            && this->yPos+playerSize>giftBoxes[i]->getYPos() && this->yPos+playerSize<giftBoxes[i]->getYPos()+boxSize)
         {
             this->earnedBox=giftBoxes[i];
             return true;
         }
 
-        if(this->xPos+playerSize>giftBoxes[i].xPos && this->xPos+playerSize<giftBoxes[i].xPos+boxSize
-            && this->yPos>giftBoxes[i].yPos && this->yPos<giftBoxes[i].yPos+boxSize)
+        if(this->xPos+playerSize>giftBoxes[i]->getXPos() && this->xPos+playerSize<giftBoxes[i]->getXPos()+boxSize
+            && this->yPos>giftBoxes[i]->getYPos() && this->yPos<giftBoxes[i]->getYPos()+boxSize)
         {
             this->earnedBox=giftBoxes[i];
             return true;
         }
 
-        if(this->xPos+playerSize>giftBoxes[i].xPos && this->xPos+playerSize<giftBoxes[i].xPos+boxSize
-            && this->yPos+playerSize>giftBoxes[i].yPos && this->yPos+playerSize<giftBoxes[i].yPos+boxSize)
+        if(this->xPos+playerSize>giftBoxes[i]->getXPos() && this->xPos+playerSize<giftBoxes[i]->getXPos()+boxSize
+            && this->yPos+playerSize>giftBoxes[i]->getYPos() && this->yPos+playerSize<giftBoxes[i]->getYPos()+boxSize)
         {
             this->earnedBox=giftBoxes[i];
             return true;
@@ -232,31 +241,31 @@ bool Player::playerCollisionGiftBox()
 
 bool Player::playerCollisionTntBox()
 {
-    for(int i=0;i<TntBoxesNum;i++)
+    for(int i=0;i<tntBoxesNum;i++)
     {
-        if(this->xPos>tntBoxes[i].xPos && this->xPos<tntBoxes[i].xPos+boxSize
-            && this->yPos>tntBoxes[i].yPos && this->yPos<tntBoxes[i].yPos+boxSize)
+        if(this->xPos>tntBoxes[i]->getXPos() && this->xPos<tntBoxes[i]->getXPos()+boxSize
+            && this->yPos>tntBoxes[i]->getYPos() && this->yPos<tntBoxes[i]->getYPos()+boxSize)
         {
             this->collisionBox=tntBoxes[i];
             return true;
         }
 
-        if(this->xPos>tntBoxes[i].xPos && this->xPos<tntBoxes[i].xPos+boxSize
-            && this->yPos+playerSize>tntBoxes[i].yPos && this->yPos+playerSize<tntBoxes[i].yPos+boxSize)
+        if(this->xPos>tntBoxes[i]->getXPos() && this->xPos<tntBoxes[i]->getXPos()+boxSize
+            && this->yPos+playerSize>tntBoxes[i]->getYPos() && this->yPos+playerSize<tntBoxes[i]->getYPos()+boxSize)
         {
             this->collisionBox=tntBoxes[i];
             return true;
         }
 
-        if(this->xPos+playerSize>tntBoxes[i].xPos && this->xPos+playerSize<tntBoxes[i].xPos+boxSize
-            && this->yPos>tntBoxes[i].yPos && this->yPos<tntBoxes[i].yPos+boxSize)
+        if(this->xPos+playerSize>tntBoxes[i]->getXPos() && this->xPos+playerSize<tntBoxes[i]->getXPos()+boxSize
+            && this->yPos>tntBoxes[i]->getYPos() && this->yPos<tntBoxes[i]->getYPos()+boxSize)
         {
             this->collisionBox=tntBoxes[i];
             return true;
         }
 
-        if(this->xPos+playerSize>tntBoxes[i].xPos && this->xPos+playerSize<tntBoxes[i].xPos+boxSize
-            && this->yPos+playerSize>tntBoxes[i].yPos && this->yPos+playerSize<tntBoxes[i].yPos+boxSize)
+        if(this->xPos+playerSize>tntBoxes[i]->getXPos() && this->xPos+playerSize<tntBoxes[i]->getXPos()+boxSize
+            && this->yPos+playerSize>tntBoxes[i]->getYPos() && this->yPos+playerSize<tntBoxes[i]->getYPos()+boxSize)
         {
             this->collisionBox=tntBoxes[i];
             return true;
@@ -270,4 +279,19 @@ bool Player::OwnedBox()
 
     return this->ownBox;
 
+}
+
+int Player::getXPos()
+{
+    return this->xPos;
+}
+
+int Player::getYPos()
+{
+    return this->yPos;
+}
+
+int Player::getPlayerHealth()
+{
+    return this->health;
 }

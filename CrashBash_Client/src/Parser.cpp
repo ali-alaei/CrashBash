@@ -75,7 +75,7 @@ string Parser::code()
 void Parser::deCode()
 {
 
-    wModel="B|X900,800,700,600,500,400,300|Y300,400,500,600,700,800,900|*P|X550,750|Y550,740|D2,3|H1,7|*-232212";
+    wModel="B|X900,800,700,600,500,400,300|Y300,400,500,600,700,800,900|*P|X550,750|Y550,740|D2,3|H1,2|*-2322";
     vector <string> BoxX;
     vector <string> BoxY;
     vector <string> BoxN;
@@ -83,7 +83,6 @@ void Parser::deCode()
     vector <string> PlayerY;
     vector <string> PlayerD;
     vector <string> PlayerH;
-    vector <string> id;
 
     for(int i=0; ; i++)
     {
@@ -252,19 +251,11 @@ void Parser::deCode()
             break;
     }
 
-    string g,n,t,pl,pId;
-    g=wModel[wModel.length()-(3+playerNum)];
-    n=wModel[wModel.length()-(2+playerNum)];
-    t=wModel[wModel.length()-(1+playerNum)];
-    pl=wModel[wModel.length()-(4+playerNum)];
-    for(int i=playerNum-1; i>=0; i--)
-    {
-        static int tmp=0;
-        pId=wModel[wModel.length()-(1+tmp)];
-        id[i]=pId;
-        tmp++;
-    }
-
+    string g,n,t,pl;
+    g=wModel[wModel.length()-3];
+    n=wModel[wModel.length()-2];
+    t=wModel[wModel.length()-1];
+    pl=wModel[wModel.length()-4];
 
     stringstream gb(g);
     gb>>this->giftBoxNum;
@@ -274,12 +265,6 @@ void Parser::deCode()
     tb>>this->tntBoxNum;
     stringstream p(pl);
     p>>this->playerNum;
-    for(int i=0; i<playerNum; i++)
-    {
-        stringstream iid(id[i]);
-        id[i]>>this->playerVector[i]->id;
-    }
-
 
     int a;
     for(int i=0; i<giftBoxNum; i++)
@@ -334,4 +319,10 @@ void Parser::deCode()
         h>>a;
         playerVector[i]->setHealth(a);
     }
+}
+
+
+Parser::~Parser()
+{
+
 }

@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 # depslib dependency file v1.0
 1467294023 source:c:\users\asus\crashbash\crashbash_server\crashbash_server\main.cpp
 	<iostream>
@@ -42,3 +43,42 @@
 
 1467212997 c:\users\ali\desktop\crashbash\crashbash_server\crashbash_server\include\connection.h
 
+=======
+# depslib dependency file v1.0
+1466996005 source:c:\users\asus\crashbash\crashbash_server\crashbash_server\main.cpp
+	<iostream>
+
+1466996005 source:c:\users\asus\crashbash\crashbash_server\crashbash_server\src\box.cpp
+	"Box.h"
+
+1466996005 c:\users\asus\crashbash\crashbash_server\crashbash_server\include\box.h
+
+1466996005 source:c:\users\asus\crashbash\crashbash_server\crashbash_server\src\connection.cpp
+	"Connection.h"
+
+1466996005 c:\users\asus\crashbash\crashbash_server\crashbash_server\include\connection.h
+
+1466996005 source:c:\users\asus\crashbash\crashbash_server\crashbash_server\src\controller.cpp
+	"Controller.h"
+
+1466996005 c:\users\asus\crashbash\crashbash_server\crashbash_server\include\controller.h
+
+1467198567 source:c:\users\sadegh\crashbash\crashbash_server\crashbash_server\main.cpp
+	<iostream>
+
+1467198567 source:c:\users\sadegh\crashbash\crashbash_server\crashbash_server\src\connection.cpp
+	"Connection.h"
+
+1467198567 c:\users\sadegh\crashbash\crashbash_server\crashbash_server\include\connection.h
+
+1467198567 source:c:\users\sadegh\crashbash\crashbash_server\crashbash_server\src\controller.cpp
+	"Controller.h"
+
+1467198567 c:\users\sadegh\crashbash\crashbash_server\crashbash_server\include\controller.h
+
+1467299723 source:c:\users\sadegh\crashbash\crashbash_server\crashbash_server\src\box.cpp
+	"Box.h"
+
+1467211343 c:\users\sadegh\crashbash\crashbash_server\crashbash_server\include\box.h
+
+>>>>>>> Stashed changes

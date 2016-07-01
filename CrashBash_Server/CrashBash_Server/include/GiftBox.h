@@ -1,18 +1,21 @@
 #ifndef GIFTBOX_H
 #define GIFTBOX_H
 #include "stdlib.h"
-#include "time.h"
+#include "Box.h"
 
 class GiftBox:public Box
 {
     public:
         GiftBox(int , int);
-        virtual ~GiftBox();
+        bool getDeadOrAlive();
+      //  virtual ~GiftBox();
+        int getXPos();
+        int getYPos();
         int giftType();
     protected:
 
     private:
-        int giftType;
+        int giftTypeNum;
 
 };
 

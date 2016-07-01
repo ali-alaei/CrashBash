@@ -11,16 +11,6 @@ NoramlBox::~NoramlBox()
 
 }
 
-bool NoramlBox::checkCollisiontToPlayer()
-{
-
-
-
-
-
-
-}
-
 bool NoramlBox::checkCollisionToWallOrRate()
 {
 
@@ -50,28 +40,42 @@ bool NoramlBox::checkCollisionToWallOrRate()
     {
         return true;
     }
-    for(int i=0;i</*tedad playe*/;i++)
-    {
-        for(int j= -50;j<50;j++)
-            for(int h= -50;h<50;h++)
-                if(this->xPos+j ==playervector[i].xPos+h && this->yPos+j ==playervector[i].yPos+h)
-                   {
-                       player=playervector[i];
-                       return true;
-                   }
-    }
+
 }
 
 
 bool NoramlBox::checkCollision()
 {
-    if(rate==0)
-        return true;
-
-    for(int i=0;i</*tedad playe*/;i++)
+    for(int i=0;i<playersNum;i++)
     {
-        for(int j= -50;j<50;j++)
-            for(int h= -50;h<50;h++)
+        if(this->xPos>playerVector[i]->getXPos() && this->xPos<playerVector[i]->getXPos()+boxSize
+            && this->yPos>playerVector[i]->getYPos() && this->yPos<playerVector[i]->getYPos()+boxSize)
+        {
+            this->player=playerVector[i];
+            return true;
+        }
+
+        if(this->xPos>playerVector[i]->getXPos() && this->xPos<playerVector[i]->getXPos()+boxSize
+            && this->yPos+playerSize>playerVector[i]->getYPos() && this->yPos+playerSize<playerVector[i]->getYPos()+boxSize)
+        {
+            this->player=playerVector[i];
+            return true;
+        }
+
+        if(this->xPos+playerSize>playerVector[i]->getXPos() && this->xPos+playerSize<playerVector[i]->getXPos()+boxSize
+            && this->yPos>playerVector[i]->getYPos() && this->yPos<playerVector[i]->getYPos()+boxSize)
+        {
+            this->player=playerVector[i];
+            return true;
+        }
+
+        if(this->xPos+playerSize>playerVector[i]->getXPos() && this->xPos+playerSize<playerVector[i]->getXPos()+boxSize
+            && this->yPos+playerSize>playerVector[i]->getYPos() && this->yPos+playerSize<playerVector[i]->getYPos()+boxSize)
+        {
+            this->player=playerVector[i];
+            return true;
+        }
+    }
 
 }
 bool NoramlBox::hasOwner()
@@ -132,4 +136,24 @@ void NoramlBox::setIsThrow(bool a)
     this->isThrow=a;
 }
 
+bool NoramlBox::getDeadOrAlive()
+{
+    return this->deadOrAlive;
+}
+
+void NoramlBox::setPlayersNum(int a)
+{
+    this->playersNum=a;
+}
+
+
+int NoramlBox::getXPos()
+{
+    return this->xPos;
+}
+
+int NoramlBox::getYPos()
+{
+    return this->yPos;
+}
 

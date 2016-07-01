@@ -96,7 +96,7 @@ void Controller::setPlayerInputs()
     playerInputs.push_back(parser.returnInputs());     ///i should debaug it later.
     for(int i = 0; i < playerNumbers; i++)
     {
-        players[i]->input = playerInputs[i];C:\Users\ali\Desktop\CrashBash\CrashBash_Client\src\Player.cpp
+        players[i]->input = playerInputs[i];
 
     }
 }
