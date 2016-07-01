@@ -1,10 +1,12 @@
 #ifndef CONTROLLER_H
 #define CONTROLLER_H
 #include"Player.h"
+#include "Parser.h"
 #include"Input.h"
 #include"GiftBox.h"
 #include"NoramlBox.h"
 #include"TntBox.h"
+#include "Connection.h"
 #include"time.h"
 #include<ctime>
 #include<cstdlib>
@@ -39,7 +41,7 @@ class Controller
         void setPlayerNormalBoxesNum();
         void setPlayerGiftBoxesNum();
         void setPlayerTntBoxesNum();
-        void setPlayerDirection();
+     //   void setPlayerDirection();
         void setPlayerTokenBoxes();
         void setPlayerGiftBoxes();
         void setPlayerTntBoxes();
@@ -49,7 +51,7 @@ class Controller
         void playerCollisionToNormalBox();
         ///........................///
         ///these are for Parser class///
-        void setParserGiftBoxNum();
+        void setParserGsiftBoxNum();
         void setParserNormalBoxNum();
         void setParserTntBoxNum();
         void setParserGiftBoxVector();
@@ -73,7 +75,7 @@ class Controller
         std::vector <Player> playerInputs;
         std::vector <Input> input;
         //Input* input;    ///it should initialize with the parser input.
-        Parser parser(this->playerNumbers);
+//        Parser parser(this->playerNumbers);
         Connection connection;
 
 

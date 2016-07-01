@@ -9,6 +9,7 @@ class NoramlBox:public Box
 {
     public:
         NoramlBox(int ,int);
+        void moveNormalBox();
         virtual ~NoramlBox();
         void setOwner(bool);
         int getXPos();

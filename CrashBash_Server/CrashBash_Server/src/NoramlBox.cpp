@@ -106,28 +106,31 @@ void NoramlBox::setRate(int a)
 
 void NoramlBox::moveCatchBox()
 {
-    if(direction==0)
+    if(this->owner==1)
     {
-        yPos-=speed;
-        rate-=speed;
-    }
+        if(direction==1)
+        {
+            yPos-=speed;
+            rate-=speed;
+        }
 
-    else if(direction==1)
-    {
-        xPos+=speed;
-        rate-=speed;
-    }
+        else if(direction==2)
+        {
+            xPos+=speed;
+            rate-=speed;
+        }
 
-    else if(direction==2)
-    {
-        yPos+=speed;
-        rate-=speed;
-    }
+        else if(direction==3)
+        {
+            yPos+=speed;
+            rate-=speed;
+        }
 
-    else if(direction==3)
-    {
-        xPos-=speed;
-        rate-=speed;
+        else if(direction==4)
+        {
+            xPos-=speed;
+            rate-=speed;
+        }
     }
 }
 
@@ -157,3 +160,4 @@ int NoramlBox::getYPos()
     return this->yPos;
 }
 
+void NoramlBox::move()

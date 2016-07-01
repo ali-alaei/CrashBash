@@ -18,6 +18,7 @@ class Player
         virtual ~Player();
         void changePosUp();
         int getPlayerHealth();
+        bool checkCollisionToBox();
         void changePosDown();
         void changePosRight();
         void changePosLeft();

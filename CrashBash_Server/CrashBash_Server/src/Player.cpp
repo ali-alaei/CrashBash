@@ -295,3 +295,88 @@ int Player::getPlayerHealth()
 {
     return this->health;
 }
+
+
+bool Player::checkCollisionToBox()
+{
+    if(direction==1)
+    {
+        for(int i=0;i<normalBoxesNum;i++)
+        {
+            if(this->xPos>normalBoxes[i]->getXPos() && this->xPos<normalBoxes[i]->getXPos()+boxSize
+                && this->yPos-5>normalBoxes[i]->getYPos() && this->yPos-5<normalBoxes[i]->getYPos()+boxSize)
+            {
+                return false;
+            }
+
+
+            if(this->xPos+playerSize>normalBoxes[i]->getXPos() && this->xPos+playerSize<normalBoxes[i]->getXPos()+boxSize
+                && this->yPos-5>normalBoxes[i]->getYPos() && this->yPos-5<normalBoxes[i]->getYPos()+boxSize)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+    else if(direction==2)
+    {
+        for(int i=0;i<normalBoxesNum;i++)
+        {
+            if(this->xPos+5>normalBoxes[i]->getXPos() && this->xPos+5<normalBoxes[i]->getXPos()+boxSize
+                && this->yPos>normalBoxes[i]->getYPos() && this->yPos<normalBoxes[i]->getYPos()+boxSize)
+            {
+                return false;
+            }
+
+
+            if(this->xPos+5>normalBoxes[i]->getXPos() && this->xPos+5<normalBoxes[i]->getXPos()+boxSize
+                && this->yPos+playerSize>normalBoxes[i]->getYPos() && this->yPos+playerSize<normalBoxes[i]->getYPos()+boxSize)
+            {
+                return false;
+            }
+        }
+        return true;
+
+    }
+    else if(direction==3)
+    {
+        for(int i=0;i<normalBoxesNum;i++)
+        {
+            if(this->xPos>normalBoxes[i]->getXPos() && this->xPos<normalBoxes[i]->getXPos()+boxSize
+                && this->yPos+5>normalBoxes[i]->getYPos() && this->yPos+5<normalBoxes[i]->getYPos()+boxSize)
+            {
+                return false;
+            }
+
+            if(this->xPos+playerSize>normalBoxes[i]->getXPos() && this->xPos+playerSize<normalBoxes[i]->getXPos()+boxSize
+                && this->yPos+5>normalBoxes[i]->getYPos() && this->yPos+5<normalBoxes[i]->getYPos()+boxSize)
+            {
+                return false;
+            }
+        }
+        return true;
+
+    }
+
+    else if(direction==4)
+    {
+
+        for(int i=0;i<normalBoxesNum;i++)
+        {
+            if(this->xPos-5>normalBoxes[i]->getXPos() && this->xPos-5<normalBoxes[i]->getXPos()+boxSize
+                && this->yPos>normalBoxes[i]->getYPos() && this->yPos<normalBoxes[i]->getYPos()+boxSize)
+            {
+                return false;
+            }
+
+
+            if(this->xPos-5>normalBoxes[i]->getXPos() && this->xPos-5<normalBoxes[i]->getXPos()+boxSize
+                && this->yPos+playerSize>normalBoxes[i]->getYPos() && this->yPos+playerSize<normalBoxes[i]->getYPos()+boxSize)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+}
