@@ -388,16 +388,16 @@
 	<string>
 	<SFML/Graphics.hpp>
 
-1466738216 source:c:\users\ali\desktop\crashbash\crashbash_client\src\client.cpp
+1467375479 source:c:\users\ali\desktop\crashbash\crashbash_client\src\client.cpp
 	"Client.h"
 
-1466897683 c:\users\ali\desktop\crashbash\crashbash_client\include\client.h
+1467375479 c:\users\ali\desktop\crashbash\crashbash_client\include\client.h
 	"Graphic.h"
 	"Parser.h"
 	"Connection.h"
 	"Player.h"
 
-1466897430 c:\users\ali\desktop\crashbash\crashbash_client\include\graphic.h
+1467375479 c:\users\ali\desktop\crashbash\crashbash_client\include\graphic.h
 	<SFML/Graphics.hpp>
 	<Surface.h>
 	<GiftBox.h>
@@ -405,7 +405,7 @@
 	<NormalBox.h>
 	<Player.h>
 
-1466896689 c:\users\ali\desktop\crashbash\crashbash_client\include\parser.h
+1467126072 c:\users\ali\desktop\crashbash\crashbash_client\include\parser.h
 	"iostream"
 	"string"
 	"Input.h"
@@ -417,7 +417,7 @@
 
 1466866841 c:\users\ali\desktop\crashbash\crashbash_client\include\connection.h
 
-1466632996 source:c:\users\ali\desktop\crashbash\crashbash_client\src\connection.cpp
+1466866841 source:c:\users\ali\desktop\crashbash\crashbash_client\src\connection.cpp
 	"Connection.h"
 
 1466866841 source:c:\users\ali\desktop\crashbash\crashbash_client\src\giftbox.cpp
@@ -426,8 +426,9 @@
 1466866841 c:\users\ali\desktop\crashbash\crashbash_client\include\giftbox.h
 	"Box.h"
 
-1466632996 source:c:\users\ali\desktop\crashbash\crashbash_client\src\graphic.cpp
+1467375479 source:c:\users\ali\desktop\crashbash\crashbash_client\src\graphic.cpp
 	"Graphic.h"
+	"iostream"
 
 1466866841 source:c:\users\ali\desktop\crashbash\crashbash_client\src\normalbox.cpp
 	"NormalBox.h"
@@ -435,20 +436,25 @@
 1466866841 c:\users\ali\desktop\crashbash\crashbash_client\include\normalbox.h
 	"Box.h"
 
-1466632996 source:c:\users\ali\desktop\crashbash\crashbash_client\src\parser.cpp
+1467375479 source:c:\users\ali\desktop\crashbash\crashbash_client\src\parser.cpp
+	"iostream"
 	"Parser.h"
+	"string"
+	"sstream"
+	"vector"
 
-1466867002 source:c:\users\ali\desktop\crashbash\crashbash_client\src\player.cpp
+1467375479 source:c:\users\ali\desktop\crashbash\crashbash_client\src\player.cpp
 	"Player.h"
 
-1466866914 c:\users\ali\desktop\crashbash\crashbash_client\include\player.h
+1467375479 c:\users\ali\desktop\crashbash\crashbash_client\include\player.h
 	"Input.h"
 	<SFML/Graphics.hpp>
 
 1466702470 c:\users\ali\desktop\crashbash\crashbash_client\include\input.h
 
-1466866841 source:c:\users\ali\desktop\crashbash\crashbash_client\src\surface.cpp
+1466945267 source:c:\users\ali\desktop\crashbash\crashbash_client\src\surface.cpp
 	"Surface.h"
+	<iostream>
 
 1466866841 c:\users\ali\desktop\crashbash\crashbash_client\include\surface.h
 	<SFML/Graphics.hpp>
@@ -1907,4 +1913,21 @@
 
 1467284375 source:c:\users\sadegh\downloads\crashbash\crashbash_client\src\player.cpp
 	"Player.h"
+
+1466866841 source:c:\users\ali\desktop\crashbash\crashbash_client\src\sfml-utils\core\animatedsprite.cpp
+	<SFML-utils/core/AnimatedSprite.hpp>
+	<SFML-utils/core/Animation.hpp>
+	<cassert>
+
+1466866841 c:\users\ali\desktop\crashbash\crashbash_client\include\sfml-utils\core\animatedsprite.hpp
+	<SFML/Graphics.hpp>
+	<SFML/System.hpp>
+	<functional>
+
+1466866841 c:\users\ali\desktop\crashbash\crashbash_client\include\sfml-utils\core\animation.hpp
+	<vector>
+	<SFML/Graphics.hpp>
+
+1466866841 source:c:\users\ali\desktop\crashbash\crashbash_client\src\sfml-utils\core\animation.cpp
+	<SFML-utils/core/Animation.hpp>
 

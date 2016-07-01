@@ -6,7 +6,6 @@ Controller::Controller(): playerNumbers(2),normalBoxNumbers(8),giftBoxNumbers(3)
 
 
 }
-
 Controller::~Controller()
 {
     //dtor
@@ -67,8 +66,6 @@ void Controller::createTntBoxes()
         tnts.push_back(TntBox(x[i],y[i]));
 
     }
-
-
 }
 void Controller::createGiftBoxes()
 {
@@ -101,7 +98,7 @@ void Controller::setPlayerInputs()
     }
 }
 
-void Controller::ready()
+/*void Controller::ready()
 {
 
 
@@ -111,7 +108,7 @@ void Controller::ready()
         connection.send();
     }
 
-}
+}*/
 /*void Controller::checkConnection()
 {
     if(connection.isClientDisconnected())
@@ -122,13 +119,41 @@ void Controller::ready()
     }
 
 }*/
+
 void Controller::run()
 {
+    connection.connect();
     while(true)
     {
-
-
-
+        createPlayers();
+        createNormalBoxes();
+        createTntBoxes();
+        createGiftBoxes();
+        setParserGiftBoxNum();
+        setParserNormalBoxNum();
+        setParserTntBoxNum();
+        setParserGiftBoxVector();
+        setParserNormalBoxVector();
+        setParserTntBoxVector();
+        setParserPlayerVector();
+        parser.code();
+        connection.send();
+        connection.recieve();
+        setPlayerInputs();
+        setPlayerNormalBoxesNum();
+        setPlayerGiftBoxesNum();
+        setPlayerTntBoxesNum();
+        setPlayerDirection();
+        setPlayerTokenBoxes();
+        setPlayerGiftBoxes();
+        setPlayerTntBoxes();
+        setPlayerNormalBoxes();
+        changePosition();
+        playerCollisionToNormalBox();
+        playerCollisionToTntBox();
+        playerCollisionToGiftBox();
+        whoIsWinner();
+        setZeroToInputs();
     }
 
 }
@@ -187,6 +212,7 @@ void Controller::changePosition()
 
             if(player[i].input->up)
             {
+                if(player[i].checkCollisionToBox());
                 player[i].changePosUp();
             }
             else if(player[i].input->down)
@@ -227,13 +253,13 @@ void Controller::changePosition()
 }
 int Controller::whoIsWinner()
 {
-    if(player[0].getPlayerHealth()<player[1].getPlayerHealth())
+    if(player[0].getPlayerHealth() == 0)
     {
-        return 2; ///means player 2 won the game.
+        parser.setWinner(2); ///means player 2 won the game.
     }
-    else if(player[0].getPlayerHealth()<player[1].getPlayerHealth())
+    else if(player[1].getPlayerHealth() == 0)
     {
-        return 1; ///meas player 1 won the game.
+        parser.setWinner(1); ///meas player 1 won the game.
     }
 }
 void Controller::produceGiftBox()
@@ -409,7 +435,7 @@ void Controller::setParserPlayerVector()
 {
     parser.setPlayerVector(players);
 }
-void Controller::givePlayerGifts()
+void Controller::playerCollisionToGiftBox()
 {
     for(int i=0; i<this->playerNumbers; i++)
     {
@@ -439,6 +465,48 @@ void Controller::givePlayerGifts()
 
             }
         }
+        deleteGiftBox();
     }
+}
+void Controller::playerCollisionToTntBox()
+{
+    for(int i=0; i<this->playerNumbers; i++)
+        {
+            if(player[i].playerCollisionTntBox())
+            {
+                player[i].decreasePlayerHealth();
+                deleteTntBox();
+            }
+        }
+}
+void Controller::playerCollisionToNormalBox()
+{
+    for(int i=0; i<this->playerNumbers; i++)
+        {
+            if(player[i].tokenBox->hasOwner())
+            {
+                ///move function in normal box will be called.(sadegh)
+            }
+            if(player[i].playerBox())
+            {
+                player[i].catchBox();
+            }
+            player[i].throwBox();
+        }
+}
+void Controller::setInputs()
+{
 
+    input.push_back(parser.returnInputs());
+}
+void Controller::setZeroToInputs()
+{
+    for(int i=0; i<this->playerNumbers; i++)
+    {
+        input[i].up=0;
+        input[i].down=0;
+        input[i].left=0;
+        input[i].right=0;
+        input[i].space=0;
+    }
 }

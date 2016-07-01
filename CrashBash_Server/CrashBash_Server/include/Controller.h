@@ -20,7 +20,7 @@ class Controller
         void createTntBoxes();
         void createGiftBoxes();
         ///...................................///
-        void ready();
+        //void ready();
         ///void checkConnection();
         ///because of udp this function couldnt be used.
         ///to check if any client disconnect stop the game.
@@ -44,8 +44,9 @@ class Controller
         void setPlayerGiftBoxes();
         void setPlayerTntBoxes();
         void setPlayerNormalBoxes();
-        void givePlayerGifts();
-
+        void playerCollisionToTntBox();
+        void playerCollisionToGiftBox();
+        void playerCollisionToNormalBox();
         ///........................///
         ///these are for Parser class///
         void setParserGiftBoxNum();
@@ -56,6 +57,8 @@ class Controller
         void setParserTntBoxVector();
         void setParserPlayerVector();
         ///.........................///
+        void setInputs();  ///it should set from parser class.
+        void setZeroToInputs();
     protected:
 
     private:
@@ -68,6 +71,7 @@ class Controller
         std::vector <GiftBox> gifts;
         std::vector <Player> players;
         std::vector <Player> playerInputs;
+        std::vector <Input> input;
         //Input* input;    ///it should initialize with the parser input.
         Parser parser(this->playerNumbers);
         Connection connection;
