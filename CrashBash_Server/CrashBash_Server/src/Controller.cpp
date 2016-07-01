@@ -184,8 +184,7 @@ void Controller::changePosition()
 {
     for(int i=0; i < playerNumbers; i++)
     {
-        if(player[i].isClicked())
-        {
+
             if(player[i].input->up)
             {
                 player[i].changePosUp();
@@ -223,36 +222,52 @@ void Controller::changePosition()
             {
                 player[i].changePosDR();
             }
-
-        }
     }
 
 }
-bool Controller::whoIsWinner()
+int Controller::whoIsWinner()
 {
-    ///this function should check isWin() function of every player
-    ///and if it returned true show a page that says player number... won.
-
-}
-void Controller::produceBox()
-{
-    /*if(normals.size()<2)
+    if(player[0].getPlayerHealth()<player[1].getPlayerHealth())
     {
-        ///build some new normal box.
-    }*/
-    ///this function should do the same work for other kinds of boxes.
+        return 2; ///means player 2 won the game.
+    }
+    else if(player[0].getPlayerHealth()<player[1].getPlayerHealth())
+    {
+        return 1; ///meas player 1 won the game.
+    }
+}
+void Controller::produceGiftBox()
+{
+    if(giftBoxNumbers == 0)
+    {
+        for(int i=0; i<3; i++)
+        {
+            createGiftBoxes();
+        }
+    }
+}
+void Controller::produceNormalBox()
+{
+    if(normalBoxNumbers<2)
+    {
+        for(int i=0; i<7; i++)
+        {
+            createNormalBoxes();
+        }
 
+    }
 
 }
-void Controller::decreasePlayerHealth()
+void Controller::produceTntBox()
 {
+    if(tntBoxNumbers<3)
+    {
+        for(int i=0; i<3; i++)
+        {
+            createTntBoxes();
+        }
 
-
-
-}
-void Controller::increasePlayerHealth()
-{
-
+    }
 
 
 }
@@ -400,7 +415,29 @@ void Controller::givePlayerGifts()
     {
         if(players[i].playerCollisionGiftBox())
         {
-            players[i].earnedBox
+            int giftType;
+            giftType = players[i].earnedBox[i]->gifType();
+
+            if(giftType == 1)
+            {
+                players[i].increasePlayerHealth();
+
+            }
+            else if(giftType == 2)
+            {
+
+                players[i].increaseSpeed();
+            }
+            else if(giftType == 3)
+            {
+
+                players[i].increaseSpeedRate();
+            }
+            else if(giftType == 4)
+            {
+                players[i].increaseThrowRate();
+
+            }
         }
     }
 

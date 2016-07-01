@@ -29,6 +29,7 @@ class Player
         void increaseSpeedRate();
         void increaseThrowRate();
 
+
         ///this should be assigned in controller///
         void setNormalBoxesNum(int );
         void setGiftBoxesNum(int );

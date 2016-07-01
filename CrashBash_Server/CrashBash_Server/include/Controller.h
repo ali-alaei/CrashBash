@@ -28,15 +28,11 @@ class Controller
         void deleteNormalBox();  ///delete box when they distroyed.
         void deleteTntBox();
         void deleteGiftBox();
-        void changePosition();      ///not test yet.
-                                    ///change position of the player depending on the inputs.
-        bool whoIsWinner();         ///declare winner of the game.
-        void produceBox();          ///produce all kind of box whenever needed.
-        void decreasePlayerHealth();
-        void increasePlayerHealth();
-        void increaseThrowRate();      ///depending on the gift type.
-        void increaseSpeedRate();
-        void increaseSpeed();
+        void changePosition();      ///not test yet.                                    ///change position of the player depending on the inputs.
+        int whoIsWinner();         ///declare winner of the game.
+        void produceGiftBox();
+        void produceTntBox();
+        void produceNormalBox();          ///produce all kind of box whenever needed.
         void setPlayerDirection();     ///depending on the inputs.
         void setPlayerInputs();
         ///these are for player class///
