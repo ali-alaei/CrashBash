@@ -36,6 +36,10 @@ class Parser
         int giftBoxNum;
         int noramlBoxNum;
         int tntBoxNum;
+        vector <Player> playerVector;
+        vector <GiftBox> giftBoxVector;
+        vector <NoramlBox> noramlBoxVector;
+        vector <TntBox>tntBoxVector;
 
 };
 

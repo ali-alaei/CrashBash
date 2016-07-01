@@ -14,36 +14,11 @@ Parser::Parser(int P)
         input.push_back(I);
     }
 
-    for(int i=-0; i<playerNum; i++)
+    for(int i=0; i<playerNum; i++)
     {
         id.push_back(0);
     }
 
-    for(int i=0; i<playerNum; i++)
-    {
-        Player* p;
-        p=new Player;
-        playerVector.push_back(p);
-    }
-    for(int i=0; i<giftBoxNum; i++)
-    {
-        GiftBox* g;
-        g=new GiftBox;
-        giftBoxVector.push_back(g);
-    }
-
-    for(int i=0; i<noramlBoxNum; i++)
-    {
-        NoramlBox* n;
-        n=new NoramlBox;
-        noramlBoxVector.push_back(n);
-    }
-    for(int i=0; i<tntBoxNum; i++)
-    {
-        TntBox* t;
-        t=new TntBox;
-        tntBoxVector.push_back(t);
-    }
 }
 
 Input* parser::returnInputs()
@@ -244,23 +219,32 @@ void Parser::deCode()
 }
 void Parser::setGiftBoxVector(vector <GiftBox> &giftBoxVector)
 {
-
-
+    for(int i=0; i<giftBoxNum; i++)
+    {
+        this->giftBoxVector.push_back(giftBoxVector[i]);
+    }
 }
 void Parser::setNormalBoxVector(vector <NoramlBox> &normalBoxVector)
 {
-
-
+    for(int i=0; i<noramlBoxNum; i++)
+    {
+        this->noramlBoxVector.push_back(noramlBoxVector[i]);
+    }
 }
 void Parser::setTntBoxVector(vector <TntBox> &tntBoxVector)
 {
-
+    for(int i=0; i<tntBoxNum; i++)
+    {
+        this->tntBoxVector.push_back(tntBoxVector[i]);
+    }
 
 }
 void Parser::setPlayerVector(vector <Player> &playerVector)
 {
-
-
+    for(int i=0; i<playerNum; i++)
+    {
+        this->playerVector.push_back(playerVector[i]);
+    }
 }
 
 
