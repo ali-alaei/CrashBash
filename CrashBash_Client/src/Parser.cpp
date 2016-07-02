@@ -29,9 +29,8 @@ Parser::Parser()
         P=new Player;
         playerVector.push_back(P);
     }
-
-
 }
+
 int Parser::getGiftBoxNum()
 {
     return this->giftBoxNum;
@@ -75,7 +74,7 @@ string Parser::code()
 void Parser::deCode()
 {
 
-    wModel="B|X900,800,700,600,500,400,300|Y300,400,500,600,700,800,900|*P|X550,750|Y550,740|D2,3|H1,2|*-2322";
+    wModel="B|X900,800,700,600,500,400,300|Y300,400,500,600,700,800,900|*P|X550,750|Y550,740|D2,3|H1,2|*-2322120";
     vector <string> BoxX;
     vector <string> BoxY;
     vector <string> BoxN;
@@ -83,6 +82,7 @@ void Parser::deCode()
     vector <string> PlayerY;
     vector <string> PlayerD;
     vector <string> PlayerH;
+    vector <string> id;
 
     for(int i=0; ; i++)
     {
@@ -251,11 +251,20 @@ void Parser::deCode()
             break;
     }
 
-    string g,n,t,pl;
-    g=wModel[wModel.length()-3];
-    n=wModel[wModel.length()-2];
-    t=wModel[wModel.length()-1];
-    pl=wModel[wModel.length()-4];
+    string g,n,t,pl,pId,W;
+    g=wModel[wModel.length()-(3+2+1)];
+    n=wModel[wModel.length()-(2+2+1)];
+    t=wModel[wModel.length()-(1+2+1)];
+    pl=wModel[wModel.length()-(4+2+1)];
+    W=wModel[wModel.length()-1];
+
+    int tmp=0;
+    for(int i=2-1; i>=0; i--)
+    {
+        pId=wModel[wModel.length()-(2-tmp+1)];
+        id.push_back(pId);
+        tmp++;
+    }
 
     stringstream gb(g);
     gb>>this->giftBoxNum;
@@ -265,6 +274,16 @@ void Parser::deCode()
     tb>>this->tntBoxNum;
     stringstream p(pl);
     p>>this->playerNum;
+    stringstream wi(W);
+    wi>>this->winner;
+
+    for(int i=0; i<playerNum; i++)
+    {
+        int d;
+        stringstream iid(id[i]);
+        iid>>d;
+        this->playerVector[i]->setId(d);
+    }
 
     int a;
     for(int i=0; i<giftBoxNum; i++)

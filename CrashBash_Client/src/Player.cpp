@@ -86,6 +86,10 @@ void Player::setThrowRate(int Rate)
     this->throwRate = Rate;
 }
 
+void Player::setId(int id)
+{
+    this->id=id;
+}
 
 sf::Sprite Player::show()
 {

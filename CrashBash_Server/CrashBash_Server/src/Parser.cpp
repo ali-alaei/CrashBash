@@ -177,10 +177,12 @@ void Parser::code()
     stringstream no;
     stringstream t;
     stringstream id;
+    stringstream wi;
     p << playerNum;
     g << giftBoxNum;
     no << noramlBoxNum;
     t << tntBoxNum;
+    wi << winner;
 
     wModel = wModel + p.str() + g.str() + no.str() + t.str();
 
@@ -190,6 +192,7 @@ void Parser::code()
         wModel += id;
     }
 
+    wModel+=wi.str();
 }
 
 void Parser::deCode()
@@ -245,6 +248,11 @@ void Parser::setPlayerVector(vector <Player> &playerVector)
     {
         this->playerVector.push_back(playerVector[i]);
     }
+}
+
+void setWinner(int w)
+{
+    this->winner=w;
 }
 
 

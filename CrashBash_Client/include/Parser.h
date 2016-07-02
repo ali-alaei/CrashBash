@@ -22,6 +22,7 @@ class Parser
         int getTntBoxNum();
         int getNormalBoxNum();
         int getPlayerNum();
+        int getWinner();
 
         vector <NormalBox*> normalBoxVector;
         vector <TntBox*> tntBoxVector;
@@ -35,6 +36,7 @@ class Parser
         int tntBoxNum;
         int normalBoxNum;
         int playerNum;
+        int winner;
 
 };
 

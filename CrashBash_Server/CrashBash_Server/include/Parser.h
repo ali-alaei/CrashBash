@@ -28,6 +28,8 @@ class Parser
         void setTntBoxVector(vector <TntBox> &tntBoxVector);
         void setPlayerVector(vector <Player> &playerVector);
         void setWinner(int);
+        void setPlayerVector(vector <Player> &playerVector);
+        void setWinner(int );
 
     private:
         string wModel;
@@ -37,6 +39,7 @@ class Parser
         int giftBoxNum;
         int noramlBoxNum;
         int tntBoxNum;
+        int winner;
         vector <Player> playerVector;
         vector <GiftBox> giftBoxVector;
         vector <NoramlBox> noramlBoxVector;

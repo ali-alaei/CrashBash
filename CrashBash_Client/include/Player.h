@@ -23,6 +23,8 @@ class Player
         void setDirection(int direction);
         void setThrowRate(int Rate);
         int getSpeed();
+        int getId();
+        void setId(int );
     protected:
     private:
         Input playerInputs;
