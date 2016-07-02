@@ -1,3 +1,5 @@
+#ifndef PARSER_H
+#define PARSER_H
 #include "string"
 #include "iostream"
 #include "vector"
@@ -31,6 +33,7 @@ class Parser
         void setWinner(int);
         void setPlayerVector(const vector <Player> &playerVector);
         void setPlayerId(int ,int );
+        void setWmodel(string world);
 
     private:
 
@@ -49,3 +52,4 @@ class Parser
 
 };
 
+#endif

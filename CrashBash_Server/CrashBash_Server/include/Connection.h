@@ -1,5 +1,5 @@
-#ifndef SERVER_H
-#define SERVER_H
+#ifndef CONNECTION_H
+#define CONNECTION_H
 #include <SFML/Network.hpp>
 #include <SFML/System.hpp>
 #include "Parser.h"

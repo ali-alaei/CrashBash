@@ -62,6 +62,7 @@ class Controller
         void setZeroToInputs();
         void setPlayerSpaceKey();
         void setParserPlayerId();
+        void setWmodelToParser();
     protected:
 
     private:

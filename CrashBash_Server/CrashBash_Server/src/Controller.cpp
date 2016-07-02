@@ -1,4 +1,4 @@
-#include "Controller.h"
+#include "../include/Controller.h"
 
 Controller::Controller(): playerNumbers(2),normalBoxNumbers(8),giftBoxNumbers(3),tntBoxNumbers(5),parser(this->playerNumbers)
 {
@@ -138,11 +138,10 @@ void Controller::run()
         cout<<"K";
 
         cout<<"L";
-        //cout<<parser.
         parser.code();
         //cout<<endl<<parser.wModel<<endl;
-      //  connection.send();
-    //    connection.recieve();
+        connection.send(parser.getWmodel());
+        connection.receive(); ///a function should call.
         //setPlayerInputs();
         cout<<"M";
         setPlayerNormalBoxesNum();
@@ -542,5 +541,11 @@ void Controller::setPlayerSpaceKey()
         players[i].setSpace(parser.input[i]->space);
 
     }
+
+}
+void Controller::setWmodelToParser()
+{
+    parser.setWmodel(connection.receive());
+
 
 }

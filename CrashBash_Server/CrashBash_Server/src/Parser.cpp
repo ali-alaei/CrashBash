@@ -299,7 +299,11 @@ void Parser::setPlayerId(int id1, int id2)
     playerVector[0].setId(id1);
     playerVector[1].setId(id2);
 }
+void Parser::setWmodel(string world)
+{
+    this->wModel = world;
 
+}
 
 
 
