@@ -140,7 +140,7 @@ void Controller::run()
         cout<<"L";
         //cout<<parser.
         parser.code();
-        cout<<endl<<parser.wModel<<endl;
+        //cout<<endl<<parser.wModel<<endl;
       //  connection.send();
     //    connection.recieve();
         //setPlayerInputs();
@@ -533,4 +533,14 @@ void Controller::setParserPlayerId()
     players[0].setId(1);
     players[1].setId(2);
     parser.setPlayerId(players[0].getId(),players[1].getId());
+}
+
+void Controller::setPlayerSpaceKey()
+{
+    for(int i=0; i<this->playerNumbers; i++)
+    {
+        players[i].setSpace(parser.input[i]->space);
+
+    }
+
 }

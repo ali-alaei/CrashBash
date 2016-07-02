@@ -60,6 +60,7 @@ class Controller
         ///.........................///
         void setInputs();  ///it should set from parser class.
         void setZeroToInputs();
+        void setPlayerSpaceKey();
         void setParserPlayerId();
     protected:
 
@@ -77,6 +78,7 @@ class Controller
         //Input* input;    ///it should initialize with the parser input.
         Parser parser;
         Connection connection;
+
 
 
 };

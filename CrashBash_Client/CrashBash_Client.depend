@@ -883,13 +883,13 @@
 1466866842 c:\users\sadegh\crashbash\crashbash_client\include\normalbox.h
 	"Box.h"
 
-1467448733 c:\users\sadegh\crashbash\crashbash_client\include\player.h
+1467449608 c:\users\sadegh\crashbash\crashbash_client\include\player.h
 	"Input.h"
 	<SFML/Graphics.hpp>
 
 1466702472 c:\users\sadegh\crashbash\crashbash_client\include\input.h
 
-1467448556 c:\users\sadegh\crashbash\crashbash_client\include\parser.h
+1467449608 c:\users\sadegh\crashbash\crashbash_client\include\parser.h
 	"iostream"
 	"string"
 	"Input.h"
@@ -914,14 +914,14 @@
 	"Graphic.h"
 	"iostream"
 
-1467448556 source:c:\users\sadegh\crashbash\crashbash_client\src\parser.cpp
+1467449608 source:c:\users\sadegh\crashbash\crashbash_client\src\parser.cpp
 	"iostream"
 	"Parser.h"
 	"string"
 	"sstream"
 	"vector"
 
-1467284375 source:c:\users\sadegh\crashbash\crashbash_client\src\player.cpp
+1467449608 source:c:\users\sadegh\crashbash\crashbash_client\src\player.cpp
 	"Player.h"
 
 1467197415 source:c:\users\sadegh\crashbash\crashbash_client\src\sfml-utils\core\animatedsprite.cpp

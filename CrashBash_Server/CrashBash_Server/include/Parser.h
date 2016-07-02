@@ -12,7 +12,7 @@ using namespace std;
 class Parser
 {
     public:
-        string wModel;
+
         Parser(int );
         vector <Input*> input;
         void code();
@@ -35,6 +35,7 @@ class Parser
 
         vector <int> id;
 
+        string wModel;
         int playerNum;
         int giftBoxNum;
         int noramlBoxNum;
