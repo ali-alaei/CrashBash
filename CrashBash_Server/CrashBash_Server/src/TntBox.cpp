@@ -1,4 +1,4 @@
-#include "TntBox.h"
+#include "../include/TntBox.h"
 
 TntBox::TntBox(int x,int y):Box(x,y)
 {

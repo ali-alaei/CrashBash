@@ -1,4 +1,4 @@
-#include "GiftBox.h"
+#include "../include/GiftBox.h"
 
 GiftBox::GiftBox(int x,int y):Box(x,y)
 {

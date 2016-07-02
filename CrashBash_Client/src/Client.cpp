@@ -11,6 +11,7 @@ Client::~Client()
 }
 void Client::run()
 {
+    setPlayerId();
     while(true)
     {
         clearWindow();
@@ -121,4 +122,11 @@ void Client::clearWindow()
 void Client::displayWindow()
 {
     graphic.getWindow()->display();
+}
+void Client::setPlayerId()
+{
+    int id;
+    cout<<"Please Enter your id:";
+    cin>>id;
+    player.setId(id);
 }

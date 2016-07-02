@@ -1,4 +1,4 @@
-#include "Player.h"
+#include "../include/Player.h"
 
 Player::Player(int x,int y):xPos(x),yPos(y)
 {

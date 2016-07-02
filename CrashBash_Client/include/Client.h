@@ -20,6 +20,7 @@ class Client
         void clearWindow();
         void displayWindow();
         void showIconAndHealth();
+        void setPlayerId();
     protected:
 
     private:

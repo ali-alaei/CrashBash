@@ -15,13 +15,17 @@ Player::Player()
     textureIcon2.loadFromFile("front-2-small.png");
     textureHealthFull.loadFromFile("health-full.png");
     textureHealthEmpty.loadFromFile("health-empty.png");
-
 }
 
 Player::~Player()
 {
     //dtor
 }
+void Player::cinId(int id)
+{
+    this->id = id;
+}
+
 void Player::getKeys()
 {
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
@@ -93,8 +97,8 @@ void Player::setId(int id)
 
 sf::Sprite Player::show()
 {
-    //if(id==1)
-    //{
+    if(id==1)
+    {
         if(direction==1)
         {
             sprite.setTexture(textureUp);
@@ -126,10 +130,10 @@ sf::Sprite Player::show()
             sprite.setPosition(xPos,yPos);
             return sprite;
         }
-    //}
+    }
 
-    //if(id==2)
-    //{
+    if(id==2)
+    {
         if(direction==1)
         {
             sprite.setTexture(textureUp2);
@@ -161,7 +165,7 @@ sf::Sprite Player::show()
             sprite.setPosition(xPos,yPos);
             return sprite;
         }
-    //}
+    }
 
 }
 
@@ -184,24 +188,29 @@ sf::Sprite Player::showPlayerHealthEmpty(int x,int y)
 
 sf::Sprite Player::showPlayerIcon(int x,int y)
 {
-    //if(id==1)
-    //{
+    if(id==1)
+    {
         sprite.setTexture(textureIcon);
         sprite.setTextureRect(sf::IntRect(0, 0, iconSize, iconSize));
         sprite.setPosition(x,y);
         return sprite;
-    //}
+    }
 
-   // if(id==2)
-    //{
-     //   sprite.setTexture(textureIcon2);
-      //  sprite.setTextureRect(sf::IntRect(0, 0, iconSize, iconSize));
-      //  sprite.setPosition(x,y);
-       // return sprite;
-    //}
+    if(id==2)
+    {
+        sprite.setTexture(textureIcon2);
+        sprite.setTextureRect(sf::IntRect(0, 0, iconSize, iconSize));
+        sprite.setPosition(x,y);
+        return sprite;
+    }
 }
 
 int Player::gethealth()
 {
     return health;
+}
+
+int Player::getId()
+{
+    return this->id;
 }

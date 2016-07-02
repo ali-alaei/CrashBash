@@ -24,6 +24,7 @@ class Player
         void setThrowRate(int Rate);
         int getSpeed();
         int getId();
+        void cinId(int );
         void setId(int );
     protected:
     private:

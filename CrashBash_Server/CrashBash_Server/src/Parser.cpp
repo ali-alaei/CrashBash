@@ -57,6 +57,11 @@ int Parser::getTntBoxNum()
     return this->tntBoxNum;
 }
 
+string Parser::getWmodel()
+{
+    return this->wModel;
+}
+
 void Parser::code()
 {
     int boxNum = giftBoxNum+noramlBoxNum+tntBoxNum;

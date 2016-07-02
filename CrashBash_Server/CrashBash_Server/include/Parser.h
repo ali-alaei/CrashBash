@@ -20,6 +20,7 @@ class Parser
         int getGiftBoxNum();
         int getNoramlBoxNum();
         int getTntBoxNum();
+        string getWmodel();
         //vector <Input*>* returnInputs();
         void setGiftBoxNum(int );
         void setNoramlBoxNum(int );

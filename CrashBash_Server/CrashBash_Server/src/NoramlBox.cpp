@@ -1,4 +1,4 @@
-#include "NoramlBox.h"
+#include "../include/NoramlBox.h"
 
 NoramlBox::NoramlBox(int x,int y):Box(x,y),speed(0),owner(0),
 isThrow(0),rate(0)

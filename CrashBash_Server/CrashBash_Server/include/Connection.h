@@ -1,20 +1,40 @@
-#ifndef CONNECTION_H
-#define CONNECTION_H
-
+#ifndef SERVER_H
+#define SERVER_H
+#include <SFML/Network.hpp>
+#include <SFML/System.hpp>
+#include "Parser.h"
+#include <iostream>
+#include "string"
+using namespace std;
 
 class Connection
 {
     public:
         Connection();
         virtual ~Connection();
-        bool areClientsConnect();
-        bool isClientDisconnected();
-        void connect();
+
+        Parser parser;
+
+        sf::UdpSocket Server;
+        sf::IpAddress ClientAddress;
+        unsigned short port;
+
+        int connection();
         void send();
-        void recieve();
-    protected:
+        //void receiveA();
+        //void receiveB();
+        void receive();
+        int getReceivingDataA();
+        int getReceivingDataB();
+        int getReceivingData();
+        void setSendingData();
 
     private:
+        string SendingData;
+        string ReceivingDataA;
+        string ReceivingDataB;
+        string ReceivingData;
+        sf::Packet packet;
 };
 
-#endif // CONNECTION_H
+#endif // SERVER_H

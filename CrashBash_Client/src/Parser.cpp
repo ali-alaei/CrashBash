@@ -54,19 +54,21 @@ int Parser::getPlayerNum()
 string Parser::code()
 {
     wModel="";
-    stringstream Up,Down,Right,Left,Space;
+    stringstream Up,Down,Right,Left,Space,ID;
 
     Up << Input.up;
     Down << Input.down;
     Right << Input.right;
     Left << Input.left;
     Space << Input.space;
+    ID << playerVector[0]->getId();
 
     wModel = wModel + "U" + Up.str();
     wModel = wModel + "D" + Down.str();
     wModel = wModel + "R" + Right.str();
     wModel = wModel + "L" + Left.str();
     wModel = wModel + "S" + Space.str();
+    wModel = wModel + ID.str();
 
     return wModel;
 }

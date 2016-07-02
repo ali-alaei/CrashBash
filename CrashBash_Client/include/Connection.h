@@ -1,19 +1,28 @@
-#ifndef CONNECTION_H
-#define CONNECTION_H
-
+#include "SFML/Network.hpp"
+#include "SFML/System.hpp"
+#include "iostream"
+#include "string"
+using namespace std;
 
 class Connection
 {
     public:
         Connection();
-        virtual ~Connection();
-        void send();
-        void recieve();
-        void connnect();
+        //virtual ~client();
 
-    protected:
+        sf::UdpSocket Client;
+        sf::IpAddress ServerAddress;
+        unsigned short port;
+
+        int connection();
+        void send();
+        string receive();
+        string getReceivingData();
+        string getSendingData();
+
+        sf::Packet packet;
 
     private:
+        string ReceivingData;
+        string SendingData;
 };
-
-#endif // CONNECTION_H
