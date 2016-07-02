@@ -108,7 +108,7 @@ void Controller::createGiftBoxes()
 
 void Controller::run()
 {
-  //  connection.connect();
+    connection.connection();
     createPlayers();
     cout<<"A";
     createNormalBoxes();
@@ -160,7 +160,7 @@ void Controller::run()
         setPlayerNormalBoxes();
         cout<<"T";
         changePosition();
-        cout<<endl<<players[0].getId()<<endl<<players[1].getId()<<endl;
+        //cout<<endl<<players[0].getId()<<endl<<players[1].getId()<<endl;
 
         cout<<"U";
         playerCollisionToNormalBox();
@@ -499,10 +499,8 @@ void Controller::playerCollisionToNormalBox()
 {
     for(int i=0; i<this->playerNumbers; i++)
         {
-            if(players[i].tokenBox->hasOwner())
-            {
-                ///move function in normal box will be called.(sadegh)
-            }
+           // players[i].tokenBox->moveCatchBox();
+
             if(players[i].playerBox())
             {
                 players[i].catchBox();

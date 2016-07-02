@@ -2,7 +2,7 @@
 
 Connection::Connection()
 {
-    port=54000;
+    port=10000;
     this->ServerAddress="192.168.43.130";
 }
 
@@ -18,7 +18,7 @@ string Connection::getSendingData()
 
 int Connection::connection()
 {
-    if(Client.bind(54000))
+    if(Client.bind(port))
     {
         cout<<"OK";
     }

@@ -61,3 +61,14 @@ sf::RenderWindow* Graphic::getWindow()
 {
     return window;
 }
+
+void Graphic::pollEvent()
+{
+    sf::Event event;
+    while(window->pollEvent(event))
+    {
+        if(event.type==sf::Event::Closed)
+            exit(1);
+    }
+
+}

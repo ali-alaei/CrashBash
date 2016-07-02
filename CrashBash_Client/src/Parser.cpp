@@ -76,7 +76,8 @@ string Parser::code()
 void Parser::deCode()
 {
 
-    wModel="B|X900,800,700,600,500,400,300|Y300,400,500,600,700,800,900|*P|X550,750|Y550,740|D2,3|H1,2|*-2322120";
+    //wModel="B|X900,800,700,600,500,400,300|Y300,400,500,600,700,800,900|*P|X550,750|Y550,740|D2,3|H1,2|*-2322120";
+    cout<<wModel<<endl;
     vector <string> BoxX;
     vector <string> BoxY;
     vector <string> BoxN;
@@ -340,6 +341,10 @@ void Parser::deCode()
         h>>a;
         playerVector[i]->setHealth(a);
     }
+}
+void Parser::setWModel(string world)
+{
+    this->wModel = world;
 }
 
 

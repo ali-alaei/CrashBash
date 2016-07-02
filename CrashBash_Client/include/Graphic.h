@@ -21,6 +21,7 @@ class Graphic
         void showPlayersHealthEmpty(Player* playerObj,int ,int);
         void showPlayerIcon(Player* playerObj,int ,int);
         sf::RenderWindow* getWindow();
+        void pollEvent();
     protected:
 
     private:

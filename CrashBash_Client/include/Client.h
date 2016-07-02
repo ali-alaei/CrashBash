@@ -21,6 +21,7 @@ class Client
         void displayWindow();
         void showIconAndHealth();
         void setPlayerId();
+        void setParserWModel();
     protected:
 
     private:

@@ -23,7 +23,7 @@ class Parser
         int getNormalBoxNum();
         int getPlayerNum();
         int getWinner();
-
+        void setWModel(string);
         vector <NormalBox*> normalBoxVector;
         vector <TntBox*> tntBoxVector;
         vector <GiftBox*> giftBoxVector;

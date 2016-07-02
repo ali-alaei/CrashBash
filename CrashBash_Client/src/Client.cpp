@@ -12,11 +12,16 @@ Client::~Client()
 void Client::run()
 {
     setPlayerId();
+    connection.connection();
+
     while(true)
     {
         clearWindow();
 
-       // connection.recieve();     ///ino nemidunam k vaghti server b client vasl mishe client ham bayad vasl beshe ya na.
+         graphic.pollEvent();
+
+        connection.receive();
+        setParserWModel();                        ///ino nemidunam k vaghti server b client vasl mishe client ham bayad vasl beshe ya na.
         parser.deCode();          ///
         graphic.showSurface();
         for(int i=0;i<parser.getNormalBoxNum();i++)
@@ -38,13 +43,10 @@ void Client::run()
         {
             graphic.showPlayers(parser.playerVector[i]);
         }
-
         showIconAndHealth();
-//        cout<<pla
-      //  graphic.showPlayersHealth();
-      //  player.getKeys();
-     //   parser.code();
-        //connection.send();
+        player.getKeys();
+        parser.code();
+        connection.send();
         displayWindow();
 
     }
@@ -129,4 +131,8 @@ void Client::setPlayerId()
     cout<<"Please Enter your id:";
     cin>>id;
     player.setId(id);
+}
+void Client::setParserWModel()
+{
+    parser.setWModel(connection.getReceivingData());
 }
