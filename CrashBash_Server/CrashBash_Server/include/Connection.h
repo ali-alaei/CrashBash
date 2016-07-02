@@ -13,21 +13,19 @@ class Connection
         Connection();
         virtual ~Connection();
 
-        Parser parser;
-
         sf::UdpSocket Server;
         sf::IpAddress ClientAddress;
         unsigned short port;
 
         int connection();
-        void send();
+        void send(string );
         //void receiveA();
         //void receiveB();
-        void receive();
-        int getReceivingDataA();
-        int getReceivingDataB();
-        int getReceivingData();
-        void setSendingData();
+        string receive();
+        string getReceivingDataA();
+        string getReceivingDataB();
+        string getReceivingData();
+        void setSendingData(string );
 
     private:
         string SendingData;

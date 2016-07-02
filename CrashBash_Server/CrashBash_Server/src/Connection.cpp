@@ -28,45 +28,46 @@ Connection::~Connection()
 }
 
 
-int server::getReceivingDataA()
+string Connection::getReceivingDataA()
 {
-    return ReceivingDataA;
+    return this->ReceivingDataA;
 }
 
-int server::getReceivingDataB()
+string Connection::getReceivingDataB()
 {
     return ReceivingDataB;
 }
 
-int server::getReceivingData()
+string Connection::getReceivingData()
 {
     return ReceivingData;
 }
 
-void server::setSendingData(string w)
+void Connection::setSendingData(string w)
 {
-    this->SendigData=w;
+    this->SendingData=w;
 }
 
-void Connection::send()
+void Connection::send(string w)
 {
-    SendingData = parser.getWmodel();
+    this->SendingData = w;
 
     packet << SendingData;
 
     Server.send(packet, sf::IpAddress::Broadcast, port);
 }
 
-void Connection::receive()
+string Connection::receive()
 {
     Server.receive(packet, ClientAddress, port);
 
     packet >> ReceivingData ;
-    if(a==1)
+
         cout <<"wModel: "<< ReceivingData ;
+        return ReceivingData;
 }
 
-void Connection::receiveA()
+/*void Connection::receiveA()
 {
     int a;
 
@@ -91,4 +92,4 @@ void Connection::receiveB()
     else
         cout <<"Ali: "<< ReceivingDataB << "\n" << endl;
 
-}
+}*/
