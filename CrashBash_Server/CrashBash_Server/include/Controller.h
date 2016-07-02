@@ -1,12 +1,12 @@
 #ifndef CONTROLLER_H
 #define CONTROLLER_H
 #include"Player.h"
-#include "Parser.h"
+#include"Parser.h"
 #include"Input.h"
 #include"GiftBox.h"
 #include"NoramlBox.h"
+#include"Connection.h"
 #include"TntBox.h"
-#include "Connection.h"
 #include"time.h"
 #include<ctime>
 #include<cstdlib>
@@ -31,18 +31,17 @@ class Controller
         void deleteTntBox();
         void deleteGiftBox();
         void changePosition();      ///not test yet.                                    ///change position of the player depending on the inputs.
-        int whoIsWinner();         ///declare winner of the game.
+        void whoIsWinner();         ///declare winner of the game.
         void produceGiftBox();
         void produceTntBox();
         void produceNormalBox();          ///produce all kind of box whenever needed.
-        void setPlayerDirection();     ///depending on the inputs.
         void setPlayerInputs();
         ///these are for player class///
         void setPlayerNormalBoxesNum();
         void setPlayerGiftBoxesNum();
         void setPlayerTntBoxesNum();
-     //   void setPlayerDirection();
-        void setPlayerTokenBoxes();
+        void setPlayerDirection();
+        //void setPlayerTokenBoxes();
         void setPlayerGiftBoxes();
         void setPlayerTntBoxes();
         void setPlayerNormalBoxes();
@@ -51,7 +50,7 @@ class Controller
         void playerCollisionToNormalBox();
         ///........................///
         ///these are for Parser class///
-        void setParserGsiftBoxNum();
+        void setParserGiftBoxNum();
         void setParserNormalBoxNum();
         void setParserTntBoxNum();
         void setParserGiftBoxVector();
@@ -72,10 +71,10 @@ class Controller
         std::vector <TntBox> tnts;
         std::vector <GiftBox> gifts;
         std::vector <Player> players;
-        std::vector <Player> playerInputs;
-        std::vector <Input> input;
+        std::vector <Input> playerInputs;
+        //std::vector <Input> input;
         //Input* input;    ///it should initialize with the parser input.
-//        Parser parser(this->playerNumbers);
+        Parser parser;
         Connection connection;
 
 

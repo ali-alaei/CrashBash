@@ -21,7 +21,7 @@ Parser::Parser(int P)
 
 }
 
-Input* parser::returnInputs()
+Input& Parser::returnInputs()
 {
     return input;
 }

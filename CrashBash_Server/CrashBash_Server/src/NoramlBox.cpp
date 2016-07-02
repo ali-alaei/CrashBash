@@ -160,4 +160,4 @@ int NoramlBox::getYPos()
     return this->yPos;
 }
 
-void NoramlBox::move()
+//void NoramlBox::move()

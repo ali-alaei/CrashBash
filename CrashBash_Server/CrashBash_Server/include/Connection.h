@@ -9,7 +9,9 @@ class Connection
         virtual ~Connection();
         bool areClientsConnect();
         bool isClientDisconnected();
-
+        void connect();
+        void send();
+        void recieve();
     protected:
 
     private:

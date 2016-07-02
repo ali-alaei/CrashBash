@@ -11,6 +11,7 @@ class Player
 {
     public:
         //friend class Box;
+        Input inputData;
         NoramlBox* tokenBox;
         GiftBox* earnedBox;
         TntBox* collisionBox;
@@ -60,7 +61,7 @@ class Player
 
        // TntBox** tntBoxes;///pointeri be vectore tntbox ha
         //GiftBox** giftBoxes;///pointeri be vectore giftbox ha
-        Input* inputData;
+
         bool ownBox;
         bool deadOrAlive;
         int normalBoxesNum;

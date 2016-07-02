@@ -1,6 +1,6 @@
 #include "Controller.h"
 
-Controller::Controller(): playerNumbers(2),normalBoxNumbers(8),giftBoxNumbers(3),tntBoxNumbers(5)
+Controller::Controller(): playerNumbers(2),normalBoxNumbers(8),giftBoxNumbers(3),tntBoxNumbers(5),parser(this->playerNumbers)
 {
 
 
@@ -12,22 +12,8 @@ Controller::~Controller()
 }
 void Controller::createPlayers()
 {
-    srand(time(0));
-    int x[2];
-    int y[2];
-    for(int i=0; i < this->playerNumbers; i++)
-    {
-        x[i] = (rand() %  1081) + 80;
-        y[i] = (rand() % 754) + 80;
-
-    }
-
-    for(int i = 0; i < this->playerNumbers; i++)
-    {
-
-        players.push_back(Player(x[i],y[i]));
-    }
-
+    players.push_back(Player(80,80));
+    players.push_back(Player(1020,698));
 }
 void Controller::createNormalBoxes()
 {
@@ -82,7 +68,7 @@ void Controller::createGiftBoxes()
 
     for(int i = 0; i < this->giftBoxNumbers; i++)
     {
-        tnts.push_back(GiftBox(x[i],y[i]));
+        gifts.push_back(GiftBox(x[i],y[i]));
 
     }
 
@@ -93,7 +79,7 @@ void Controller::setPlayerInputs()
     playerInputs.push_back(parser.returnInputs());     ///i should debaug it later.
     for(int i = 0; i < playerNumbers; i++)
     {
-        players[i]->input = playerInputs[i];
+        players[i].inputData = playerInputs[i];
 
     }
 }
@@ -123,12 +109,13 @@ void Controller::setPlayerInputs()
 void Controller::run()
 {
     connection.connect();
+    createPlayers();
+    createNormalBoxes();
+    createTntBoxes();
+    createGiftBoxes();
+
     while(true)
     {
-        createPlayers();
-        createNormalBoxes();
-        createTntBoxes();
-        createGiftBoxes();
         setParserGiftBoxNum();
         setParserNormalBoxNum();
         setParserTntBoxNum();
@@ -144,7 +131,7 @@ void Controller::run()
         setPlayerGiftBoxesNum();
         setPlayerTntBoxesNum();
         setPlayerDirection();
-        setPlayerTokenBoxes();
+        //setPlayerTokenBoxes();
         setPlayerGiftBoxes();
         setPlayerTntBoxes();
         setPlayerNormalBoxes();
@@ -162,12 +149,7 @@ void Controller::deleteNormalBox()
     for(int i=0; i < normals.size(); i++)
         if(!normals[i].getDeadOrAlive())
         {
-            if(i == normals.size()-1)
-            {
-                normals[i] = NULL;
-                break;
-            }
-            normals[i] = normals[i+1];
+            normals.erase(normals.begin()+i);
             this->normalBoxNumbers--;
             ///delete from vectors and all functions that work with this box.
             //it should reduce number of normalboxes.
@@ -178,12 +160,7 @@ void Controller::deleteGiftBox()
      for(int i=0; i < gifts.size(); i++)
         if(!gifts[i].getDeadOrAlive())
         {
-            if(i == gifts.size()-1)
-            {
-                gifts[i] = NULL;
-                break;
-            }
-            gifts[i] = gifts[i+1];
+            gifts.erase(gifts.begin()+i);
             this->giftBoxNumbers--;
             ///delete from vectors and all functions that work with this box.
             //it should reduce number of normalboxes.
@@ -194,12 +171,7 @@ void Controller::deleteTntBox()
         for(int i=0; i < tnts.size(); i++)
         if(!tnts[i].getDeadOrAlive())
         {
-            if(i == tnts.size()-1)
-            {
-                tnts[i] = NULL;
-                break;
-            }
-            tnts[i] = tnts[i+1];
+            tnts.erase(tnts.begin()+i);
             this->tntBoxNumbers--;
             ///delete from vectors and all functions that work with this box.
             //it should reduce number of normalboxes.
@@ -210,54 +182,73 @@ void Controller::changePosition()
     for(int i=0; i < playerNumbers; i++)
     {
 
-            if(player[i].input->up)
+            if(players[i].inputData.up)
             {
-                if(player[i].checkCollisionToBox());
-                player[i].changePosUp();
+                if(players[i].checkCollisionToBox())
+                {
+                    players[i].changePosUp();
+                }
             }
-            else if(player[i].input->down)
-            {
-                player[i].changePosDown();
-            }
-            else if(player[i].input->right)
-            {
 
-                player[i].changePosRight();
-            }
-            else if(player[i].input->left)
+            else if(players[i].inputData.down)
             {
-
-                player[i].changePosLeft();
+                if(players[i].checkCollisionToBox())
+                {
+                    players[i].changePosDown();
+                }
             }
-            else if(player[i].input->right && player[i].input->up)
+            else if(players[i].inputData.right)
             {
-
-                player[i].changePosUR();
+                if(players[i].checkCollisionToBox())
+                {
+                    players[i].changePosRight();
+                }
             }
-            else if(player[i].input->left && player[i].input->up)
+            else if(players[i].inputData.left)
             {
-
-                player[i].changePosUL();
+                if(players[i].checkCollisionToBox())
+                {
+                    players[i].changePosLeft();
+                }
             }
-            else if(player[i].input->left && player[i].input->down)
+            else if(players[i].inputData.right && players[i].inputData.up)
             {
-                player[i].changePosDL();
-
+                if(players[i].checkCollisionToBox())
+                {
+                    players[i].changePosUR();
+                }
             }
-            else if(player[i].inpuut->right && player[i].input->down)
+            else if(players[i].inputData.left && players[i].inputData.up)
             {
-                player[i].changePosDR();
+                if(players[i].checkCollisionToBox())
+                {
+                    players[i].changePosUL();
+                }
+            }
+            else if(players[i].inputData.left && players[i].inputData.down)
+            {
+                if(players[i].checkCollisionToBox())
+                {
+                    players[i].changePosDL();
+                }
+            }
+            else if(players[i].inputData.right && players[i].inputData.down)
+            {
+                if(players[i].checkCollisionToBox())
+                {
+                    players[i].changePosDR();
+                }
             }
     }
 
 }
-int Controller::whoIsWinner()
+void Controller::whoIsWinner()
 {
-    if(player[0].getPlayerHealth() == 0)
+    if(players[0].getPlayerHealth() == 0)
     {
         parser.setWinner(2); ///means player 2 won the game.
     }
-    else if(player[1].getPlayerHealth() == 0)
+    else if(players[1].getPlayerHealth() == 0)
     {
         parser.setWinner(1); ///meas player 1 won the game.
     }
@@ -297,15 +288,10 @@ void Controller::produceTntBox()
 
 
 }
-void Controller::setPlayerDirection()
-{
 
-    ///with checking inputs I should set the direction of the player.
-
-}
 void Controller::setPlayerNormalBoxesNum()
 {
-    for(int i = 0; i < this->playerNumbers: i++)
+    for(int i = 0; i < this->playerNumbers; i++)
     {
         players[i].setNormalBoxesNum(normalBoxNumbers);
     }
@@ -313,7 +299,7 @@ void Controller::setPlayerNormalBoxesNum()
 }
 void Controller::setPlayerGiftBoxesNum()
 {
-    for(int i = 0; i < this->playerNumbers: i++)
+    for(int i = 0; i < this->playerNumbers; i++)
     {
         players[i].setGiftBoxesNum(giftBoxNumbers);
     }
@@ -321,7 +307,7 @@ void Controller::setPlayerGiftBoxesNum()
 }
 void Controller::setPlayerTntBoxesNum()
 {
-    for(int i = 0; i < this->playerNumbers: i++)
+    for(int i = 0; i < this->playerNumbers; i++)
     {
         players[i].setTntBoxesNum(tntBoxNumbers);
     }
@@ -332,19 +318,19 @@ void Controller::setPlayerDirection()
     for(int i = 0; i < this->playerNumbers; i++)
     {
 
-        if(players[i].input[i].up)
+        if(players[i].inputData.up)
         {
             players[i].setDirection(1);
         }
-        else if(players[i].input[i].right)
+        else if(players[i].inputData.right)
         {
             players[i].setDirection(2);
         }
-        else if(players[i].input[i].down)
+        else if(players[i].inputData.down)
         {
             players[i].setDirection(3);
         }
-        else if(players[i].input[i].left)
+        else if(players[i].inputData.left)
         {
             players[i].setDirection(4);
         }
@@ -352,7 +338,7 @@ void Controller::setPlayerDirection()
 
     }
 }
-void Controller::setPlayerTokenBoxes()
+/*void Controller::setPlayerTokenBoxes()
 {
     for(int i = 0; i < this->playerNumbers; i++)
     {
@@ -368,7 +354,7 @@ void Controller::setPlayerTokenBoxes()
             }
         }
     }
-}
+}*/
 void Controller::setPlayerGiftBoxes()
 {
 
@@ -395,7 +381,7 @@ void Controller::setPlayerNormalBoxes()
     for(int i=0; i<this->playerNumbers; i++)
     {
 
-        players[i].setNormalBoxVector(normals);
+        players[i].setNoramlBoxVector(this->normals);
 
 
     }
@@ -410,7 +396,7 @@ void Controller::setParserGiftBoxNum()
 void Controller::setParserNormalBoxNum()
 {
 
-    parser.setNormalBoxNum(this->normalBoxNumbers);
+    parser.setNoramlBoxNum(this->normalBoxNumbers);
 }
 void Controller::setParserTntBoxNum()
 {
@@ -442,7 +428,7 @@ void Controller::playerCollisionToGiftBox()
         if(players[i].playerCollisionGiftBox())
         {
             int giftType;
-            giftType = players[i].earnedBox[i]->gifType();
+            giftType = players[i].earnedBox[i].giftType();
 
             if(giftType == 1)
             {
@@ -472,9 +458,9 @@ void Controller::playerCollisionToTntBox()
 {
     for(int i=0; i<this->playerNumbers; i++)
         {
-            if(player[i].playerCollisionTntBox())
+            if(players[i].playerCollisionTntBox())
             {
-                player[i].decreasePlayerHealth();
+                players[i].decreasePlayerHealth();
                 deleteTntBox();
             }
         }
@@ -483,30 +469,30 @@ void Controller::playerCollisionToNormalBox()
 {
     for(int i=0; i<this->playerNumbers; i++)
         {
-            if(player[i].tokenBox->hasOwner())
+            if(players[i].tokenBox->hasOwner())
             {
                 ///move function in normal box will be called.(sadegh)
             }
-            if(player[i].playerBox())
+            if(players[i].playerBox())
             {
-                player[i].catchBox();
+                players[i].catchBox();
             }
-            player[i].throwBox();
+            players[i].throwBox();
         }
 }
 void Controller::setInputs()
 {
 
-    input.push_back(parser.returnInputs());
+    playerInputs.push_back(parser.returnInputs());
 }
 void Controller::setZeroToInputs()
 {
     for(int i=0; i<this->playerNumbers; i++)
     {
-        input[i].up=0;
-        input[i].down=0;
-        input[i].left=0;
-        input[i].right=0;
-        input[i].space=0;
+        playerInputs[i].up=0;
+        playerInputs[i].down=0;
+        playerInputs[i].left=0;
+        playerInputs[i].right=0;
+        playerInputs[i].space=0;
     }
 }

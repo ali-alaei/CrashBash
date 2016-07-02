@@ -19,7 +19,7 @@ class Parser
         int getGiftBoxNum();
         int getNoramlBoxNum();
         int getTntBoxNum();
-        Input* returnInputs();
+        Input& returnInputs();
         void setGiftBoxNum(int );
         void setNoramlBoxNum(int );
         void setTntBoxNum(int );
@@ -27,6 +27,7 @@ class Parser
         void setNormalBoxVector(vector <NoramlBox> &normalBoxVector);
         void setTntBoxVector(vector <TntBox> &tntBoxVector);
         void setPlayerVector(vector <Player> &playerVector);
+        void setWinner(int);
 
     private:
         string wModel;
