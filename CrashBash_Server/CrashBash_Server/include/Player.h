@@ -11,7 +11,7 @@ class Player
 {
     public:
         //friend class Box;
-        Input inputData;
+        Input* inputData;
         NoramlBox* tokenBox;
         GiftBox* earnedBox;
         TntBox* collisionBox;
@@ -38,7 +38,7 @@ class Player
         void increaseSpeed();
         void increaseSpeedRate();
         void increaseThrowRate();
-
+        int getDirection();
         ///this should be assigned in controller///
         void setNormalBoxesNum(int );
         void setGiftBoxesNum(int );
@@ -49,7 +49,7 @@ class Player
         void setGiftBoxVector(std::vector <GiftBox> &gifts);
         void setTntBoxVector(std::vector <TntBox> &tnts);
         void setNoramlBoxVector(std::vector <NoramlBox> &normals);
-
+        int getId();
         int getXPos();
         int getYPos();
         ///
@@ -75,6 +75,7 @@ class Player
         int throwSpeed;
         int xPos;
         int yPos;
+        int id;
 };
 class NoramlBox;
 #endif // PLAYER_H

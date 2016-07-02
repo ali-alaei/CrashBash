@@ -35,7 +35,7 @@ class Controller
         void produceGiftBox();
         void produceTntBox();
         void produceNormalBox();          ///produce all kind of box whenever needed.
-        void setPlayerInputs();
+        //void setPlayerInputs();
         ///these are for player class///
         void setPlayerNormalBoxesNum();
         void setPlayerGiftBoxesNum();

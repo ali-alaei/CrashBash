@@ -12,29 +12,28 @@ using namespace std;
 class Parser
 {
     public:
-        Parser(int );
 
+        Parser(int );
+        vector <Input*> input;
         void code();
         void deCode();
         int getGiftBoxNum();
         int getNoramlBoxNum();
         int getTntBoxNum();
-        Input& returnInputs();
+        //vector <Input*>* returnInputs();
         void setGiftBoxNum(int );
         void setNoramlBoxNum(int );
         void setTntBoxNum(int );
         void setGiftBoxVector(vector <GiftBox> &giftBoxVector);
         void setNormalBoxVector(vector <NoramlBox> &normalBoxVector);
         void setTntBoxVector(vector <TntBox> &tntBoxVector);
-        void setPlayerVector(vector <Player> &playerVector);
         void setWinner(int);
         void setPlayerVector(vector <Player> &playerVector);
-        void setWinner(int );
 
     private:
         string wModel;
         vector <int> id;
-        vector <Input*> input;
+
         int playerNum;
         int giftBoxNum;
         int noramlBoxNum;

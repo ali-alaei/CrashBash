@@ -21,19 +21,19 @@ Parser::Parser(int P)
 
 }
 
-Input& Parser::returnInputs()
+/*vector <Input*>* Parser::returnInputs()
 {
     return input;
-}
+}*/
 
 void Parser::setGiftBoxNum(int num)
 {
     this->giftBoxNum = num;
 }
 
-void Parser::setNormalBoxNum(int num)
+void Parser::setNoramlBoxNum(int num)
 {
-    this->normalBoxNum = num;
+    this->noramlBoxNum = num;
 }
 
 void Parser::setTntBoxNum(int num)
@@ -43,12 +43,12 @@ void Parser::setTntBoxNum(int num)
 
 int Parser::getGiftBoxNum()
 {
-    return this->getGiftBoxNum;
+    return this->giftBoxNum;
 }
 
-int Parser::getNormalBoxNum()
+int Parser::getNoramlBoxNum()
 {
-    return this->normalBoxNum;
+    return this->noramlBoxNum;
 }
 
 int Parser::getTntBoxNum()
@@ -69,7 +69,7 @@ void Parser::code()
     for(int i=0; i<giftBoxNum; i++)
     {
         stringstream gb;
-        gb << giftBoxVector[i]->xPos;
+        gb << giftBoxVector[i].getXPos();
         wModel = wModel + gb.str() + ',';
         n++;
     }
@@ -77,14 +77,14 @@ void Parser::code()
     for(int i=0; i<noramlBoxNum; i++)
     {
         stringstream nb;
-        nb << noramlBoxVector[i]->xPos;
+        nb << noramlBoxVector[i].getXPos();
         wModel = wModel + nb.str() + ',';
         n++;
     }
     for(int i=0; i<tntBoxNum; i++)
     {
         stringstream tb;
-        tb << tntBoxVector[i]->xPos;
+        tb << tntBoxVector[i].getXPos();
         wModel = wModel + tb.str();
         if(n!=boxNum-1)
         wModel += ',';
@@ -96,21 +96,21 @@ void Parser::code()
     for(int i=0; i<giftBoxNum; i++)
     {
         stringstream gb;
-        gb << giftBoxVector[i]->yPos;
+        gb << giftBoxVector[i].getYPos();
         wModel = wModel + gb.str() + ',';
         n++;
     }
     for(int i=0; i<noramlBoxNum; i++)
     {
         stringstream nb;
-        nb << noramlBoxVector[i]->yPos;
+        nb << noramlBoxVector[i].getYPos();
         wModel = wModel + nb.str() + ',';
         n++;
     }
     for(int i=0; i<tntBoxNum; i++)
     {
         stringstream tb;
-        tb << tntBoxVector[i]->yPos;
+        tb << tntBoxVector[i].getYPos();
         wModel = wModel + tb.str();
         if(n!=boxNum-1)
             wModel += ',';
@@ -125,7 +125,7 @@ void Parser::code()
     for(int i=0; i<playerNum; i++)
     {
         stringstream px;
-        px<<playerVector[i]->xPos;
+        px<<playerVector[i].getXPos();
         wModel = wModel + px.str();
         if(n!=playerNum-1)
             wModel += ',';
@@ -138,7 +138,7 @@ void Parser::code()
     for(int i=0; i<playerNum; i++)
     {
         stringstream py;
-        py<<playerVector[i]->yPos;
+        py<<playerVector[i].getYPos();
         wModel = wModel + py.str();
         if(n!=playerNum-1)
             wModel+=',';
@@ -150,7 +150,7 @@ void Parser::code()
     for(int i=0; i<playerNum; i++)
     {
         stringstream pd;
-        pd<<playerVector[i]->direction;
+        pd<<playerVector[i].getDirection();
         wModel = wModel + pd.str();
         if(n!=playerNum-1)
             wModel += ',';
@@ -162,7 +162,7 @@ void Parser::code()
     for(int i=0; i<playerNum; i++)
     {
         stringstream ph;
-        ph<<playerVector[i]->health;
+        ph<<playerVector[i].getPlayerHealth();
         wModel = wModel + ph.str();
         if(n!=playerNum-1)
             wModel += ',';
@@ -188,8 +188,8 @@ void Parser::code()
 
     for(int i=0; i<playerNum; i++)
     {
-        id << playerVector[i]->id;
-        wModel += id;
+        id << playerVector[i].getId();
+        wModel += id.str();
     }
 
     wModel+=wi.str();
@@ -197,29 +197,69 @@ void Parser::code()
 
 void Parser::deCode()
 {
-    int a;
+    bool a;
+    int b;
+    string id,u,d,r,l,s;
 
-    stringstream U(wModel[1]);
-    U>>a;
-    input->setUp(a);
+    id=wModel[wModel.length()-1];
 
-    stringstream D(wModel[3]);
-    D>>a;
-    input->setDown(a);
+    u=wModel[1];
+    d=wModel[3];
+    r=wModel[5];
+    l=wModel[7];
+    s=wModel[9];
 
-    stringstream R(wModel[5]);
-    R>>a;
-    input->setRight(a);
+    stringstream iid(id);
+    iid>>b;
 
-    stringstream L(wModel[7]);
-    L>>a;
-    input->setLeft(a);
+    if(b==1)
+    {
+        stringstream U(u);
+        U>>a;
+        input[0]->up=a;
 
-    stringstream S(wModel[9]);
-    S>>a;
-    input->setSpace(a);
+        stringstream D(d);
+        D>>a;
+        input[0]->down=a;
+
+        stringstream R(r);
+        R>>a;
+        input[0]->right=a;
+
+        stringstream L(l);
+        L>>a;
+        input[0]->left=a;
+
+        stringstream S(s);
+        S>>a;
+        input[0]->space=a;
+    }
+
+    if(b==2)
+    {
+        stringstream U(u);
+        U>>a;
+        input[1]->up=a;
+
+        stringstream D(d);
+        D>>a;
+        input[1]->down=a;
+
+        stringstream R(r);
+        R>>a;
+        input[1]->right=a;
+
+        stringstream L(l);
+        L>>a;
+        input[1]->left=a;
+
+        stringstream S(s);
+        S>>a;
+        input[1]->space=a;
+    }
 
 }
+
 void Parser::setGiftBoxVector(vector <GiftBox> &giftBoxVector)
 {
     for(int i=0; i<giftBoxNum; i++)
@@ -250,7 +290,7 @@ void Parser::setPlayerVector(vector <Player> &playerVector)
     }
 }
 
-void setWinner(int w)
+void Parser::setWinner(int w)
 {
     this->winner=w;
 }

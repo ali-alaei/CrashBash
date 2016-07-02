@@ -4,8 +4,9 @@ using namespace std;
 
 int main()
 {
+     cout << "Hello world!" << endl;
     Controller gameController;
     gameController.run();
-    cout << "Hello world!" << endl;
+
     return 0;
 }

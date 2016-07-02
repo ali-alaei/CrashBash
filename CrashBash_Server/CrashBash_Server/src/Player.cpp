@@ -380,3 +380,23 @@ bool Player::checkCollisionToBox()
     }
 
 }
+
+int Player::getDirection()
+{
+    return this->direction;
+}
+
+int Player::getId()
+{
+    return this->id;
+}
+void Player::setGiftBoxesNum(int giftBoxes)
+{
+    this->giftBoxesNum = giftBoxes;
+
+}
+void Player::setTntBoxesNum(int tntBoxes)
+{
+    this->tntBoxesNum = tntBoxes;
+
+}

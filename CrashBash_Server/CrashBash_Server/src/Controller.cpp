@@ -73,16 +73,16 @@ void Controller::createGiftBoxes()
     }
 
 }
-void Controller::setPlayerInputs()
+/*void Controller::setPlayerInputs()
 {
 
-    playerInputs.push_back(parser.returnInputs());     ///i should debaug it later.
+    playerInputs.push_back(parser.input);     ///i should debaug it later.
     for(int i = 0; i < playerNumbers; i++)
     {
         players[i].inputData = playerInputs[i];
 
     }
-}
+}*/
 
 /*void Controller::ready()
 {
@@ -108,7 +108,7 @@ void Controller::setPlayerInputs()
 
 void Controller::run()
 {
-    connection.connect();
+  //  connection.connect();
     createPlayers();
     createNormalBoxes();
     createTntBoxes();
@@ -124,9 +124,9 @@ void Controller::run()
         setParserTntBoxVector();
         setParserPlayerVector();
         parser.code();
-        connection.send();
-        connection.recieve();
-        setPlayerInputs();
+      //  connection.send();
+    //    connection.recieve();
+        //setPlayerInputs();
         setPlayerNormalBoxesNum();
         setPlayerGiftBoxesNum();
         setPlayerTntBoxesNum();
@@ -182,7 +182,7 @@ void Controller::changePosition()
     for(int i=0; i < playerNumbers; i++)
     {
 
-            if(players[i].inputData.up)
+            if(parser.input[i]->up)
             {
                 if(players[i].checkCollisionToBox())
                 {
@@ -190,49 +190,49 @@ void Controller::changePosition()
                 }
             }
 
-            else if(players[i].inputData.down)
+            else if(parser.input[i]->down)
             {
                 if(players[i].checkCollisionToBox())
                 {
                     players[i].changePosDown();
                 }
             }
-            else if(players[i].inputData.right)
+            else if(parser.input[i]->right)
             {
                 if(players[i].checkCollisionToBox())
                 {
                     players[i].changePosRight();
                 }
             }
-            else if(players[i].inputData.left)
+            else if(parser.input[i]->left)
             {
                 if(players[i].checkCollisionToBox())
                 {
                     players[i].changePosLeft();
                 }
             }
-            else if(players[i].inputData.right && players[i].inputData.up)
+            else if(parser.input[i]->right && parser.input[i]->up)
             {
                 if(players[i].checkCollisionToBox())
                 {
                     players[i].changePosUR();
                 }
             }
-            else if(players[i].inputData.left && players[i].inputData.up)
+            else if(parser.input[i]->left && parser.input[i]->up)
             {
                 if(players[i].checkCollisionToBox())
                 {
                     players[i].changePosUL();
                 }
             }
-            else if(players[i].inputData.left && players[i].inputData.down)
+            else if(parser.input[i]->left && parser.input[i]->down)
             {
                 if(players[i].checkCollisionToBox())
                 {
                     players[i].changePosDL();
                 }
             }
-            else if(players[i].inputData.right && players[i].inputData.down)
+            else if(parser.input[i]->right && parser.input[i]->down)
             {
                 if(players[i].checkCollisionToBox())
                 {
@@ -311,26 +311,26 @@ void Controller::setPlayerTntBoxesNum()
     {
         players[i].setTntBoxesNum(tntBoxNumbers);
     }
-
 }
+
 void Controller::setPlayerDirection()
 {
     for(int i = 0; i < this->playerNumbers; i++)
     {
 
-        if(players[i].inputData.up)
+        if(parser.input[i]->up)
         {
             players[i].setDirection(1);
         }
-        else if(players[i].inputData.right)
+        else if(parser.input[i]->right)
         {
             players[i].setDirection(2);
         }
-        else if(players[i].inputData.down)
+        else if(parser.input[i]->down)
         {
             players[i].setDirection(3);
         }
-        else if(players[i].inputData.left)
+        else if(parser.input[i]->left)
         {
             players[i].setDirection(4);
         }
@@ -480,19 +480,19 @@ void Controller::playerCollisionToNormalBox()
             players[i].throwBox();
         }
 }
-void Controller::setInputs()
+/*void Controller::setInputs()
 {
 
     playerInputs.push_back(parser.returnInputs());
-}
+}*/
 void Controller::setZeroToInputs()
 {
     for(int i=0; i<this->playerNumbers; i++)
     {
-        playerInputs[i].up=0;
-        playerInputs[i].down=0;
-        playerInputs[i].left=0;
-        playerInputs[i].right=0;
-        playerInputs[i].space=0;
+        parser.input[i]->up=0;
+        parser.input[i]->down=0;
+        parser.input[i]->left=0;
+        parser.input[i]->right=0;
+        parser.input[i]->space=0;
     }
 }
