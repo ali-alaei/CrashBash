@@ -12,7 +12,7 @@ using namespace std;
 class Parser
 {
     public:
-
+        string wModel;
         Parser(int );
         vector <Input*> input;
         void code();
@@ -24,14 +24,15 @@ class Parser
         void setGiftBoxNum(int );
         void setNoramlBoxNum(int );
         void setTntBoxNum(int );
-        void setGiftBoxVector(vector <GiftBox> &giftBoxVector);
-        void setNormalBoxVector(vector <NoramlBox> &normalBoxVector);
-        void setTntBoxVector(vector <TntBox> &tntBoxVector);
+        void setGiftBoxVector(const vector <GiftBox> &giftBoxVector);
+        void setNormalBoxVector(const vector <NoramlBox> &normalBoxVector);
+        void setTntBoxVector(const vector <TntBox> &tntBoxVector);
         void setWinner(int);
-        void setPlayerVector(vector <Player> &playerVector);
+        void setPlayerVector(const vector <Player> &playerVector);
+        void setPlayerId(int ,int );
 
     private:
-        string wModel;
+
         vector <int> id;
 
         int playerNum;

@@ -20,7 +20,7 @@ bool Player::playerBox()
 {
     if(this->ownBox==0)
     {
-        if(inputData->space==1)
+        if(this->space==1)
         {
             for(int i=0;i<normalBoxesNum;i++)
             {
@@ -121,7 +121,7 @@ void Player::throwBox()
 {
     if(ownBox==1)
     {
-        if(inputData->space==1)
+        if(this->space==1)
         {
             tokenBox->setDirection(this->direction);
             tokenBox->setSpeed(this->throwSpeed);
@@ -168,10 +168,10 @@ void Player::increaseThrowRate()
     this->throwRate+=3;
 }
 
-void Player::setInputData(Input input)
-{
-    this->inputData=&input;
-}
+//void Player::setInputData(Input input)
+//{
+//    this->inputData=&input;
+//}
 
 //void Player::setTokenBox(NoramlBox normalbox)
 //{
@@ -399,4 +399,15 @@ void Player::setTntBoxesNum(int tntBoxes)
 {
     this->tntBoxesNum = tntBoxes;
 
+}
+
+void Player::setSpace(bool a)
+{
+    this->space=a;
+}
+
+void Player::setId(int a)
+{
+
+    this->id = a;
 }

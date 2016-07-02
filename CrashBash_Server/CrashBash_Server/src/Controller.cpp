@@ -110,36 +110,68 @@ void Controller::run()
 {
   //  connection.connect();
     createPlayers();
+    cout<<"A";
     createNormalBoxes();
+    cout<<"B";
     createTntBoxes();
+    cout<<"C";
     createGiftBoxes();
+    cout<<"D";
 
     while(true)
     {
+        cout<<"E";
         setParserGiftBoxNum();
+        cout<<"F";
         setParserNormalBoxNum();
+        cout<<"G";
         setParserTntBoxNum();
+        cout<<"H";
+        cout<<"I";
         setParserGiftBoxVector();
         setParserNormalBoxVector();
         setParserTntBoxVector();
         setParserPlayerVector();
+        setParserPlayerId();
+        cout<<"J";
+
+        cout<<"K";
+
+        cout<<"L";
+        //cout<<parser.
         parser.code();
+        cout<<endl<<parser.wModel<<endl;
       //  connection.send();
     //    connection.recieve();
         //setPlayerInputs();
+        cout<<"M";
         setPlayerNormalBoxesNum();
+        cout<<"N";
         setPlayerGiftBoxesNum();
+        cout<<"O";
         setPlayerTntBoxesNum();
+        cout<<"P";
         setPlayerDirection();
         //setPlayerTokenBoxes();
+        cout<<"Q";
         setPlayerGiftBoxes();
+        cout<<"R";
         setPlayerTntBoxes();
+        cout<<"S";
         setPlayerNormalBoxes();
+        cout<<"T";
         changePosition();
+        cout<<endl<<players[0].getId()<<endl<<players[1].getId()<<endl;
+
+        cout<<"U";
         playerCollisionToNormalBox();
+        cout<<"V";
         playerCollisionToTntBox();
+        cout<<"W";
         playerCollisionToGiftBox();
+        cout<<"X";
         whoIsWinner();
+        cout<<"Y";
         setZeroToInputs();
     }
 
@@ -409,9 +441,8 @@ void Controller::setParserGiftBoxVector()
 }
 void Controller::setParserNormalBoxVector()
 {
-
     parser.setNormalBoxVector(normals);
-}
+ }
 void Controller::setParserTntBoxVector()
 {
 
@@ -495,4 +526,11 @@ void Controller::setZeroToInputs()
         parser.input[i]->right=0;
         parser.input[i]->space=0;
     }
+}
+
+void Controller::setParserPlayerId()
+{
+    players[0].setId(1);
+    players[1].setId(2);
+    parser.setPlayerId(players[0].getId(),players[1].getId());
 }

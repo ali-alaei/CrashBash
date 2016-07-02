@@ -11,7 +11,7 @@ class Player
 {
     public:
         //friend class Box;
-        Input* inputData;
+        //Input* inputData;
         NoramlBox* tokenBox;
         GiftBox* earnedBox;
         TntBox* collisionBox;
@@ -49,9 +49,13 @@ class Player
         void setGiftBoxVector(std::vector <GiftBox> &gifts);
         void setTntBoxVector(std::vector <TntBox> &tnts);
         void setNoramlBoxVector(std::vector <NoramlBox> &normals);
+        void setSpace(bool );
         int getId();
         int getXPos();
         int getYPos();
+        void setId(int);
+
+
         ///
     private:
         ///mesalesh dar file alaki
@@ -68,7 +72,7 @@ class Player
         int tntBoxesNum;
         int giftBoxesNum;
         int health;
-        //bool space;
+        bool space;
         int direction;
         int speed;
         int throwRate;

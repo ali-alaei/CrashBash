@@ -4,7 +4,7 @@
 #include "sstream"
 using namespace std;
 
-Parser::Parser(int P)
+Parser::Parser(int P):winner(0)
 {
     this->playerNum = P;
     for(int i=0; i<playerNum; i++)
@@ -18,6 +18,7 @@ Parser::Parser(int P)
     {
         id.push_back(0);
     }
+
 
 }
 
@@ -176,7 +177,8 @@ void Parser::code()
     stringstream g;
     stringstream no;
     stringstream t;
-    stringstream id;
+    stringstream id1;
+    stringstream id2;
     stringstream wi;
     p << playerNum;
     g << giftBoxNum;
@@ -186,11 +188,11 @@ void Parser::code()
 
     wModel = wModel + p.str() + g.str() + no.str() + t.str();
 
-    for(int i=0; i<playerNum; i++)
-    {
-        id << playerVector[i].getId();
-        wModel += id.str();
-    }
+    id1 << playerVector[0].getId();
+    id2 << playerVector[1].getId();
+    wModel += id1.str();
+    wModel += id2.str();
+
 
     wModel+=wi.str();
 }
@@ -260,34 +262,26 @@ void Parser::deCode()
 
 }
 
-void Parser::setGiftBoxVector(vector <GiftBox> &giftBoxVector)
+void Parser::setGiftBoxVector(const vector <GiftBox> &giftBoxVector)
 {
-    for(int i=0; i<giftBoxNum; i++)
-    {
-        this->giftBoxVector.push_back(giftBoxVector[i]);
-    }
+
+    this->giftBoxVector = giftBoxVector;
 }
-void Parser::setNormalBoxVector(vector <NoramlBox> &normalBoxVector)
+void Parser::setNormalBoxVector(const vector <NoramlBox> &normalVector)
 {
-    for(int i=0; i<noramlBoxNum; i++)
-    {
-        this->noramlBoxVector.push_back(noramlBoxVector[i]);
-    }
+    this->noramlBoxVector = normalVector;
 }
-void Parser::setTntBoxVector(vector <TntBox> &tntBoxVector)
+void Parser::setTntBoxVector(const vector <TntBox> &tntBoxVector)
 {
-    for(int i=0; i<tntBoxNum; i++)
-    {
-        this->tntBoxVector.push_back(tntBoxVector[i]);
-    }
+
+        this->tntBoxVector = tntBoxVector;
 
 }
-void Parser::setPlayerVector(vector <Player> &playerVector)
+void Parser::setPlayerVector(const vector <Player> &playerVector)
 {
-    for(int i=0; i<playerNum; i++)
-    {
-        this->playerVector.push_back(playerVector[i]);
-    }
+
+        this->playerVector = playerVector;
+
 }
 
 void Parser::setWinner(int w)
@@ -295,6 +289,11 @@ void Parser::setWinner(int w)
     this->winner=w;
 }
 
+void Parser::setPlayerId(int id1, int id2)
+{
+    playerVector[0].setId(id1);
+    playerVector[1].setId(id2);
+}
 
 
 
