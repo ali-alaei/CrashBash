@@ -11,11 +11,15 @@
 #include"Parser.h"
 #include"Connection.h"
 #include"Player.h"
+#include <SFML/System.hpp>
+
 class Client
 {
     public:
         Client();
-        virtual ~Client();
+        //virtual ~Client();
+        Connection connection;
+
         void run();
         void clearWindow();
         void displayWindow();
@@ -26,7 +30,6 @@ class Client
 
     private:
         Graphic graphic;
-        Connection connection;
         Parser parser;
         Player player;
 

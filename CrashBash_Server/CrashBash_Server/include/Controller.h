@@ -1,5 +1,6 @@
 #ifndef CONTROLLER_H
 #define CONTROLLER_H
+//#define normalBoxNumbers 8
 #include"Player.h"
 #include"Parser.h"
 #include"Input.h"
@@ -30,7 +31,8 @@ class Controller
         void deleteNormalBox();  ///delete box when they distroyed.
         void deleteTntBox();
         void deleteGiftBox();
-        void changePosition();      ///not test yet.                                    ///change position of the player depending on the inputs.
+        void changePosition();      ///not test yet.
+        ///change position of the player depending on the inputs.
         void whoIsWinner();         ///declare winner of the game.
         void produceGiftBox();
         void produceTntBox();
@@ -45,10 +47,13 @@ class Controller
         void setPlayerGiftBoxes();
         void setPlayerTntBoxes();
         void setPlayerNormalBoxes();
-        void playerCollisionToTntBox();
+        void checkPlayerCollisionToBox();///az box rad nashe
+         void playerCollisionToTntBox();
         void playerCollisionToGiftBox();
         void playerCollisionToNormalBox();
-        ///........................///
+        void decreaseAnotherPlayerHealth();
+        void playerCollisionToWall();
+       ///........................///
         ///these are for Parser class///
         void setParserGiftBoxNum();
         void setParserNormalBoxNum();
@@ -62,7 +67,9 @@ class Controller
         void setZeroToInputs();
         void setPlayerSpaceKey();
         void setParserPlayerId();
-        void setWmodelToParser();
+        void setWmodelToParser(string);
+        void setPlayersVectorToNormalBox();
+
     protected:
 
     private:
@@ -79,7 +86,7 @@ class Controller
         //Input* input;    ///it should initialize with the parser input.
         Parser parser;
         Connection connection;
-
+        Connection connection2;
 
 
 };

@@ -5,7 +5,7 @@ using namespace std;
 
 int main()
 {
-     cout << "Hello world!" << endl;
+    srand(time(0));
     Controller gameController;
     gameController.run();
 

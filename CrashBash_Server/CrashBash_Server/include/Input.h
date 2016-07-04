@@ -13,9 +13,6 @@ class Input
         Input();
         virtual ~Input();
 
-    protected:
-
-    private:
 };
 
 #endif // INPUT_H

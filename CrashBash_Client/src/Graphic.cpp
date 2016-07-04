@@ -70,5 +70,4 @@ void Graphic::pollEvent()
         if(event.type==sf::Event::Closed)
             exit(1);
     }
-
 }

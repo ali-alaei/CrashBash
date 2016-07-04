@@ -8,7 +8,6 @@ class GiftBox:public Box
     public:
         GiftBox(int , int);
         bool getDeadOrAlive();
-      //  virtual ~GiftBox();
         int getXPos();
         int getYPos();
         int giftType();

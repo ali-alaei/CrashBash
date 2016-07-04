@@ -1,95 +1,139 @@
 #include "../include/Connection.h"
-#include "iostream"
+#include <iostream>
+#include "thread"
 #include "string"
 
-using namespace std;
 
-Connection::Connection()
+Connection::Connection() : receiveT(&Connection::receive, this), sendT(&Connection::send, this)
 {
-    port=10000;
+    ID = 0;
+    connected = false;
+    error = false;
 }
 
-int Connection::connection()
+void Connection::start()
 {
-    sf::SocketSelector selector;
-    selector.add(Server);
-
-    if (Server.bind(port)!=sf::Socket::Done)
+    log.lock();
+    std::clog <<"Start Connection Number " <<ID <<"\n";
+    log.unlock();
+    if(ID==0)
     {
-        cout<<"port is busy!";
-        return 0;
+        sf::TcpListener listener;
+        // bind the listener to a port
+        if (listener.listen(53000) != sf::Socket::Done)
+        {
+            // error...
+            log.lock();
+            std::cerr <<"Cant Start Listening on Port " <<53000 <<"\n";
+            log.unlock();
+            error = true;
+            return;
+        }
+        // accept a new connection
+        if (listener.accept(socket) != sf::Socket::Done)
+        {
+            // error...
+           log.lock();
+            std::cerr <<"connection Number"  <<ID <<"Cant accept tcp Connection\n";
+           log.unlock();
+            error = true;
+            return;
+        }
     }
-
-}
-
-Connection::~Connection()
-{
-    //dtor
-}
-
-
-string Connection::getReceivingDataA()
-{
-    return this->ReceivingDataA;
-}
-
-string Connection::getReceivingDataB()
-{
-    return ReceivingDataB;
-}
-
-string Connection::getReceivingData()
-{
-    return ReceivingData;
-}
-
-void Connection::setSendingData(string w)
-{
-    this->SendingData=w;
-}
-
-void Connection::send(string w)
-{
-    this->SendingData = w;
-
-    packet << SendingData;
-
-    Server.send(packet, sf::IpAddress::Broadcast, port);
-}
-
-string Connection::receive()
-{
-    Server.receive(packet, ClientAddress, port);
-
-    packet >> ReceivingData ;
-
-        cout <<"wModel: "<< ReceivingData ;
-        return ReceivingData;
-}
-
-/*void Connection::receiveA()
-{
-    int a;
-
-    Server.receive(packet, ClientAddress, port);
-
-    packet >> ReceivingDataA >> a;
-    if(a==1)
-        cout <<"Ali: "<< ReceivingDataA << "\n" << endl;
     else
-        cout <<"Sadegh: "<< ReceivingDataA << "\n" << endl;
+    {
+        sf::Socket::Status status = socket.connect("192.168.43.120", 53000);
+        if (status != sf::Socket::Done)
+        {
+            // error...
+            std::cerr <<"Cant Connect\n";
+            return;
+        }
+    }
+    connected = true;
+    log.lock();
+    std::clog <<"Client " <<ID <<" successfuly Connected to Serrver\n";
+    log.unlock();
+
+    receiveT.launch();
+    sendT.launch();
 }
 
-void Connection::receiveB()
+void Connection::receive()
 {
-    int a;
+    while(connected)
+    {
+        sf::Packet packet;
+        if (socket.receive(packet) != sf::Socket::Done)
+        {
+            // error...
+            std::cerr << "ERROR On Receive\n";
+        }
+        else
+            std::clog <<"Receiving...\n";
+        receiveQmutex.lock();
+        receiveQ.push(packet);
+        receiveQmutex.unlock();
+    }
+}
 
-    Server.receive(packet, ClientAddress , port);
+void Connection::send()
+{
+    while(connected)
+    {
+        sf::Packet packet;
+        sendQmutex.lock();
+        while(sendQ.empty())
+        {
+            sendQmutex.unlock();
+            sf::sleep(sf::milliseconds(10));
+            sendQmutex.lock();
+        }
+        packet = sendQ.front();
+        sendQ.pop();
+        sendQmutex.unlock();
+        if (socket.send(packet) != sf::Socket::Done)
+        {
+            // error...
+            std::cerr << "ERROR On Send\n";
+        }
+        else
+            std::clog <<"Sending...\n";
+    }
+}
 
-    packet >> ReceivingDataB >> a;
-    if(a==2)
-        cout <<"Sadegh: "<< ReceivingDataB << "\n" << endl;
+void Connection::sendPacket(sf::Packet packet)
+{
+    sendQmutex.lock();
+    sendQ.push(packet);
+    sendQmutex.unlock();
+    std::cout <<"attemping to sendQ\n";
+}
+
+sf::Packet Connection::receivePacket()
+{
+    sf::Packet packet;
+    receiveQmutex.lock();
+    if(!receiveQ.empty())
+    {
+        packet = receiveQ.front();
+        receiveQ.pop();
+    }
+    receiveQmutex.unlock();
+    std::cout <<"attemping to receiveQ\n";
+    return packet;
+}
+
+int Connection::haveInQ()
+{
+    if(connected)
+    {
+        int siz;
+        receiveQmutex.lock();
+        siz = receiveQ.size();
+        receiveQmutex.unlock();
+        return siz;
+    }
     else
-        cout <<"Ali: "<< ReceivingDataB << "\n" << endl;
-
-}*/
+        return 0;
+}

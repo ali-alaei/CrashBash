@@ -1,26 +1,24 @@
 #include "Client.h"
 
+
 Client::Client()
 {
-    //ctor
+
 }
 
-Client::~Client()
-{
-    //dtor
-}
 void Client::run()
 {
     setPlayerId();
-    connection.connection();
+ //   connection.start();
 
     while(true)
     {
         clearWindow();
 
-         graphic.pollEvent();
+        graphic.pollEvent();
 
-        connection.receive();
+        //connection.start();
+
         setParserWModel();                        ///ino nemidunam k vaghti server b client vasl mishe client ham bayad vasl beshe ya na.
         parser.deCode();          ///
         graphic.showSurface();
@@ -31,7 +29,6 @@ void Client::run()
         for(int i=0;i<parser.getTntBoxNum();i++)
         {
             graphic.showTntBoxes(parser.tntBoxVector[i]);
-
         }
 
         for(int i=0;i<parser.getGiftBoxNum();i++)
@@ -44,9 +41,9 @@ void Client::run()
             graphic.showPlayers(parser.playerVector[i]);
         }
         showIconAndHealth();
-        player.getKeys();
-        parser.code();
-        connection.send();
+     //   player.getKeys();
+    //    parser.code();
+
         displayWindow();
 
     }

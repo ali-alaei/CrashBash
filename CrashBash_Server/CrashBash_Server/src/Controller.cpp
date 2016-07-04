@@ -8,7 +8,7 @@ Controller::Controller(): playerNumbers(2),normalBoxNumbers(8),giftBoxNumbers(3)
 }
 Controller::~Controller()
 {
-    //dtor
+
 }
 void Controller::createPlayers()
 {
@@ -17,7 +17,7 @@ void Controller::createPlayers()
 }
 void Controller::createNormalBoxes()
 {
-    srand(time(0));
+
     int x[8];
     int y[8];
     for(int i = 0; i < this->normalBoxNumbers; i++)
@@ -36,7 +36,7 @@ void Controller::createNormalBoxes()
 }
 void Controller::createTntBoxes()
 {
-    srand(time(0));
+
     int x[5];
     int y[5];
     for(int i = 0; i < this->tntBoxNumbers; i++)
@@ -55,7 +55,7 @@ void Controller::createTntBoxes()
 }
 void Controller::createGiftBoxes()
 {
-   srand(time(0));
+
     int x[3];
     int y[3];
     for(int i = 0; i < this->giftBoxNumbers; i++)
@@ -73,104 +73,75 @@ void Controller::createGiftBoxes()
     }
 
 }
-/*void Controller::setPlayerInputs()
-{
-
-    playerInputs.push_back(parser.input);     ///i should debaug it later.
-    for(int i = 0; i < playerNumbers; i++)
-    {
-        players[i].inputData = playerInputs[i];
-
-    }
-}*/
-
-/*void Controller::ready()
-{
-
-
-    if(connection.areClinetsConnect())
-    {
-        parser.code();
-        connection.send();
-    }
-
-}*/
-/*void Controller::checkConnection()
-{
-    if(connection.isClientDisconnected())
-    {
-    ///     load a page that says "please wait till another player come again."
-    ///     and gamefeatures should stop till another player come.
-    ///
-    }
-
-}*/
 
 void Controller::run()
 {
-    connection.connection();
     createPlayers();
-    cout<<"A";
     createNormalBoxes();
-    cout<<"B";
     createTntBoxes();
-    cout<<"C";
     createGiftBoxes();
-    cout<<"D";
+    setPlayersVectorToNormalBox();
+    connection.start();
+    connection2.start();
 
     while(true)
     {
-        cout<<"E";
+        players[0].setisKeyPressed(0);
+        players[1].setisKeyPressed(0);
+        if(connection.haveInQ())
+        {
+            players[0].setisKeyPressed(1);
+            sf::Packet packet = connection.receivePacket();
+            string s;
+            packet >>s;
+            setWmodelToParser(s);
+            parser.deCode(1);
+        }
+        else if(connection2.haveInQ())
+        {
+            players[1].setisKeyPressed(1);
+            sf::Packet packet = connection2.receivePacket();
+            string s;
+            packet >>s;
+            setWmodelToParser(s);
+            parser.deCode(2);
+        }
         setParserGiftBoxNum();
-        cout<<"F";
         setParserNormalBoxNum();
-        cout<<"G";
         setParserTntBoxNum();
-        cout<<"H";
-        cout<<"I";
         setParserGiftBoxVector();
         setParserNormalBoxVector();
         setParserTntBoxVector();
         setParserPlayerVector();
         setParserPlayerId();
-        cout<<"J";
-
-        cout<<"K";
-
-        cout<<"L";
-        parser.code();
-        //cout<<endl<<parser.wModel<<endl;
-        connection.send(parser.getWmodel());
-        connection.receive(); ///a function should call.
-        //setPlayerInputs();
-        cout<<"M";
         setPlayerNormalBoxesNum();
-        cout<<"N";
         setPlayerGiftBoxesNum();
-        cout<<"O";
         setPlayerTntBoxesNum();
-        cout<<"P";
         setPlayerDirection();
-        //setPlayerTokenBoxes();
-        cout<<"Q";
         setPlayerGiftBoxes();
-        cout<<"R";
         setPlayerTntBoxes();
-        cout<<"S";
         setPlayerNormalBoxes();
-        cout<<"T";
+        setPlayerSpaceKey();
+        checkPlayerCollisionToBox();///jadid zadam (az too box rad nashe)
+        playerCollisionToWall();///jadid az divar rad nashe
         changePosition();
-        //cout<<endl<<players[0].getId()<<endl<<players[1].getId()<<endl;
-
-        cout<<"U";
         playerCollisionToNormalBox();
-        cout<<"V";
         playerCollisionToTntBox();
-        cout<<"W";
         playerCollisionToGiftBox();
-        cout<<"X";
         whoIsWinner();
-        cout<<"Y";
+        parser.code();
+        if(parser.ch)
+        {
+            sf::Packet packet;
+            packet <<parser.getWmodel();
+            connection.sendPacket(packet);
+            connection2.sendPacket(packet);
+        }
+        for(int i=0;i<normals.size();i++)
+        {
+            std::cout<<"\n"<<normals[i].getXPos()<<"\n";
+            std::cout<<normals[i].getYPos()<<"\n";
+        }
         setZeroToInputs();
     }
 
@@ -178,34 +149,35 @@ void Controller::run()
 void Controller::deleteNormalBox()
 {
     for(int i=0; i < normals.size(); i++)
-        if(!normals[i].getDeadOrAlive())
+    {
+         if(!normals[i].getDeadOrAlive())
         {
-            normals.erase(normals.begin()+i);
+            normals.erase(normals.begin()+(i));
             this->normalBoxNumbers--;
-            ///delete from vectors and all functions that work with this box.
-            //it should reduce number of normalboxes.
         }
+    }
 }
 void Controller::deleteGiftBox()
 {
      for(int i=0; i < gifts.size(); i++)
-        if(!gifts[i].getDeadOrAlive())
+     {
+        if(gifts[i].getDeadOrAlive())
         {
-            gifts.erase(gifts.begin()+i);
+            gifts.erase(gifts.begin()+(i-1));
             this->giftBoxNumbers--;
-            ///delete from vectors and all functions that work with this box.
-            //it should reduce number of normalboxes.
         }
+     }
 }
 void Controller::deleteTntBox()
 {
         for(int i=0; i < tnts.size(); i++)
-        if(!tnts[i].getDeadOrAlive())
         {
+             if(!tnts[i].getDeadOrAlive())
+            {
             tnts.erase(tnts.begin()+i);
             this->tntBoxNumbers--;
-            ///delete from vectors and all functions that work with this box.
-            //it should reduce number of normalboxes.
+
+            }
         }
 }
 void Controller::changePosition()
@@ -213,63 +185,39 @@ void Controller::changePosition()
     for(int i=0; i < playerNumbers; i++)
     {
 
-            if(parser.input[i]->up)
-            {
-                if(players[i].checkCollisionToBox())
-                {
-                    players[i].changePosUp();
-                }
-            }
+        if(parser.input[i]->up)
+        {
+            players[i].changePosUp();
+        }
 
-            else if(parser.input[i]->down)
-            {
-                if(players[i].checkCollisionToBox())
-                {
-                    players[i].changePosDown();
-                }
-            }
-            else if(parser.input[i]->right)
-            {
-                if(players[i].checkCollisionToBox())
-                {
-                    players[i].changePosRight();
-                }
-            }
-            else if(parser.input[i]->left)
-            {
-                if(players[i].checkCollisionToBox())
-                {
-                    players[i].changePosLeft();
-                }
-            }
-            else if(parser.input[i]->right && parser.input[i]->up)
-            {
-                if(players[i].checkCollisionToBox())
-                {
-                    players[i].changePosUR();
-                }
-            }
-            else if(parser.input[i]->left && parser.input[i]->up)
-            {
-                if(players[i].checkCollisionToBox())
-                {
-                    players[i].changePosUL();
-                }
-            }
-            else if(parser.input[i]->left && parser.input[i]->down)
-            {
-                if(players[i].checkCollisionToBox())
-                {
-                    players[i].changePosDL();
-                }
-            }
-            else if(parser.input[i]->right && parser.input[i]->down)
-            {
-                if(players[i].checkCollisionToBox())
-                {
-                    players[i].changePosDR();
-                }
-            }
+        else if(parser.input[i]->down)
+        {
+            players[i].changePosDown();
+        }
+        else if(parser.input[i]->right)
+        {
+            players[i].changePosRight();
+        }
+        else if(parser.input[i]->left)
+        {
+            players[i].changePosLeft();
+        }
+        else if(parser.input[i]->right && parser.input[i]->up)
+        {
+            players[i].changePosUR();
+        }
+        else if(parser.input[i]->left && parser.input[i]->up)
+        {
+            players[i].changePosUL();
+        }
+        else if(parser.input[i]->left && parser.input[i]->down)
+        {
+            players[i].changePosDL();
+        }
+        else if(parser.input[i]->right && parser.input[i]->down)
+        {
+            players[i].changePosDR();
+        }
     }
 
 }
@@ -277,11 +225,11 @@ void Controller::whoIsWinner()
 {
     if(players[0].getPlayerHealth() == 0)
     {
-        parser.setWinner(2); ///means player 2 won the game.
+        parser.setWinner(2);
     }
     else if(players[1].getPlayerHealth() == 0)
     {
-        parser.setWinner(1); ///meas player 1 won the game.
+        parser.setWinner(1);
     }
 }
 void Controller::produceGiftBox()
@@ -314,10 +262,7 @@ void Controller::produceTntBox()
         {
             createTntBoxes();
         }
-
     }
-
-
 }
 
 void Controller::setPlayerNormalBoxesNum()
@@ -369,23 +314,7 @@ void Controller::setPlayerDirection()
 
     }
 }
-/*void Controller::setPlayerTokenBoxes()
-{
-    for(int i = 0; i < this->playerNumbers; i++)
-    {
-        if(players[i].OwnedBox())
-        {
-            for(int i = 0; i < this->normalBoxNumbers; i++)
-            {
-                 if(normals[i].hasOwner())
-                 {
 
-                     players[i].setTokenBox(normals[i]);
-                 }
-            }
-        }
-    }
-}*/
 void Controller::setPlayerGiftBoxes()
 {
 
@@ -499,20 +428,36 @@ void Controller::playerCollisionToNormalBox()
 {
     for(int i=0; i<this->playerNumbers; i++)
         {
-           // players[i].tokenBox->moveCatchBox();
-
-            if(players[i].playerBox())
+            if(players[i].ownBox==true)
             {
+                players[i].tokenBox->player=&players[i];
                 players[i].catchBox();
+                players[i].tokenBox->moveCatchBox();
             }
-            players[i].throwBox();
+              if(players[i].throwBox())
+                {
+                    while(players[i].tokenBox->getRate()!=0 )
+                    {
+                        players[i].tokenBox->moveCatchBoxThrow();
+                    //  if( players[i].tokenBox->checkCollision()==true)
+                        //{
+                        //  cout<<"\nthis is playerCollisionToNormalBox\n";
+                        //  decreaseAnotherPlayerHealth();
+                        //   break;
+                        //}
+                    }
+                    players[i].tokenBox->setDeadOrAlive(0);
+                    deleteNormalBox();
+                }
+            if(players[i].ownBox==false)
+                if(players[i].playerBox())
+                {
+                    players[i].catchBox();
+                }
+
         }
 }
-/*void Controller::setInputs()
-{
 
-    playerInputs.push_back(parser.returnInputs());
-}*/
 void Controller::setZeroToInputs()
 {
     for(int i=0; i<this->playerNumbers; i++)
@@ -541,9 +486,104 @@ void Controller::setPlayerSpaceKey()
     }
 
 }
-void Controller::setWmodelToParser()
+void Controller::setWmodelToParser(string s)
 {
-    parser.setWmodel(connection.receive());
 
+    parser.setWmodel(s);
+}
+
+void Controller::playerCollisionToWall()
+{
+    int a=0;
+    for(int i=0;i<players.size();i++)
+       {
+           a=players[i].checkCollisionToWall();
+
+           if(a==1)
+           {
+                parser.input[i]->up=0;
+
+           }
+           else if(a==2)
+           {
+                parser.input[i]->right=0;
+
+           }
+
+           else if(a==3)
+           {
+                parser.input[i]->down=0;
+
+           }
+
+           else if(a==4)
+           {
+                 parser.input[i]->left=0;
+
+           }
+
+        }
+}
+
+void Controller::checkPlayerCollisionToBox()
+{
+    int a;
+
+    for(int i=0;i<players.size();i++)
+    {
+        if(players[i].ownBox==0)
+        {
+            a=players[i].checkCollisionToBox();
+            if(a==1)
+            {
+                parser.input[i]->up=0;
+            }
+
+            else if(a==2)
+            {
+                parser.input[i]->right=0;
+            }
+
+            else if(a==3)
+            {
+                parser.input[i]->down=0;
+            }
+
+            else if(a==4)
+            {
+                parser.input[i]->left=0;
+            }
+
+        }
+    }
 
 }
+
+void Controller::decreaseAnotherPlayerHealth()
+{
+    for(int i=0;i<normals.size();i++)
+    {
+        if(normals[i].getIsThrow())
+        {
+            if(players[0].tokenBox == &normals[i])
+            {
+               players[1].decreasePlayerHealth();
+            }
+
+            else if(players[1].tokenBox==&normals[i])
+            {
+                players[0].decreasePlayerHealth();
+            }
+         }
+    }
+}
+
+void Controller::setPlayersVectorToNormalBox()
+{
+    for(int i=0; i<8;i++)
+    {
+        normals[i].setPlayerVector(players);
+    }
+
+}
+

@@ -1,12 +1,13 @@
 #include "../include/Player.h"
-
+#include <iostream>
 Player::Player(int x,int y):xPos(x),yPos(y)
 {
+    this->isKeyPressedBool=0;
     this->throwSpeed=5;
-    this->throwRate=100;
+    this->throwRate=500;
     this->health=3;
     this->direction=2;
-    this->speed=7;
+    this->speed=20;
     this->ownBox=0;
     this->deadOrAlive=1;
 }
@@ -18,40 +19,43 @@ Player::~Player()
 
 bool Player::playerBox()
 {
+    std::cout<<this->space<<std::endl;
     if(this->ownBox==0)
     {
         if(this->space==1)
         {
             for(int i=0;i<normalBoxesNum;i++)
             {
-                if(this->xPos>normalBoxes[i]->getXPos() && this->xPos<normalBoxes[i]->getXPos()+boxSize
-                    && this->yPos>normalBoxes[i]->getYPos() && this->yPos<normalBoxes[i]->getYPos()+boxSize)
-                {
-                    this->tokenBox=normalBoxes[i];
-                    return true;
-                }
+                if(yPos-30<=normalBoxes[i]->getYPos()+60 && yPos-30>normalBoxes[i]->getYPos())
+                    if(xPos<=normalBoxes[i]->getXPos()+60 && xPos>normalBoxes[i]->getXPos()-60)
+                    {
+                        this->tokenBox=normalBoxes[i];
+                        return true;
+                    }
 
-                if(this->xPos>normalBoxes[i]->getXPos() && this->xPos<normalBoxes[i]->getXPos()+boxSize
-                    && this->yPos+playerSize>normalBoxes[i]->getYPos() && this->yPos+playerSize<normalBoxes[i]->getYPos()+boxSize)
-                {
-                    this->tokenBox=normalBoxes[i];
-                    return true;
-                }
+                if(yPos+20<=normalBoxes[i]->getYPos()+60 && yPos+20>normalBoxes[i]->getYPos())
+                    if(xPos+10<=normalBoxes[i]->getXPos()+60 && xPos+10>normalBoxes[i]->getXPos()-60)
+                    {
 
-                if(this->xPos+playerSize>normalBoxes[i]->getXPos() && this->xPos+playerSize<normalBoxes[i]->getXPos()+boxSize
-                    && this->yPos>normalBoxes[i]->getYPos() && this->yPos<normalBoxes[i]->getYPos()+boxSize)
-                {
-                    this->tokenBox=normalBoxes[i];
-                    return true;
-                }
+                        this->tokenBox=normalBoxes[i];
+                        return true;
+                    }
 
-                if(this->xPos+playerSize>normalBoxes[i]->getXPos() && this->xPos+playerSize<normalBoxes[i]->getXPos()+boxSize
-                    && this->yPos+playerSize>normalBoxes[i]->getYPos() && this->yPos+playerSize<normalBoxes[i]->getYPos()+boxSize)
+                if(yPos+60<=normalBoxes[i]->getYPos()+60 && yPos+60>normalBoxes[i]->getYPos())
+                    if(xPos<=normalBoxes[i]->getXPos()+60 && xPos>normalBoxes[i]->getXPos()-60)
                 {
-                    this->tokenBox=normalBoxes[i];
+
+                        this->tokenBox=normalBoxes[i];
                     return true;
                 }
-            }
+                if(yPos+30<=normalBoxes[i]->getYPos()+60 && yPos+30>normalBoxes[i]->getYPos())
+                    if(xPos-40<=normalBoxes[i]->getXPos()+60 && xPos-40>normalBoxes[i]->getXPos()-60)
+                    {
+
+                        this->tokenBox=normalBoxes[i];
+                        return true;
+                    }
+             }
         }
     }
     return false;
@@ -117,19 +121,21 @@ void Player::catchBox()
     tokenBox->setSpeed(this->speed);
 }
 
-void Player::throwBox()
+bool Player::throwBox()
 {
     if(ownBox==1)
     {
         if(this->space==1)
         {
+            ownBox=0;
             tokenBox->setDirection(this->direction);
             tokenBox->setSpeed(this->throwSpeed);
             tokenBox->setRate(this->throwRate);
             tokenBox->setIsThrow(1);
-            ownBox=0;
+            return true;
         }
      }
+     return false;
 }
 
 
@@ -168,16 +174,6 @@ void Player::increaseThrowRate()
     this->throwRate+=3;
 }
 
-//void Player::setInputData(Input input)
-//{
-//    this->inputData=&input;
-//}
-
-//void Player::setTokenBox(NoramlBox normalbox)
-//{
- //   this->tokenBox=&normalbox;
-//}
-
 void Player::setGiftBoxVector(std::vector <GiftBox> &gifts)
 {
     for(int i=0;i<giftBoxesNum;i++)
@@ -206,33 +202,12 @@ bool Player::playerCollisionGiftBox()
 {
     for(int i=0;i<giftBoxesNum;i++)
     {
-        if(this->xPos>giftBoxes[i]->getXPos() && this->xPos<giftBoxes[i]->getXPos()+boxSize
-            && this->yPos>giftBoxes[i]->getYPos() && this->yPos<giftBoxes[i]->getYPos()+boxSize)
-        {
-            this->earnedBox=giftBoxes[i];
-            return true;
-        }
-
-        if(this->xPos>giftBoxes[i]->getXPos() && this->xPos<giftBoxes[i]->getXPos()+boxSize
-            && this->yPos+playerSize>giftBoxes[i]->getYPos() && this->yPos+playerSize<giftBoxes[i]->getYPos()+boxSize)
-        {
-            this->earnedBox=giftBoxes[i];
-            return true;
-        }
-
-        if(this->xPos+playerSize>giftBoxes[i]->getXPos() && this->xPos+playerSize<giftBoxes[i]->getXPos()+boxSize
-            && this->yPos>giftBoxes[i]->getYPos() && this->yPos<giftBoxes[i]->getYPos()+boxSize)
-        {
-            this->earnedBox=giftBoxes[i];
-            return true;
-        }
-
-        if(this->xPos+playerSize>giftBoxes[i]->getXPos() && this->xPos+playerSize<giftBoxes[i]->getXPos()+boxSize
-            && this->yPos+playerSize>giftBoxes[i]->getYPos() && this->yPos+playerSize<giftBoxes[i]->getYPos()+boxSize)
-        {
-            this->earnedBox=giftBoxes[i];
-            return true;
-        }
+        if(yPos<=giftBoxes[i]->getYPos()+60 && yPos>giftBoxes[i]->getYPos())
+            if(xPos<=giftBoxes[i]->getXPos()+60 && xPos>giftBoxes[i]->getXPos()-60)
+            {
+                this->earnedBox=giftBoxes[i];
+                return true;
+            }
     }
 
     return false;
@@ -243,35 +218,12 @@ bool Player::playerCollisionTntBox()
 {
     for(int i=0;i<tntBoxesNum;i++)
     {
-        if(this->xPos>tntBoxes[i]->getXPos() && this->xPos<tntBoxes[i]->getXPos()+boxSize
-            && this->yPos>tntBoxes[i]->getYPos() && this->yPos<tntBoxes[i]->getYPos()+boxSize)
-        {
-            this->collisionBox=tntBoxes[i];
-            return true;
-        }
-
-        if(this->xPos>tntBoxes[i]->getXPos() && this->xPos<tntBoxes[i]->getXPos()+boxSize
-            && this->yPos+playerSize>tntBoxes[i]->getYPos() && this->yPos+playerSize<tntBoxes[i]->getYPos()+boxSize)
-        {
-            this->collisionBox=tntBoxes[i];
-            return true;
-        }
-
-        if(this->xPos+playerSize>tntBoxes[i]->getXPos() && this->xPos+playerSize<tntBoxes[i]->getXPos()+boxSize
-            && this->yPos>tntBoxes[i]->getYPos() && this->yPos<tntBoxes[i]->getYPos()+boxSize)
-        {
-            this->collisionBox=tntBoxes[i];
-            return true;
-        }
-
-        if(this->xPos+playerSize>tntBoxes[i]->getXPos() && this->xPos+playerSize<tntBoxes[i]->getXPos()+boxSize
-            && this->yPos+playerSize>tntBoxes[i]->getYPos() && this->yPos+playerSize<tntBoxes[i]->getYPos()+boxSize)
-        {
-            this->collisionBox=tntBoxes[i];
-            return true;
-        }
+        if(yPos<=tntBoxes[i]->getYPos()+60 && yPos>tntBoxes[i]->getYPos())
+            if(xPos<=tntBoxes[i]->getXPos()+60 && xPos>tntBoxes[i]->getXPos()-60)
+            {
+                     return true;
+            }
     }
-
     return false;
 }
 bool Player::OwnedBox()
@@ -297,86 +249,61 @@ int Player::getPlayerHealth()
 }
 
 
-bool Player::checkCollisionToBox()
+int Player::checkCollisionToBox()
 {
     if(direction==1)
     {
         for(int i=0;i<normalBoxesNum;i++)
         {
-            if(this->xPos>normalBoxes[i]->getXPos() && this->xPos<normalBoxes[i]->getXPos()+boxSize
-                && this->yPos-5>normalBoxes[i]->getYPos() && this->yPos-5<normalBoxes[i]->getYPos()+boxSize)
-            {
-                return false;
-            }
+            if(yPos-20<=normalBoxes[i]->getYPos()+60 && yPos-20>normalBoxes[i]->getYPos())
+                if(xPos<=normalBoxes[i]->getXPos()+60 && xPos>normalBoxes[i]->getXPos()-60)
+                {
+                    return 1;
+                }
 
-
-            if(this->xPos+playerSize>normalBoxes[i]->getXPos() && this->xPos+playerSize<normalBoxes[i]->getXPos()+boxSize
-                && this->yPos-5>normalBoxes[i]->getYPos() && this->yPos-5<normalBoxes[i]->getYPos()+boxSize)
-            {
-                return false;
-            }
         }
-        return true;
+        return 0;
     }
+
     else if(direction==2)
     {
         for(int i=0;i<normalBoxesNum;i++)
         {
-            if(this->xPos+5>normalBoxes[i]->getXPos() && this->xPos+5<normalBoxes[i]->getXPos()+boxSize
-                && this->yPos>normalBoxes[i]->getYPos() && this->yPos<normalBoxes[i]->getYPos()+boxSize)
-            {
-                return false;
-            }
-
-
-            if(this->xPos+5>normalBoxes[i]->getXPos() && this->xPos+5<normalBoxes[i]->getXPos()+boxSize
-                && this->yPos+playerSize>normalBoxes[i]->getYPos() && this->yPos+playerSize<normalBoxes[i]->getYPos()+boxSize)
-            {
-                return false;
-            }
+        if(yPos+20<=normalBoxes[i]->getYPos()+60 && yPos+20>normalBoxes[i]->getYPos())
+                if(xPos<=normalBoxes[i]->getXPos()+60 && xPos>normalBoxes[i]->getXPos()-60)
+                {
+                    return 2;
+                }
         }
-        return true;
+        return 0;
 
     }
+
     else if(direction==3)
     {
         for(int i=0;i<normalBoxesNum;i++)
         {
-            if(this->xPos>normalBoxes[i]->getXPos() && this->xPos<normalBoxes[i]->getXPos()+boxSize
-                && this->yPos+5>normalBoxes[i]->getYPos() && this->yPos+5<normalBoxes[i]->getYPos()+boxSize)
-            {
-                return false;
-            }
-
-            if(this->xPos+playerSize>normalBoxes[i]->getXPos() && this->xPos+playerSize<normalBoxes[i]->getXPos()+boxSize
-                && this->yPos+5>normalBoxes[i]->getYPos() && this->yPos+5<normalBoxes[i]->getYPos()+boxSize)
-            {
-                return false;
-            }
+            if(yPos+50<=normalBoxes[i]->getYPos()+60 && yPos+50>normalBoxes[i]->getYPos())
+                if(xPos<=normalBoxes[i]->getXPos()+60 && xPos>normalBoxes[i]->getXPos()-60)
+                {
+                    return 3;
+                }
         }
-        return true;
+        return 0;
 
     }
 
     else if(direction==4)
     {
-
         for(int i=0;i<normalBoxesNum;i++)
         {
-            if(this->xPos-5>normalBoxes[i]->getXPos() && this->xPos-5<normalBoxes[i]->getXPos()+boxSize
-                && this->yPos>normalBoxes[i]->getYPos() && this->yPos<normalBoxes[i]->getYPos()+boxSize)
-            {
-                return false;
-            }
-
-
-            if(this->xPos-5>normalBoxes[i]->getXPos() && this->xPos-5<normalBoxes[i]->getXPos()+boxSize
-                && this->yPos+playerSize>normalBoxes[i]->getYPos() && this->yPos+playerSize<normalBoxes[i]->getYPos()+boxSize)
-            {
-                return false;
-            }
+            if(yPos+30<=normalBoxes[i]->getYPos()+60 && yPos+30>normalBoxes[i]->getYPos())
+                if(xPos<=normalBoxes[i]->getXPos()+60 && xPos>normalBoxes[i]->getXPos()-60)
+                {
+                    return 4;
+                }
         }
-        return true;
+        return 0;
     }
 
 }
@@ -390,11 +317,13 @@ int Player::getId()
 {
     return this->id;
 }
+
 void Player::setGiftBoxesNum(int giftBoxes)
 {
     this->giftBoxesNum = giftBoxes;
 
 }
+
 void Player::setTntBoxesNum(int tntBoxes)
 {
     this->tntBoxesNum = tntBoxes;
@@ -410,4 +339,40 @@ void Player::setId(int a)
 {
 
     this->id = a;
+}
+
+int Player::checkCollisionToWall()
+{
+     if(this->yPos<60)
+    {
+        return 1;
+    }
+
+    else if(this->xPos >1163)
+
+    {
+        return 2;
+    }
+
+    else if(this->yPos  > 833)
+    {
+        return 3;
+    }
+
+    else if(this->xPos<80)
+    {
+        return 4;
+    }
+
+    else return 0;
+}
+
+void Player::setisKeyPressed(bool a)
+{
+    this->isKeyPressedBool=a;
+}
+
+bool Player::getisKeyPressed()
+{
+    return this->isKeyPressedBool;
 }

@@ -10,8 +10,6 @@
 class Player
 {
     public:
-        //friend class Box;
-        //Input* inputData;
         NoramlBox* tokenBox;
         GiftBox* earnedBox;
         TntBox* collisionBox;
@@ -19,7 +17,8 @@ class Player
         virtual ~Player();
         void changePosUp();
         int getPlayerHealth();
-        bool checkCollisionToBox();
+        int checkCollisionToBox();
+        int checkCollisionToWall();
         void changePosDown();
         void changePosRight();
         void changePosLeft();
@@ -27,25 +26,23 @@ class Player
         void changePosUL();
         void changePosDR();
         void changePosDL();
-        bool playerBox();///ghablesh box* bood vali b nazaram dge niaz nist
+        bool playerBox();
         bool playerCollisionGiftBox();
         bool playerCollisionTntBox();
         bool OwnedBox();
         void catchBox();
-        void throwBox();
+        bool throwBox();
         void increasePlayerHealth();
         void decreasePlayerHealth();
         void increaseSpeed();
         void increaseSpeedRate();
         void increaseThrowRate();
         int getDirection();
-        ///this should be assigned in controller///
         void setNormalBoxesNum(int );
         void setGiftBoxesNum(int );
         void setTntBoxesNum(int );
         void setDirection(int );
-        void setInputData(Input  ); ///remained.
-       // void setTokenBox(NoramlBox ); ///
+        void setInputData(Input  );
         void setGiftBoxVector(std::vector <GiftBox> &gifts);
         void setTntBoxVector(std::vector <TntBox> &tnts);
         void setNoramlBoxVector(std::vector <NoramlBox> &normals);
@@ -54,20 +51,16 @@ class Player
         int getXPos();
         int getYPos();
         void setId(int);
-
-
-        ///
-    private:
-        ///mesalesh dar file alaki
-        std::vector <NoramlBox*> normalBoxes;///pointeri be vectore noramlbox ha//=vector.data()
-        std::vector <GiftBox*> giftBoxes;///pointeri be vectore noramlbox ha//=vector.data()
-        std::vector <TntBox*> tntBoxes;///pointeri be vectore noramlbox ha//=vector.data()
-
-       // TntBox** tntBoxes;///pointeri be vectore tntbox ha
-        //GiftBox** giftBoxes;///pointeri be vectore giftbox ha
-
+        void setisKeyPressed(bool);
+        bool getisKeyPressed();
         bool ownBox;
+
+    private:
+        std::vector <NoramlBox*> normalBoxes;
+        std::vector <GiftBox*> giftBoxes;
+        std::vector <TntBox*> tntBoxes;
         bool deadOrAlive;
+        bool isKeyPressedBool;
         int normalBoxesNum;
         int tntBoxesNum;
         int giftBoxesNum;

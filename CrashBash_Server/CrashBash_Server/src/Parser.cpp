@@ -6,6 +6,7 @@ using namespace std;
 
 Parser::Parser(int P):winner(0)
 {
+    ch=true;
     this->playerNum = P;
     for(int i=0; i<playerNum; i++)
     {
@@ -22,10 +23,6 @@ Parser::Parser(int P):winner(0)
 
 }
 
-/*vector <Input*>* Parser::returnInputs()
-{
-    return input;
-}*/
 
 void Parser::setGiftBoxNum(int num)
 {
@@ -200,9 +197,19 @@ void Parser::code()
 
 
     wModel+=wi.str();
+
+    ///
+    if(wModel==lModel)
+    {
+        ch=false;
+    }
+    else
+        ch=true;
+
+    lModel=wModel;
 }
 
-void Parser::deCode()
+void Parser::deCode(int f)
 {
     bool a;
     int b;
@@ -218,6 +225,7 @@ void Parser::deCode()
 
     stringstream iid(id);
     iid>>b;
+    b=f;
 
     if(b==1)
     {
@@ -267,22 +275,22 @@ void Parser::deCode()
 
 }
 
-void Parser::setGiftBoxVector(const vector <GiftBox> &giftBoxVector)
+void Parser::setGiftBoxVector(vector <GiftBox> &giftBoxVector)
 {
 
     this->giftBoxVector = giftBoxVector;
 }
-void Parser::setNormalBoxVector(const vector <NoramlBox> &normalVector)
+void Parser::setNormalBoxVector(vector <NoramlBox> &normalVector)
 {
     this->noramlBoxVector = normalVector;
 }
-void Parser::setTntBoxVector(const vector <TntBox> &tntBoxVector)
+void Parser::setTntBoxVector(vector <TntBox> &tntBoxVector)
 {
 
         this->tntBoxVector = tntBoxVector;
 
 }
-void Parser::setPlayerVector(const vector <Player> &playerVector)
+void Parser::setPlayerVector(vector <Player> &playerVector)
 {
 
         this->playerVector = playerVector;

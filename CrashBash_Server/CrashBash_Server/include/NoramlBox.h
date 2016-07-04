@@ -3,7 +3,7 @@
 #define boxSize 60
 #define playerSize 200
 #include "Box.h"
-
+#include <vector>
 class Player;
 class NoramlBox:public Box
 {
@@ -24,13 +24,15 @@ class NoramlBox:public Box
         bool checkCollision();
         bool checkCollisionToPlayer();
         bool getDeadOrAlive();
+        void moveCatchBoxThrow();
+        void setDeadOrAlive(bool );
         bool hasOwner();
-
-    protected:
-
-    private:
-        Player** playerVector;
+        int getRate();
+        bool getIsThrow();
+        void setPlayerVector(std::vector <Player> &players);
         Player* player;
+    private:
+        std::vector <Player> playerVector;
         int playersNum;
         bool owner;
         bool isThrow;

@@ -46,37 +46,15 @@ bool NoramlBox::checkCollisionToWallOrRate()
 
 bool NoramlBox::checkCollision()
 {
-    for(int i=0;i<playersNum;i++)
+    for(int i=0;i<2;i++)
     {
-        if(this->xPos>playerVector[i]->getXPos() && this->xPos<playerVector[i]->getXPos()+boxSize
-            && this->yPos>playerVector[i]->getYPos() && this->yPos<playerVector[i]->getYPos()+boxSize)
-        {
-            this->player=playerVector[i];
-            return true;
-        }
-
-        if(this->xPos>playerVector[i]->getXPos() && this->xPos<playerVector[i]->getXPos()+boxSize
-            && this->yPos+playerSize>playerVector[i]->getYPos() && this->yPos+playerSize<playerVector[i]->getYPos()+boxSize)
-        {
-            this->player=playerVector[i];
-            return true;
-        }
-
-        if(this->xPos+playerSize>playerVector[i]->getXPos() && this->xPos+playerSize<playerVector[i]->getXPos()+boxSize
-            && this->yPos>playerVector[i]->getYPos() && this->yPos<playerVector[i]->getYPos()+boxSize)
-        {
-            this->player=playerVector[i];
-            return true;
-        }
-
-        if(this->xPos+playerSize>playerVector[i]->getXPos() && this->xPos+playerSize<playerVector[i]->getXPos()+boxSize
-            && this->yPos+playerSize>playerVector[i]->getYPos() && this->yPos+playerSize<playerVector[i]->getYPos()+boxSize)
-        {
-            this->player=playerVector[i];
-            return true;
-        }
+        if(yPos<=playerVector[i].getYPos()+60 && yPos>playerVector[i].getYPos())
+            if(xPos<=playerVector[i].getXPos()+60 && xPos>playerVector[i].getXPos()-60)
+            {
+                    return true;
+            }
     }
-
+    return false;
 }
 bool NoramlBox::hasOwner()
 {
@@ -96,7 +74,7 @@ void NoramlBox::setDirection(int a)
 
 void NoramlBox::setSpeed(int a)
 {
-    this->direction=a;
+    this->speed=a;
 }
 
 void NoramlBox::setRate(int a)
@@ -108,28 +86,31 @@ void NoramlBox::moveCatchBox()
 {
     if(this->owner==1)
     {
-        if(direction==1)
+        if(player->getisKeyPressed())
         {
-            yPos-=speed;
-            rate-=speed;
-        }
+            if(direction==1)
+            {
+                xPos=player->getXPos();
+                yPos=player->getYPos()-60;
+            }
 
-        else if(direction==2)
-        {
-            xPos+=speed;
-            rate-=speed;
-        }
+            else if(direction==2)
+            {
+                xPos=player->getXPos()+60;
+                yPos=player->getYPos();
+            }
 
-        else if(direction==3)
-        {
-            yPos+=speed;
-            rate-=speed;
-        }
+            else if(direction==3)
+            {
+                xPos=player->getXPos();
+                yPos=player->getYPos()+60;
+            }
 
-        else if(direction==4)
-        {
-            xPos-=speed;
-            rate-=speed;
+            else if(direction==4)
+            {
+                xPos=player->getXPos()-60;
+                yPos=player->getYPos();
+            }
         }
     }
 }
@@ -160,4 +141,56 @@ int NoramlBox::getYPos()
     return this->yPos;
 }
 
-//void NoramlBox::move()
+int NoramlBox::getRate()
+{
+    return rate;
+}
+
+bool NoramlBox::getIsThrow()
+{
+
+
+    return this->isThrow;
+}
+
+void NoramlBox::setPlayerVector(std::vector <Player> &players)
+{
+    playerVector = players;
+}
+
+void NoramlBox::moveCatchBoxThrow()
+{
+    if(this->owner==1)
+    {
+        if(player->getisKeyPressed())
+        {
+            if(direction==1)
+            {
+                yPos-=speed/2;
+                rate-=speed;
+            }
+
+            else if(direction==2)
+            {
+                xPos+=speed/2;
+                rate-=speed;
+            }
+
+            else if(direction==3)
+            {
+                yPos+=speed/2;
+                rate-=speed;
+             }
+
+            else if(direction==4)
+            {
+                xPos-=speed/2;
+                rate-=speed;
+            }
+        }
+    }
+}
+void NoramlBox::setDeadOrAlive(bool a)
+{
+    this->deadOrAlive=a;
+}

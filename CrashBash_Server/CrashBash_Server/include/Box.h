@@ -8,7 +8,7 @@ class Box
         Box(int ,int );
 
         virtual ~Box();
-        virtual bool getDeadOrAlive()=0;///ino mikham too seta kelas box estefade konam
+        virtual bool getDeadOrAlive()=0;
 
     protected:
         bool deadOrAlive;

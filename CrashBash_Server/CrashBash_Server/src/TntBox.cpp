@@ -12,7 +12,10 @@ TntBox::~TntBox()
 
 bool TntBox::getDeadOrAlive()
 {
-    return this->deadOrAlive;
+    if(this->deadOrAlive==true)
+        return true;
+    else
+        return false;
 }
 
 
