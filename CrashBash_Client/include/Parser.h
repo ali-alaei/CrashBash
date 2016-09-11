@@ -24,20 +24,24 @@ class Parser
         int getPlayerNum();
         int getWinner();
         void setWModel(string);
+        void def();
         vector <NormalBox*> normalBoxVector;
         vector <TntBox*> tntBoxVector;
         vector <GiftBox*> giftBoxVector;
         vector <Player*> playerVector;
+        bool ch;
+        Input Input;
 
     private:
-        string wModel;
-        Input Input;
+
         int giftBoxNum;
         int tntBoxNum;
         int normalBoxNum;
         int playerNum;
         int winner;
-
+        string wModel;
+        string lModel;
+        string pModel;
 };
 
 

@@ -1,4 +1,5 @@
 #include "NormalBox.h"
+#include <iostream>
 
 NormalBox::NormalBox()
 {
@@ -12,6 +13,7 @@ NormalBox::~NormalBox()
 }
 sf::Sprite NormalBox::show()
 {
+   // std::cout<<"\ninX: "<<xPos<<"\ninY"<<yPos<<endl;
     sprite.setTexture(texture);
     sprite.setTextureRect(sf::IntRect(0, 0, textureSize, textureSize));
     sprite.setPosition(xPos,yPos);

@@ -22,8 +22,11 @@ private:
     sf::Mutex sendQmutex;
     std::queue<sf::Packet> receiveQ;
     sf::Mutex receiveQmutex;
+    void send();
+    void receive();
 public:
     Connection();
+
     void start();
     void sendPacket(sf::Packet);
     sf::Packet receivePacket();
@@ -32,8 +35,6 @@ public:
     std::string getReceivingData();
     std::string ReceivingData;
 private:
-    void send();
-    void receive();
 };
 
 

@@ -1,5 +1,5 @@
 #include "Player.h"
-
+#include <iostream>
 
 Player::Player()
 {
@@ -101,6 +101,9 @@ sf::Sprite Player::show()
     {
         if(direction==1)
         {
+
+                //std::cout<<"\nplayerinX: "<<xPos<<"\ninY"<<yPos<<std::endl;
+
             sprite.setTexture(textureUp);
             sprite.setTextureRect(sf::IntRect(0, 0, playersize, playersize));
             sprite.setPosition(xPos,yPos);
@@ -109,6 +112,8 @@ sf::Sprite Player::show()
 
         else if(direction==2)///right
         {
+            //    std::cout<<"\nplayerinX: "<<xPos<<"\ninY"<<yPos<<std::endl;
+
             sprite.setTexture(textureRight);
             sprite.setTextureRect(sf::IntRect(0, 0, playersize, playersize));
             sprite.setPosition(xPos,yPos);
@@ -117,6 +122,8 @@ sf::Sprite Player::show()
 
         else if(direction==3)///down
         {
+              // std::cout<<"\nplayerinX: "<<xPos<<"\ninY"<<yPos<<std::endl;
+
             sprite.setTexture(textureDown);
             sprite.setTextureRect(sf::IntRect(0, 0, playersize, playersize));
             sprite.setPosition(xPos,yPos);
@@ -125,6 +132,8 @@ sf::Sprite Player::show()
 
         else if(direction==4)///left
         {
+                //std::cout<<"\nplayerinX: "<<xPos<<"\ninY"<<yPos<<std::endl;
+
             sprite.setTexture(textureLeft);
             sprite.setTextureRect(sf::IntRect(0, 0, playersize, playersize));
             sprite.setPosition(xPos,yPos);

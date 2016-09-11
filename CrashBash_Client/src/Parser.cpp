@@ -9,6 +9,7 @@ using namespace std;
 
 Parser::Parser()
 {
+    ch=false;
     for(int i=0; i<10; i++)
     {
         NormalBox* N;
@@ -70,14 +71,22 @@ string Parser::code()
     wModel = wModel + "S" + Space.str();
     wModel = wModel + ID.str();
 
+    if(lModel==wModel)
+        ch=false;
+    else
+        ch=true;
+
+    //cout<<wModel<<"lkjhg"<<endl;
+    //cout<<lModel<<endl;
+    lModel=wModel;
     return wModel;
 }
 
 void Parser::deCode()
 {
 
-    //wModel="B|X900,800,700,600,500,400,300|Y300,400,500,600,700,800,900|*P|X550,750|Y550,740|D2,3|H1,2|*-2322120";
-    cout<<wModel<<endl;
+    //wModel="B|X900,800,700,750,500,400,300|Y300,400,500,600,700,800,750|*P|X550,750|Y550,740|D2,3|H1,2|*-2322120";
+    //cout<<wModel<<endl;
     vector <string> BoxX;
     vector <string> BoxY;
     vector <string> BoxN;
@@ -341,10 +350,19 @@ void Parser::deCode()
         h>>a;
         playerVector[i]->setHealth(a);
     }
+        //cout<<"HERE!!!!!!!"<<endl;
 }
 void Parser::setWModel(string world)
 {
     this->wModel = world;
+    if(world[0]=='B')
+        this->pModel = world;
+}
+
+void Parser::def()
+{
+    wModel=pModel;
+    //cout<<"?"<<pModel<<endl;
 }
 
 

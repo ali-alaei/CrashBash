@@ -1,5 +1,5 @@
 #include "TntBox.h"
-
+#include <iostream>
 TntBox::TntBox()
 {
     texture.loadFromFile("TntBox.jpg");
@@ -12,6 +12,7 @@ TntBox::~TntBox()
 }
 sf::Sprite TntBox::show()
 {
+    //std::cout<<"\ninX: "<<xPos<<"\ninY"<<yPos<<endl;
     sprite.setTexture(texture);
     sprite.setTextureRect(sf::IntRect(0, 0, textureSize, textureSize));
     sprite.setPosition(xPos,yPos);

@@ -25,7 +25,7 @@ class Client
         void displayWindow();
         void showIconAndHealth();
         void setPlayerId();
-        void setParserWModel();
+        void setParserWModel(std::string);
     protected:
 
     private:

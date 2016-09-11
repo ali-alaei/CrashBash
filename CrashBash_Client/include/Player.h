@@ -1,5 +1,5 @@
 #ifndef PLAYER_H
-#define playersize 200
+#define playersize 60
 #define iconSize 70
 #define PLAYER_H
 #include"Input.h"

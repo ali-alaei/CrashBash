@@ -21,11 +21,12 @@ class Graphic
         void showPlayersHealthEmpty(Player* playerObj,int ,int);
         void showPlayerIcon(Player* playerObj,int ,int);
         sf::RenderWindow* getWindow();
+
+        sf::RenderWindow* window;
         void pollEvent();
     protected:
 
     private:
-        sf::RenderWindow* window;
         int width;
         int height;
          Surface surface;

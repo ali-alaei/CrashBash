@@ -5,7 +5,7 @@
 
 Connection::Connection() : receiveT(&Connection::receive, this), sendT(&Connection::send, this)
 {
-    this->ID = ID;
+    ID=1;
     connected = false;
     error = false;
 }
@@ -41,7 +41,7 @@ void Connection::start()
     }
     else
     {
-        sf::Socket::Status status = socket.connect("127.0.0.1", 53000);
+        sf::Socket::Status status = socket.connect("192.168.43.97", 53000);
         if (status != sf::Socket::Done)
         {
             // error...
@@ -60,6 +60,7 @@ void Connection::start()
 
 void Connection::receive()
 {
+    std::cout<<"P";
     while(connected)
     {
         sf::Packet packet;
@@ -70,6 +71,7 @@ void Connection::receive()
         }
         else
             std::clog <<"Receiving...\n";
+
         packet << ReceivingData;
         receiveQmutex.lock();
         receiveQ.push(packet);
@@ -86,7 +88,7 @@ void Connection::send()
         while(sendQ.empty())
         {
             sendQmutex.unlock();
-            sf::sleep(sf::milliseconds(1000));
+            sf::sleep(sf::milliseconds(10));
             sendQmutex.lock();
         }
         packet = sendQ.front();
@@ -114,7 +116,7 @@ sf::Packet Connection::receivePacket()
 {
     sf::Packet packet;
     receiveQmutex.lock();
-    if(!receiveQ.empty())
+    if(haveInQ()!=0)
     {
         packet = receiveQ.front();
         receiveQ.pop();
